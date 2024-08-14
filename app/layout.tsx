@@ -4,6 +4,9 @@
 import { Inter } from "next/font/google";
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
+import { FloatingNav } from "@/components/ui/FloatingNavbar";
+import { navItems } from "@/data";
+import Hero from "@/components/Hero";
 
 import "./globals.css";
 import { ThemeProvider } from "./provider";
@@ -40,7 +43,11 @@ const RootLayout: React.FC<{
           disableTransitionOnChange
         >
           {showStarBackground && <StarBackground />}
+          <main className="relative flex justify-center items-center flex-col overflow-hidden mx-auto px-5 lg:px-10 ">
+          <FloatingNav navItems={navItems} />
+          <Hero />
           {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>

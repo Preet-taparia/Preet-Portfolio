@@ -6,7 +6,7 @@ import { useLayoutEffect, useRef } from "react";
 import * as THREE from "three";
 
 const createCircleTexture = () => {
-  const size = 16;
+  const size = 8;
   const canvas = document.createElement("canvas");
   canvas.width = size;
   canvas.height = size;
@@ -26,7 +26,7 @@ const StarBackground: React.FC = () => {
   useLayoutEffect(() => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
-      75,
+      50,
       window.innerWidth / window.innerHeight,
       0.1,
       1000
@@ -38,7 +38,7 @@ const StarBackground: React.FC = () => {
     }
 
     const starsGeometry = new THREE.BufferGeometry();
-    const starCount = 100;
+    const starCount = 75;
     const positions = new Float32Array(starCount * 3);
 
     for (let i = 0; i < starCount; i++) {
@@ -60,6 +60,7 @@ const StarBackground: React.FC = () => {
       map: starTexture,
       alphaTest: 0.5,
       transparent: true,
+      depthWrite: false,
     });
     const stars = new THREE.Points(starsGeometry, starsMaterial);
     scene.add(stars);
@@ -70,7 +71,6 @@ const StarBackground: React.FC = () => {
       requestAnimationFrame(animate);
       stars.rotation.y += 0.004;
       stars.rotation.x += 0.002;
-      stars.rotation.z += 0.0002;
       renderer.render(scene, camera);
     };
 
