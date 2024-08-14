@@ -15,17 +15,6 @@ type Project = {
   category: string; // project category
 };
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 50px;
-  padding: 0px 16px;
-  position: relative;
-  z-index: 1;
-  align-items: center;
-`;
-
 const Wrapper = styled.div`
   position: relative;
   display: flex;
@@ -37,28 +26,6 @@ const Wrapper = styled.div`
   gap: 12px;
   @media (max-width: 960px) {
     flex-direction: column;
-  }
-`;
-
-const Title = styled.div`
-  font-size: 52px;
-  text-align: center;
-  font-weight: 600;
-  margin-top: 20px;
-  color: ${({ theme }) => theme.text_primary};
-  @media (max-width: 768px) {
-    margin-top: 12px;
-    font-size: 32px;
-  }
-`;
-
-const Desc = styled.div`
-  font-size: 18px;
-  text-align: center;
-  font-weight: 600;
-  color: ${({ theme }) => theme.text_secondary};
-  @media (max-width: 768px) {
-    font-size: 16px;
   }
 `;
 
@@ -114,58 +81,61 @@ const Projects: React.FC = () => {
   const [toggle, setToggle] = useState<string>("all");
 
   return (
-    <Container id="Projects">
-      <Wrapper>
-        <Title>Projects</Title>
-        <Desc>
-          I have worked on a wide range of projects. From web apps to android
-          apps. Here are some of my projects.
-        </Desc>
-
-        <ToggleButtonGroup>
-          <ToggleButton
-            $active={toggle === "all"}
-            onClick={() => setToggle("all")}
-          >
-            ALL
-          </ToggleButton>
-          <Divider />
-          <ToggleButton
-            $active={toggle === "Web"}
-            onClick={() => setToggle("Web")}
-          >
-            WEB
-          </ToggleButton>
-          <Divider />
-          <ToggleButton
-            $active={toggle === "App"}
-            onClick={() => setToggle("App")}
-          >
-            APP
-          </ToggleButton>
-          <Divider />
-          <ToggleButton
-            $active={toggle === "Other"}
-            onClick={() => setToggle("Other")}
-          >
-            OTHER
-          </ToggleButton>
-        </ToggleButtonGroup>
-
-        <CardContainer>
-          {toggle === "all" &&
-            projects.map((project: Project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
-          {projects
-            .filter((item: Project) => item.category === toggle)
-            .map((project: Project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
-        </CardContainer>
-      </Wrapper>
-    </Container>
+    <div className="py-10" id="Projects">
+    <h1 className="heading">
+      A small selection of{" "}
+      <span className="text-purple">recent projects</span>
+    </h1>
+    <div className="flex flex-wrap items-center justify-center p-4 gap-16 mt-10">
+        <Wrapper>
+          <ToggleButtonGroup>
+            <ToggleButton
+              $active={toggle === "all"}
+              onClick={() => setToggle("all")}
+            >
+              ALL
+            </ToggleButton>
+            <Divider />
+            <ToggleButton
+              $active={toggle === "Web"}
+              onClick={() => setToggle("Web")}
+            >
+              WEB
+            </ToggleButton>
+            <Divider />
+            <ToggleButton
+              $active={toggle === "App"}
+              onClick={() => setToggle("App")}
+            >
+              APP
+            </ToggleButton>
+            <Divider />
+            <ToggleButton
+              $active={toggle === "Other"}
+              onClick={() => setToggle("Other")}
+            >
+              OTHER
+            </ToggleButton>
+          </ToggleButtonGroup>
+  
+          <CardContainer>
+            {toggle === "all" &&
+              projects.map((project: Project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
+            {projects
+              .filter((item: Project) => item.category === toggle)
+              .map((project: Project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
+          </CardContainer>
+        </Wrapper>
+    </div>
+  </div>
   );
 };
 
 export default Projects;
+
+
+
