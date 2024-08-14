@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
 const createCircleTexture = () => {
@@ -22,6 +22,7 @@ const createCircleTexture = () => {
 
 const StarBackground: React.FC = () => {
   const mountRef = useRef<HTMLDivElement | null>(null);
+  const [material, setMaterial] = useState<THREE.PointsMaterial | null>(null);
 
   useLayoutEffect(() => {
     const scene = new THREE.Scene();
@@ -61,7 +62,9 @@ const StarBackground: React.FC = () => {
       alphaTest: 0.5,
       transparent: true,
       depthWrite: false,
+      opacity: 0, // Initial opacity
     });
+
     const stars = new THREE.Points(starsGeometry, starsMaterial);
     scene.add(stars);
 
@@ -76,6 +79,8 @@ const StarBackground: React.FC = () => {
 
     animate();
 
+    setMaterial(starsMaterial);
+
     // Cleanup on unmount
     return () => {
       if (mountRef.current) {
@@ -84,10 +89,29 @@ const StarBackground: React.FC = () => {
     };
   }, []);
 
+  useLayoutEffect(() => {
+    if (material) {
+      let startTime: number | null = null;
+      const duration = 1000; // 1 second
+
+      const fadeIn = (timestamp: number) => {
+        if (startTime === null) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        material.opacity = progress;
+        if (progress < 1) {
+          requestAnimationFrame(fadeIn);
+        }
+      };
+
+      requestAnimationFrame(fadeIn);
+    }
+  }, [material]);
+
   return (
     <div
       ref={mountRef}
-      className="fixed top-0 left-0 w-full h-full bg-[#000000]"
+      className={`fixed top-0 left-0 w-full h-full bg-[#000000] transition-opacity duration-1000 opacity-100`}
     ></div>
   );
 };

@@ -1,11 +1,10 @@
 // components/Hero.tsx
 
 import { FaLocationArrow } from "react-icons/fa6";
-
 import MagicButton from "./MagicButton";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 
-const Hero = () => {
+const Hero = ({ onAnimationComplete }: { onAnimationComplete?: () => void }) => {
   return (
     <div className="pt-20 pb-10">
       <div className="flex justify-center relative my-5 z-10">
@@ -17,10 +16,11 @@ const Hero = () => {
           <TextGenerateEffect
             words="Preet Taparia"
             className="text-center text-[40px] md:text-5xl lg:text-6xl"
+            onComplete={onAnimationComplete} // Trigger when animation completes
           />
 
           <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
-            I&apos;m a Computer Science Engineer with interset in backend and web3 technologies.
+            I&apos;m a Computer Science Engineer with interest in backend and web3 technologies.
           </p>
 
           <a href="/projects">

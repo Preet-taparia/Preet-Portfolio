@@ -22,13 +22,9 @@ const RootLayout: React.FC<{
 }> = ({ children }) => {
   const [showStarBackground, setShowStarBackground] = useState(false);
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setShowStarBackground(true);
-    }, 2500);
-
-    return () => clearTimeout(timeout);
-  }, []);
+  const handleAnimationComplete = () => {
+    setShowStarBackground(true); // Show background when animation is complete
+  };
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -43,10 +39,10 @@ const RootLayout: React.FC<{
           disableTransitionOnChange
         >
           {showStarBackground && <StarBackground />}
-          <main className="relative flex justify-center items-center flex-col overflow-hidden mx-auto px-5 lg:px-10 ">
-          <FloatingNav navItems={navItems} />
-          <Hero />
-          {children}
+          <main className="relative flex justify-center items-center flex-col overflow-hidden mx-auto px-5 lg:px-10">
+            <FloatingNav navItems={navItems} />
+            <Hero onAnimationComplete={handleAnimationComplete} />
+            {children}
           </main>
         </ThemeProvider>
       </body>

@@ -8,9 +8,11 @@ import { cn } from "@/lib/utils";
 export const TextGenerateEffect = ({
   words,
   className,
+  onComplete, // New prop to signal animation completion
 }: {
   words: string;
   className?: string;
+  onComplete?: () => void; // Optional callback
 }) => {
   const [scope, animate] = useAnimate();
   const lettersArray = words.split("");
@@ -24,9 +26,12 @@ export const TextGenerateEffect = ({
       {
         duration: 2,
         delay: stagger(0.2),
+        onComplete: () => {
+          if (onComplete) onComplete(); // Trigger callback when animation completes
+        },
       }
     );
-  }, [scope, animate]);
+  }, [scope, animate, onComplete]);
 
   const renderLetters = () => {
     return (
