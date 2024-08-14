@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import Draggable from "react-draggable";
+
 
 type Project = {
   id: number;
@@ -27,7 +29,6 @@ const Card = styled.div`
   gap: 14px;
   transition: all 0.5s ease-in-out;
   &:hover {
-    transform: translateY(-10px);
     box-shadow: 0 0 50px 4px rgba(0, 0, 0, 0.6);
     filter: brightness(1.1);
   }
@@ -76,6 +77,8 @@ type ProjectProps = {
 
 const ProjectCard: React.FC<ProjectProps> = ({ project }) => {
   return (
+    <Draggable>
+
     <Card>
       <Image src={project.img} />
       <Tags>
@@ -91,6 +94,8 @@ const ProjectCard: React.FC<ProjectProps> = ({ project }) => {
         View Code
       </Button>
     </Card>
+        </Draggable>
+
   );
 };
 
