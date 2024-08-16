@@ -172,37 +172,49 @@ export const BentoGridItem = ({
             </div>
           )}
           {id === 4 && (
-            <div className="relative h-[200px]">
-              <div className="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-5">
+            <div className="relative h-[220px]">
+              {/* Navigation buttons */}
+              <div className="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-2">
                 <button
-                  className="bg-gray-800 text-white p-2 rounded-full"
+                  className="bg-gray-800 text-white p-2 rounded-full hover:bg-gray-600 transition"
                   onClick={handlePrevious}
                 >
                   <IoChevronBack size={24} />
                 </button>
               </div>
-              <div className="flex items-center justify-center">
-                <div className="p-4 text-center">
+
+              {/* Achievement Content */}
+              <div className="flex items-center justify-center px-4 py-4 md:px-8 md:py-8">
+                <div className="text-center max-w-md mx-auto">
                   {achievements.map((achievement, index) => (
                     index === currentIndex && (
                       <div key={index}>
-                        <h3 className="text-xl font-semibold">{achievement.name}</h3>
-                        <p className="text-md text-gray-300">{achievement.organisation}</p>
-                        <p className="text-sm text-gray-400 mt-2">{achievement.detail}</p>
+                        <h3 className="text-xl md:text-2xl font-semibold mb-2">
+                          {achievement.name}
+                        </h3>
+                        <p className="text-md md:text-lg text-gray-200 mb-2">
+                          {achievement.organisation}
+                        </p>
+                        <p className="text-sm md:text-base text-purple">
+                          {achievement.detail}
+                        </p>
                       </div>
                     )
                   ))}
                 </div>
               </div>
-              <div className="absolute top-1/2 right-0 transform -translate-y-1/2 translate-x-5">
+
+              {/* Navigation buttons */}
+              <div className="absolute top-1/2 right-0 transform -translate-y-1/2 translate-x-2">
                 <button
-                  className="bg-gray-800 text-white p-2 rounded-full"
+                  className="bg-gray-800 text-white p-2 rounded-full hover:bg-gray-600 transition"
                   onClick={handleNext}
                 >
                   <IoChevronForward size={24} />
                 </button>
               </div>
             </div>
+
           )}
           {id === 6 && (
             <div className="mt-5 relative">

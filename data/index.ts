@@ -1,5 +1,5 @@
 export const navItems = [
-  { name: "Home", link: "/" },
+  { name: "Home", link: "#hero" },
   { name: "About", link: "#about" },
   { name: "Experience", link: "/blog" },
   { name: "Projects", link: "/contact" },
@@ -144,7 +144,7 @@ export const achievements = [
     organisation: "Formidium",
   },
   {
-    name: "Compet Programming",
+    name: "Competitive Programming",
     detail: "2 Star",
     organisation: "Code Chef",
   },

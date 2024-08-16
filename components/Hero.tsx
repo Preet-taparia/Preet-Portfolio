@@ -6,7 +6,7 @@ import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 
 const Hero = ({ onAnimationComplete }: { onAnimationComplete?: () => void }) => {
   return (
-    <div className="pt-20 pb-10" id="Hero">
+    <div className="pt-20 pb-10" id="hero">
       <div className="flex justify-center relative my-5 z-10">
         <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
           <p className="uppercase tracking-widest text-xs text-center text-blue-100 max-w-80">
