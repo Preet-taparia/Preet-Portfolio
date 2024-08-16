@@ -1,6 +1,6 @@
 export const navItems = [
-  { name: "Home", link: "#Hero" },
-  { name: "About", link: "/projects" },
+  { name: "Home", link: "/" },
+  { name: "About", link: "#about" },
   { name: "Experience", link: "/blog" },
   { name: "Projects", link: "/contact" },
   { name: "Skills", link: "/contact" },
@@ -42,8 +42,8 @@ export const gridItems = [
   },
   {
     id: 4,
-    title: "Tech enthusiast with a passion for development.",
-    description: "",
+    title: "",
+    description: "Achievements",
     className: "lg:col-span-2 md:col-span-3 md:row-span-1",
     imgClassName: "",
     titleClassName: "justify-start",
@@ -53,7 +53,7 @@ export const gridItems = [
 
   {
     id: 5,
-    title: "Currently building rust powered git",
+    title: "Currently building rust powered version control system.",
     description: "The Inside Scoop",
     className: "md:col-span-3 md:row-span-2",
     imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
@@ -134,6 +134,29 @@ export const workExperience = [
     desc: "Created website for a local school",
     className: "md:col-span-2",
     thumbnail: "/exp2.svg",
+  },
+];
+
+export const achievements = [
+  {
+    name: "Hackathon",
+    detail: "Second Runner Up",
+    organisation: "Formidium",
+  },
+  {
+    name: "Compet Programming",
+    detail: "2 Star",
+    organisation: "Code Chef",
+  },
+  {
+    name: "Hackathon",
+    detail: "Top 5",
+    organisation: "JKLU",
+  },
+  {
+    name: "HacktoberFest Completed",
+    detail: "Completed",
+    organisation: "HacktoberFest",
   },
 ];
 

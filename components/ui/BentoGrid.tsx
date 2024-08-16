@@ -1,5 +1,7 @@
+// components/ui/BentoGrid.tsx
+
 import { useState } from "react";
-import { IoCopyOutline } from "react-icons/io5";
+import { IoCopyOutline, IoChevronBack, IoChevronForward } from "react-icons/io5";
 import { motion } from "framer-motion";
 import Lottie from "react-lottie";
 import { cn } from "@/lib/utils";
@@ -7,6 +9,7 @@ import { BackgroundGradientAnimation } from "./GradientBg";
 import GridGlobe from "./GridGlobe";
 import animationData from "@/data/confetti.json";
 import MagicButton from "../MagicButton";
+import { achievements } from "@/data";
 
 const marqueeVariants = {
   animate: {
@@ -80,6 +83,17 @@ export const BentoGridItem = ({
     setCopied(true);
   };
 
+  // Slider State
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handlePrevious = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? achievements.length - 1 : prevIndex - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === achievements.length - 1 ? 0 : prevIndex + 1));
+  };
+
   return (
     <div
       className={cn(
@@ -88,32 +102,15 @@ export const BentoGridItem = ({
       )}
       style={{
         background: "rgb(4,7,29)",
-        backgroundColor:
-          "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
+        backgroundColor: "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
       }}
     >
       <div className={`${id === 6 && "flex justify-center"} h-full`}>
         <div className="w-full h-full absolute">
-          {img && (
-            <img
-              src={img}
-              alt={img}
-              className={cn(imgClassName, "object-cover object-center ")}
-            />
-          )}
+          {img && <img src={img} alt={img} className={cn(imgClassName, "object-cover object-center ")} />}
         </div>
-        <div
-          className={`absolute right-0 -bottom-5 ${
-            id === 5 && "w-full opacity-80"
-          } `}
-        >
-          {spareImg && (
-            <img
-              src={spareImg}
-              alt={spareImg}
-              className="object-cover object-center w-full h-full"
-            />
-          )}
+        <div className={`absolute right-0 -bottom-5 ${id === 5 && "w-full opacity-80"} `}>
+          {spareImg && <img src={spareImg} alt={spareImg} className="object-cover object-center w-full h-full" />}
         </div>
         {id === 6 && (
           <BackgroundGradientAnimation>
@@ -130,9 +127,7 @@ export const BentoGridItem = ({
           <div className="font-sans font-extralight md:max-w-32 md:text-xs lg:text-base text-sm text-[#C1C2D3] z-10">
             {description}
           </div>
-          <div
-            className={`font-sans text-lg lg:text-3xl max-w-96 font-bold z-10`}
-          >
+          <div className={`font-sans text-lg lg:text-3xl max-w-96 font-bold z-10`}>
             {title}
           </div>
 
@@ -149,8 +144,7 @@ export const BentoGridItem = ({
                   {leftLists.map((item, i) => (
                     <span
                       key={i}
-                      className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 
-                      lg:opacity-100 rounded-lg text-center bg-[#10132E]"
+                      className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 lg:opacity-100 rounded-lg text-center bg-[#10132E]"
                     >
                       {item}
                     </span>
@@ -168,8 +162,7 @@ export const BentoGridItem = ({
                   {rightLists.map((item, i) => (
                     <span
                       key={i}
-                      className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 
-                      lg:opacity-100 rounded-lg text-center bg-[#10132E]"
+                      className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 lg:opacity-100 rounded-lg text-center bg-[#10132E]"
                     >
                       {item}
                     </span>
@@ -178,16 +171,44 @@ export const BentoGridItem = ({
               </div>
             </div>
           )}
+          {id === 4 && (
+            <div className="relative h-[200px]">
+              <div className="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-5">
+                <button
+                  className="bg-gray-800 text-white p-2 rounded-full"
+                  onClick={handlePrevious}
+                >
+                  <IoChevronBack size={24} />
+                </button>
+              </div>
+              <div className="flex items-center justify-center">
+                <div className="p-4 text-center">
+                  {achievements.map((achievement, index) => (
+                    index === currentIndex && (
+                      <div key={index}>
+                        <h3 className="text-xl font-semibold">{achievement.name}</h3>
+                        <p className="text-md text-gray-300">{achievement.organisation}</p>
+                        <p className="text-sm text-gray-400 mt-2">{achievement.detail}</p>
+                      </div>
+                    )
+                  ))}
+                </div>
+              </div>
+              <div className="absolute top-1/2 right-0 transform -translate-y-1/2 translate-x-5">
+                <button
+                  className="bg-gray-800 text-white p-2 rounded-full"
+                  onClick={handleNext}
+                >
+                  <IoChevronForward size={24} />
+                </button>
+              </div>
+            </div>
+          )}
           {id === 6 && (
             <div className="mt-5 relative">
-              <div
-                className={`absolute -bottom-5 right-0 ${
-                  copied ? "block" : "block"
-                }`}
-              >
+              <div className={`absolute -bottom-5 right-0 ${copied ? "block" : "block"}`}>
                 <Lottie options={defaultOptions} height={200} width={400} />
               </div>
-
               <MagicButton
                 title={copied ? "Email is Copied!" : "Copy my email address"}
                 icon={<IoCopyOutline />}
