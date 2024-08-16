@@ -146,6 +146,15 @@ const config = {
             transform: "translate(calc(-50% - 0.5rem))",
           },
         },
+        rubberBand: {
+          '0%': { transform: 'scale3d(1, 1, 1)' },
+          '30%': { transform: 'scale3d(1.25, .75, 1)' },
+          '40%': { transform: 'scale3d(.75, 1.25, 1)' },
+          '50%': { transform: 'scale3d(1.15, .85, 1)' },
+          '65%': { transform: 'scale3d(.95, 1.05, 1)' },
+          '75%': { transform: 'scale3d(1.05, .95, 1)' },
+          '100%': { transform: 'scale3d(1, 1, 1)' },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -159,6 +168,7 @@ const config = {
         fifth: "moveInCircle 20s ease infinite",
         scroll:
           "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+        rubberBand: 'rubberBand 1s both',
       },
     },
   },

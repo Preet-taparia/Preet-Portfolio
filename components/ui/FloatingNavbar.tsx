@@ -1,13 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useMotionValueEvent,
-} from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 export const FloatingNav = ({
   navItems,
@@ -19,42 +15,57 @@ export const FloatingNav = ({
   }[];
   className?: string;
 }) => {
-  const { scrollYProgress } = useScroll();
+  const [isOpen, setIsOpen] = useState(false);
 
-  const [visible, setVisible] = useState(true);
-
-  useMotionValueEvent(scrollYProgress, "change", (current) => {
-    if (typeof current === "number") {
-      let direction = current! - scrollYProgress.getPrevious()!;
-
-      if (scrollYProgress.get() < 0.05) {
-        setVisible(true);
-      } else {
-        if (direction < 0) {
-          setVisible(true);
-        } else {
-          setVisible(false);
-        }
-      }
-    }
-  });
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        initial={{
-          opacity: 1,
-          y: -100,
-        }}
-        animate={{
-          y: visible ? 0 : -100,
-          opacity: visible ? 1 : 0,
-        }}
-        transition={{
-          duration: 0.1,
-        }}
+    <div>
+      {/* Hamburger Icon for Mobile */}
+      <div className="md:hidden fixed top-4 left-4 z-[60]">
+        <button onClick={toggleSidebar}>
+          {!isOpen?<FaBars className="text-white text-2xl" />: <FaTimes className="text-white text-2xl" />}
+        </button>
+      </div>
+
+      {/* Sidebar Popup for Mobile */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ x: "-100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "-100%" }}
+            transition={{ duration: 0.3 }}
+            className="fixed top-10 left-0 w-3/4 h-full bg-black/90 z-[50] p-6 flex flex-col space-y-4"
+          >
+            {/* Close Button */}
+            {/* <div className="flex justify-between items-center">
+              <h2 className="text-white text-lg">Menu</h2>
+              <button onClick={toggleSidebar}>
+                <FaTimes className="text-white text-2xl" />
+              </button>
+            </div> */}
+
+            {/* Navigation Links */}
+            {navItems.map((navItem, idx) => (
+              <Link
+                key={`link-${idx}`}
+                href={navItem.link}
+                className="text-white text-lg hover:text-gray-400"
+              >
+                {navItem.name}
+              </Link>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Desktop Nav */}
+      <div
         className={cn(
-          "flex max-w-fit md:min-w-fit fixed z-[50] top-2 inset-x-0 mx-auto px-10 py-5 rounded-lg border border-black/.1 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] items-center justify-center space-x-2 md:space-x-4",
+          "hidden md:flex max-w-fit md:min-w-fit fixed z-[50] top-2 inset-x-0 mx-auto px-6 md:px-10 py-3 md:py-5 rounded-lg border border-black/10 shadow-lg items-center justify-center space-x-2 md:space-x-4",
           className
         )}
         style={{
@@ -64,18 +75,18 @@ export const FloatingNav = ({
           border: "1px solid rgba(255, 255, 255, 0.125)",
         }}
       >
-        {navItems.map((navItem: any, idx: number) => (
+        {navItems.map((navItem, idx) => (
           <Link
-            key={`link=${idx}`}
+            key={`link-${idx}`}
             href={navItem.link}
             className={cn(
-              "relative dark:text-neutral-50 items-center  flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
+              "relative text-neutral-600 dark:text-neutral-50 items-center flex text-sm hover:text-neutral-500"
             )}
           >
-            <span className=" text-xs !cursor-pointer">{navItem.name}</span>
+            {navItem.name}
           </Link>
         ))}
-      </motion.div>
-    </AnimatePresence>
+      </div>
+    </div>
   );
 };

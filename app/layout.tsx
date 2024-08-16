@@ -2,7 +2,7 @@
 
 "use client";
 import { Inter } from "next/font/google";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import dynamic from "next/dynamic";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
 import { navItems } from "@/data";
