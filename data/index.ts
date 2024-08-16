@@ -2,8 +2,7 @@ export const navItems = [
   { name: "Home", link: "#hero" },
   { name: "About", link: "#about" },
   { name: "Projects", link: "#Projects" },
-  { name: "Skills", link: "/contact" },
-  { name: "Blogs", link: "/contact" },
+  { name: "Skills", link: "#skills" },
   { name: "Other", link: "/contact" },
   { name: "Contact", link: "/contact" },
 ];
@@ -134,6 +133,26 @@ export const projects = [
     link: "/ui.apple.com",
     category: "Web",
   },
+];
+
+export const skills = [
+  { title: "HTML" },
+  { title: "CSS" },
+  { title: "Bootstrap" },
+  { title: "Tailwind" },
+  { title: "JavaScript" },
+  { title: "Python" },
+  { title: "TypeScript" },
+  { title: "React.js" },
+  { title: "Next.js" },
+  { title: "Node.js" },
+  { title: "Express.js" },
+  { title: "Django" },
+  { title: "Flask" },
+  { title: "FastAPI" },
+  { title: "MongoDB" },
+  { title: "MySQL" },
+  { title: "Redis" },
 ];
 
 export const workExperience = [

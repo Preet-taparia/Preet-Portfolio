@@ -1,3 +1,5 @@
+// components/ui/card-hover-effect.tsx
+
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
@@ -23,7 +25,7 @@ export const HoverEffect = ({
   return (
     <div
       className={cn(
-        "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 py-10",
+        "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-4 md:gap-6 py-6 md:py-4 lg:py-10",
         className
       )}
     >
@@ -71,17 +73,16 @@ export const Card = ({
   return (
     <div
       className={cn(
-        "rounded-2xl h-full w-full p-4 overflow-hidden bg-black/50 hover:bg-black-0 border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 relative z-20",
+        "rounded-2xl h-full w-full px-10 py-4 md:p-6 lg:p-8 overflow-hidden bg-black/50 hover:bg-black-0 border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 relative z-20 transition-transform duration-300 ease-in-out transform hover:scale-105",
         className
       )}
     >
-      <div className="relative z-50">
-        <div className="p-4">{children}</div>
+      <div className="relative z-50 flex items-center justify-center h-full">
+        <div className="px-4">{children}</div>
       </div>
     </div>
   );
 };
-
 
 export const CardTitle = ({
   className,
@@ -91,7 +92,12 @@ export const CardTitle = ({
   children: React.ReactNode;
 }) => {
   return (
-    <h4 className={cn("text-zinc-100 font-bold tracking-wide mt-4", className)}>
+    <h4
+      className={cn(
+        "text-xs sm:text-sm md:text-base xl:text-lg text-zinc-100 font-bold tracking-wide text-center",
+        className
+      )}
+    >
       {children}
     </h4>
   );

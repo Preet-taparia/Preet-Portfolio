@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Draggable from "react-draggable";
 import {
@@ -7,11 +7,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-
-// Function to detect mobile devices
-const isMobileDevice = () => {
-  return /Mobi|Android/i.test(navigator.userAgent);
-};
 
 type Project = {
   id: number;
@@ -146,8 +141,15 @@ type ProjectProps = {
 
 const ProjectCard: React.FC<ProjectProps> = ({ project }) => {
   const [isDragging, setIsDragging] = useState(false);
-  const isMobile = isMobileDevice();
+  const [isMobile, setIsMobile] = useState(false);
 
+  useEffect(() => {
+    // Check if in browser environment
+    if (typeof window !== 'undefined') {
+      // Detect mobile device
+      setIsMobile(/Mobi|Android/i.test(navigator.userAgent));
+    }
+  }, []);
   return (
     <Draggable
       disabled={isMobile}

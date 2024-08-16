@@ -1,30 +1,11 @@
-import { HoverEffect } from "./ui/card-hover-effect";
+// components/Skills.tsx
 
-const skills = [
-  { title: "HTML" },
-  { title: "CSS" },
-  { title: "Bootstrap" },
-  { title: "Tailwind" },
-  { title: "JavaScript" },
-  { title: "Python" },
-  { title: "TypeScript" },
-  { title: "React.js" },
-  { title: "Next.js" },
-  { title: "Node.js" },
-  { title: "Express.js" },
-  { title: "Django" },
-  { title: "Flask" },
-  { title: "FastAPI" },
-  { title: "MongoDB" },
-  { title: "MySQL" },
-  { title: "Postgres SQL" },
-  { title: "SQL Lite" },
-  { title: "Redis" },
-];
+import { HoverEffect } from "./ui/card-hover-effect";
+import { skills } from "@/data";
 
 const SkillGrid = () => {
   return (
-    <div className="py-10" id="Skills">
+    <div className="pt-10" id="skills">
       <h1 className="heading">
         List of my{" "}
         <span className="text-purple">Skills</span>
