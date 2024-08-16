@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { projects } from "@/data";
 import ProjectCard from "@/components/ProjectCard";
+import Header from "./Header";
 
 type Project = {
   id: number;
   title: string;
-  des: string; 
-  img: string; 
+  des: string;
+  img: string;
   icons: {
     img: string;
     name: string;
-  }[]; 
+  }[];
   link?: string;
   repo?: string;
   category: string;
@@ -84,10 +85,7 @@ const Projects: React.FC = () => {
 
   return (
     <div className="py-10" id="Projects">
-      <h1 className="heading">
-        A small selection of{" "}
-        <span className="text-purple">recent projects</span>
-      </h1>
+      <Header startLine="A small selection of" endLine="recent projects" />
       <div className="flex flex-wrap items-center justify-center p-4 gap-16 mt-10">
         <Wrapper>
           <ToggleButtonGroup>

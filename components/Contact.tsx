@@ -1,5 +1,6 @@
 import React, { useRef, useState, ChangeEvent, FormEvent } from "react";
 import EarthCanvas from "./EarthCanvas";
+import Header from "./Header";
 
 interface FormState {
   name: string;
@@ -43,7 +44,11 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className={`flex xl:flex-row flex-col-reverse gap-10`}>
+
+    <div id="contact">
+      <Header startLine="A small selection of" endLine="recent projects" />
+
+    <div className={`flex xl:flex-row flex-col-reverse gap-10 pt-10`}>
       <div
         className='bg-black-100 p-8 rounded-2xl'
       >
@@ -100,6 +105,7 @@ const Contact: React.FC = () => {
       >
         <EarthCanvas />
       </div>
+    </div>
     </div>
   );
 };
