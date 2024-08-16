@@ -39,7 +39,7 @@ const StarBackground: React.FC = () => {
     }
 
     const starsGeometry = new THREE.BufferGeometry();
-    const starCount = 75;
+    const starCount = 50;
     const positions = new Float32Array(starCount * 3);
 
     for (let i = 0; i < starCount; i++) {

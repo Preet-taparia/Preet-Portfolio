@@ -26,7 +26,18 @@ export const FloatingNav = ({
       {/* Hamburger Icon for Mobile */}
       <div className="md:hidden fixed top-4 left-4 z-[60]">
         <button onClick={toggleSidebar}>
-          {!isOpen?<FaBars className="text-white text-2xl" />: <FaTimes className="text-white text-2xl" />}
+          <motion.div
+            initial={false}
+            animate={{ rotate: isOpen ? 90 : 0, scale: isOpen ? 1.2 : 1 }}
+            transition={{ duration: 0.3 }}
+            className="relative"
+          >
+            {!isOpen ? (
+              <FaBars className="text-white text-2xl" />
+            ) : (
+              <FaTimes className="text-white text-2xl" />
+            )}
+          </motion.div>
         </button>
       </div>
 
