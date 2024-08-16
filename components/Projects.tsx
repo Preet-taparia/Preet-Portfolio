@@ -6,13 +6,15 @@ import ProjectCard from "@/components/ProjectCard";
 type Project = {
   id: number;
   title: string;
-  des: string; // short description
-  img: string; // image URL or path
-  iconLists: string[]; // list of icons
-  link: string; // link to the project or demo
-  detail: string; // detailed page link (if any)
-  repo: string; // repository link (if any)
-  category: string; // project category
+  des: string; 
+  img: string; 
+  icons: {
+    img: string;
+    name: string;
+  }[]; 
+  link?: string;
+  repo?: string;
+  category: string;
 };
 
 const Wrapper = styled.div`
@@ -100,14 +102,14 @@ const Projects: React.FC = () => {
               $active={toggle === "Web"}
               onClick={() => setToggle("Web")}
             >
-              WEB
+              WEB 2
             </ToggleButton>
             <Divider />
             <ToggleButton
               $active={toggle === "App"}
               onClick={() => setToggle("App")}
             >
-              APP
+              WEB 3
             </ToggleButton>
             <Divider />
             <ToggleButton
