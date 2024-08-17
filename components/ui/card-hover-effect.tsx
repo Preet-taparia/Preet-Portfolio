@@ -25,14 +25,14 @@ export const HoverEffect = ({
   return (
     <div
       className={cn(
-        "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-4 md:gap-6 py-6 md:py-4",
+        "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 py-6 md:py-8 justify-items-center items-center", // Ensure items are centered
         className
       )}
     >
       {items.map((item, idx) => (
         <div
           key={idx}
-          className="relative group block p-2 h-full w-full"
+          className="relative group block p-2 h-full w-full max-w-xs" // Set max width for card
           onMouseEnter={() => setHoveredIndex(idx)}
           onMouseLeave={() => setHoveredIndex(null)}
         >
@@ -40,7 +40,7 @@ export const HoverEffect = ({
             {hoveredIndex === idx && (
               <motion.span
                 className="absolute inset-0 h-full w-full block rounded-3xl"
-                style={{ backgroundColor: getRandomColor() }} // Apply random color here
+                style={{ backgroundColor: getRandomColor() }}
                 layoutId="hoverBackground"
                 initial={{ opacity: 0 }}
                 animate={{
@@ -73,12 +73,12 @@ export const Card = ({
   return (
     <div
       className={cn(
-        "rounded-2xl h-full w-full px-10 py-4 md:p-6 lg:p-8 overflow-hidden bg-black/50 hover:bg-black-0 border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 relative z-20 transition-transform duration-300 ease-in-out transform hover:scale-105",
+        "rounded-2xl h-full w-full px-6 py-4 sm:px-8 sm:py-6 lg:p-8 overflow-hidden bg-black/50 hover:bg-black-0 border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 relative z-20 transition-transform duration-300 ease-in-out transform hover:scale-105 max-w-xs ", // Ensure max width and center alignment
         className
       )}
     >
-      <div className="relative z-50 flex items-center justify-center h-full">
-        <div className="px-4">{children}</div>
+      <div className="flex items-center justify-center h-full">
+        {children}
       </div>
     </div>
   );
@@ -94,7 +94,7 @@ export const CardTitle = ({
   return (
     <h4
       className={cn(
-        "text-xs sm:text-sm md:text-base xl:text-lg text-zinc-100 font-bold tracking-wide text-center",
+        "text-[12px] sm:text-sm md:text-base xl:text-lg text-zinc-100 font-bold tracking-wide text-center",
         className
       )}
     >

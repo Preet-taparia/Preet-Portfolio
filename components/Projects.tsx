@@ -34,6 +34,7 @@ const Wrapper = styled.div`
 
 const ToggleButtonGroup = styled.div`
   display: flex;
+  overflow-x: auto;
   border: 1.5px solid ${({ theme }) => theme.primary};
   color: ${({ theme }) => theme.primary};
   font-size: 16px;
@@ -51,25 +52,42 @@ interface ToggleButtonProps {
 
 const ToggleButton = styled.div<ToggleButtonProps>`
   padding: 8px 18px;
-  border-radius: 6px;
   cursor: pointer;
+  flex-shrink: 0; /* Ensures buttons don't shrink when container is small */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+
   &:hover {
-    background: ${({ theme }) => theme.primary + 20};
+    background-color: white;
+    color: #6A0DAD;
   }
+
   @media (max-width: 768px) {
     padding: 6px 8px;
-    border-radius: 4px;
   }
-  ${({ $active, theme }) =>
+
+  /* Increase button size for larger screens */
+  @media (min-width: 1200px) {
+    padding: 10px 24px;
+    font-size: 18px;
+  }
+
+  /* Change to purple when active */
+  ${({ $active }) =>
     $active &&
     `
-    background: ${theme.primary + 20};
+
+    background-color: #6A0DAD;
+    color: white;
   `}
 `;
 
+
 const Divider = styled.div`
   width: 1.5px;
-  background: ${({ theme }) => theme.primary};
+  background: white;
+  @media (max-width: 768px) {
+    display: none; /* Hide dividers on small screens for a cleaner look */
+  }
 `;
 
 const CardContainer = styled.div`
@@ -97,24 +115,38 @@ const Projects: React.FC = () => {
             </ToggleButton>
             <Divider />
             <ToggleButton
-              $active={toggle === "Web"}
-              onClick={() => setToggle("Web")}
+              $active={toggle === "Fullstack"}
+              onClick={() => setToggle("Fullstack")}
             >
-              WEB 2
+              Full Stack
             </ToggleButton>
             <Divider />
             <ToggleButton
-              $active={toggle === "App"}
-              onClick={() => setToggle("App")}
+              $active={toggle === "Backend"}
+              onClick={() => setToggle("Backend")}
             >
-              WEB 3
+              Back End
+            </ToggleButton>
+            <Divider />
+            <ToggleButton
+              $active={toggle === "Web3"}
+              onClick={() => setToggle("Web3")}
+            >
+              Web3
+            </ToggleButton>
+            <Divider />
+            <ToggleButton
+              $active={toggle === "Devops"}
+              onClick={() => setToggle("Devops")}
+            >
+              Devops
             </ToggleButton>
             <Divider />
             <ToggleButton
               $active={toggle === "Other"}
               onClick={() => setToggle("Other")}
             >
-              OTHER
+              Other
             </ToggleButton>
           </ToggleButtonGroup>
 
