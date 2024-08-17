@@ -33,8 +33,10 @@ const StarBackground: React.FC = () => {
     const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     const rendererElement = renderer.domElement; // Store renderer.domElement in a local variable
-    if (mountRef.current) {
-      mountRef.current.appendChild(rendererElement);
+    const mountElement = mountRef.current; // Store mountRef.current in a local variable
+
+    if (mountElement) {
+      mountElement.appendChild(rendererElement);
     }
 
     const starsGeometry = new THREE.BufferGeometry();
@@ -82,8 +84,8 @@ const StarBackground: React.FC = () => {
 
     // Cleanup on unmount
     return () => {
-      if (mountRef.current) {
-        mountRef.current.removeChild(rendererElement); // Use the local variable
+      if (mountElement) {
+        mountElement.removeChild(rendererElement); // Use the local variable
       }
     };
   }, []);

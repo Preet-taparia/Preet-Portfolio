@@ -29,8 +29,8 @@ const RootLayout: React.FC<{
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <title>Preet Taparia's Portfolio</title>
-        <link rel="icon" href="/favicon.png" sizes="any" />
+      <title>Preet Taparia&apos;s Portfolio</title>
+      <link rel="icon" href="/favicon.png"/>
       </head>
       <body className={inter.className}>
         <ThemeProvider

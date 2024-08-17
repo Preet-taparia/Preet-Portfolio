@@ -164,7 +164,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
       onStop={() => setIsDragging(false)}
     >
       <Card $isDragging={isDragging}>
-        <Image src={project.img} />
+        <Image src={project.img} alt={project.title} />
         <Details>
           <Title>{project.title}</Title>
           <Tags>
