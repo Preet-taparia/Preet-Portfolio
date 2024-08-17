@@ -49,26 +49,21 @@ export const FloatingNav = ({
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ duration: 0.3 }}
-            className="fixed top-10 left-0 w-3/4 h-full bg-black/90 z-[50] p-6 flex flex-col space-y-4"
+            className="fixed top-0 left-0 w-3/4 h-full bg-black/90 z-[50] p-6"
           >
-            {/* Close Button */}
-            {/* <div className="flex justify-between items-center">
-              <h2 className="text-white text-lg">Menu</h2>
-              <button onClick={toggleSidebar}>
-                <FaTimes className="text-white text-2xl" />
-              </button>
-            </div> */}
 
             {/* Navigation Links */}
-            {navItems.map((navItem, idx) => (
-              <Link
-                key={`link-${idx}`}
-                href={navItem.link}
-                className="text-white text-lg hover:text-gray-400"
-              >
-                {navItem.name}
-              </Link>
-            ))}
+            <div className="mt-10  flex flex-col space-y-4">
+              {navItems.map((navItem, idx) => (
+                <Link
+                  key={`link-${idx}`}
+                  href={navItem.link}
+                  className="text-white text-lg hover:text-gray-400"
+                >
+                  {navItem.name}
+                </Link>
+              ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

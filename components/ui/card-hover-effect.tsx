@@ -25,7 +25,7 @@ export const HoverEffect = ({
   return (
     <div
       className={cn(
-        "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 py-6 md:py-8 justify-items-center items-center", // Ensure items are centered
+        "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 py-6 md:py-8 justify-items-center items-center", // Ensure items are centered
         className
       )}
     >
@@ -63,7 +63,7 @@ export const HoverEffect = ({
   );
 };
 
-export const Card = ({
+const Card = ({
   className,
   children,
 }: {
@@ -84,7 +84,7 @@ export const Card = ({
   );
 };
 
-export const CardTitle = ({
+const CardTitle = ({
   className,
   children,
 }: {

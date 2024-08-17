@@ -1,3 +1,5 @@
+// components/ProjectCard.tsx
+
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Draggable from "react-draggable";
@@ -8,6 +10,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
+// Define the Project type
 type Project = {
   id: number;
   title: string;
@@ -22,11 +25,12 @@ type Project = {
   category: string;
 };
 
-const Card = styled.div<{ isDragging: boolean }>`
+// Updated Card styled component
+const Card = styled.div<{ $isDragging: boolean }>`
   width: 320px;
   height: 550px;
   background-color: ${({ theme }) => theme.card};
-  cursor: ${({ isDragging }) => (isDragging ? 'grabbing' : 'grab')};
+  cursor: ${({ $isDragging }) => ($isDragging ? 'grabbing' : 'grab')};
   border-radius: 10px;
   border-color: rgba(255, 255, 255, 0.5);
   border-width: 2px;
@@ -48,22 +52,24 @@ const Card = styled.div<{ isDragging: boolean }>`
   }
 `;
 
-const Image = styled.img`
-  width: 100%;
-  height: 180px;
+// Image for project and icons
+const Image = styled.img<{ $isIcon?: boolean }>`
+  width: ${({ $isIcon }) => ($isIcon ? '30px' : '100%')};
+  height: ${({ $isIcon }) => ($isIcon ? 'auto' : '180px')};
   background-color: ${({ theme }) => theme.white};
-  border-radius: 10px;
-  box-shadow: 0 0 16px 2px rgba(0, 0, 0, 0.3);
-  
+  border-radius: ${({ $isIcon }) => ($isIcon ? '4px' : '10px')};
+  box-shadow: ${({ $isIcon }) => ($isIcon ? 'none' : '0 0 16px 2px rgba(0, 0, 0, 0.3)')};
+
   @media (max-width: 768px) {
-    height: 160px; /* Reduce height on smaller screens */
+    height: ${({ $isIcon }) => ($isIcon ? '24px' : '160px')}; /* Adjust height for icons and project image on smaller screens */
   }
 
   @media (max-width: 480px) {
-    height: 140px; /* Further reduce height on mobile */
+    height: ${({ $isIcon }) => ($isIcon ? '20px' : '140px')}; /* Further adjust height for mobile */
   }
 `;
 
+// Styled component for tags section
 const Tags = styled.div`
   display: flex;
   justify-content: space-around;
@@ -76,6 +82,7 @@ const Tags = styled.div`
   }
 `;
 
+// Styled component for details section
 const Details = styled.div`
   flex: 1;
   display: flex;
@@ -83,6 +90,7 @@ const Details = styled.div`
   justify-content: space-between;
 `;
 
+// Styled component for title
 const Title = styled.div`
   font-size: 20px;
   font-weight: 600;
@@ -95,6 +103,7 @@ const Title = styled.div`
   }
 `;
 
+// Styled component for description
 const Description = styled.div`
   margin-top: 8px;
   color: ${({ theme }) => theme.text_secondary + 99};
@@ -107,6 +116,7 @@ const Description = styled.div`
   }
 `;
 
+// Styled component for buttons
 const Button = styled.a`
   padding: 10px;
   color: white;
@@ -118,6 +128,7 @@ const Button = styled.a`
   border-radius: 8px;
   transition: all 0.3s ease;
   cursor: pointer;
+
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
@@ -135,28 +146,24 @@ const Button = styled.a`
   }
 `;
 
-type ProjectProps = {
-  project: Project;
-};
-
-const ProjectCard: React.FC<ProjectProps> = ({ project }) => {
+// ProjectCard component
+const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Check if in browser environment
     if (typeof window !== 'undefined') {
-      // Detect mobile device
       setIsMobile(/Mobi|Android/i.test(navigator.userAgent));
     }
   }, []);
+
   return (
     <Draggable
       disabled={isMobile}
       onStart={() => setIsDragging(true)}
       onStop={() => setIsDragging(false)}
     >
-      <Card isDragging={isDragging}>
+      <Card $isDragging={isDragging}>
         <Image src={project.img} />
         <Details>
           <Title>{project.title}</Title>
@@ -165,12 +172,7 @@ const ProjectCard: React.FC<ProjectProps> = ({ project }) => {
               {project.icons.map((icon, index) => (
                 <Tooltip key={index}>
                   <TooltipTrigger>
-                    <img
-                      src={icon.img}
-                      alt={icon.name}
-                      style={{ width: '30px' }}
-                      className="py-1"
-                    />
+                    <Image src={icon.img} alt={icon.name} $isIcon />
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>{icon.name}</p>

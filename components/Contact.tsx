@@ -63,11 +63,11 @@ const Contact: React.FC = () => {
 
 
   return (
-    <div className="py-10" id="contact">
+    <div className="pt-10" id="contact">
       <Header startLine="Let's get in" endLine="Touch" />
-      <div className="flex flex-col lg:flex-row gap-10 pt-10">
+      <div className="flex flex-col lg:flex-row gap-0 sm:gap-4 pt-10">
         {/* Form Section */}
-        <div className="bg-black-100 p-6 sm:p-4 rounded-xl w-full max-w-md mx-auto lg:max-w-lg">
+        <div className="bg-[#090909] p-6 sm:p-4 rounded-xl w-full max-w-md mx-auto lg:max-w-lg">
           <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-4">
             {/* Name Input */}
             <label className="flex flex-col">
@@ -78,7 +78,7 @@ const Contact: React.FC = () => {
                 value={form.name}
                 onChange={handleChange}
                 placeholder="What's your good name?"
-                className="bg-tertiary py-3 px-4 placeholder:text-secondary text-purple-500 rounded-lg outline-none border-none font-medium w-full"
+                className="bg-[#313031] py-3 px-4 placeholder:text-[#555567] text-purple rounded-lg outline-none border-none font-medium w-full"
               />
             </label>
             {/* Email Input */}
@@ -90,7 +90,7 @@ const Contact: React.FC = () => {
                 value={form.email}
                 onChange={handleChange}
                 placeholder="What's your web address?"
-                className="bg-tertiary py-3 px-4 placeholder:text-secondary text-purple-500 rounded-lg outline-none border-none font-medium w-full"
+                className="bg-[#313031] py-3 px-4 placeholder:text-[#555567] text-purple rounded-lg outline-none border-none font-medium w-full"
               />
             </label>
             {/* Message Input */}
@@ -102,7 +102,7 @@ const Contact: React.FC = () => {
                 value={form.message}
                 onChange={handleChange}
                 placeholder="What you want to say?"
-                className="bg-tertiary py-3 px-4 placeholder:text-secondary text-purple-500 rounded-lg outline-none border-none font-medium w-full"
+                className="bg-[#313031] py-3 px-4 placeholder:text-[#555567] text-purple rounded-lg outline-none border-none font-medium w-full"
               />
             </label>
 
@@ -121,9 +121,12 @@ const Contact: React.FC = () => {
         </div>
 
         {/* Earth Canvas Section */}
-        <div className="w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] lg:w-[550px] lg:h-[550px] mx-auto">
-          <EarthCanvas />
+        <div className="flex justify-center items-center w-full">
+          <div className="w-full h-auto sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] lg:w-[550px] lg:h-[550px]">
+            <EarthCanvas />
+          </div>
         </div>
+
       </div>
     </div>
   );

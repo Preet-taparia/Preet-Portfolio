@@ -29,7 +29,8 @@ const RootLayout: React.FC<{
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/jsm-logo.png" sizes="any" />
+        <title>Preet Taparia's Portfolio</title>
+        <link rel="icon" href="/favicon.png" sizes="any" />
       </head>
       <body className={inter.className}>
         <ThemeProvider

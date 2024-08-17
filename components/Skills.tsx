@@ -6,12 +6,10 @@ import Header from "./Header";
 
 const SkillGrid = () => {
   return (
-    <div className="pt-10" id="skills">
+    <div id="skills">
       <Header startLine="List of my" endLine="Skills" />
-      <div className="flex flex-wrap items-center justify-center p-4 gap-16 mt-10">
-        <div className="max-w-5xl mx-auto px-8">
+      <div className="flex flex-wrap items-center justify-center gap-16 ">
           <HoverEffect items={skills} />
-        </div>
       </div>
     </div>
   );

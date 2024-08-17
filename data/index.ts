@@ -198,14 +198,27 @@ export const achievements = [
 export const socialMedia = [
   {
     id: 1,
-    img: "/git.svg",
+    icon: "github",
+    link: "https://github.com/Preet-taparia",
   },
   {
     id: 2,
-    img: "/twit.svg",
+    icon: "linkedin",
+    link: "https://www.linkedin.com/in/preet-taparia/",
   },
   {
     id: 3,
-    img: "/link.svg",
+    icon: "codechef",
+    link: "https://www.codechef.com/users/preettaparia",
+  },
+  {
+    id: 4,
+    icon: "leetcode",
+    link: "https://leetcode.com/u/PreetTaparia/",
+  },
+  {
+    id: 5,
+    icon: "gfg",
+    link: "https://www.geeksforgeeks.org/user/preetta9nx5/",
   },
 ];

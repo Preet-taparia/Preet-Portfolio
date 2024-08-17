@@ -1,5 +1,3 @@
-// components/StarBG.tsx
-
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
@@ -34,8 +32,9 @@ const StarBackground: React.FC = () => {
     );
     const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
+    const rendererElement = renderer.domElement; // Store renderer.domElement in a local variable
     if (mountRef.current) {
-      mountRef.current.appendChild(renderer.domElement);
+      mountRef.current.appendChild(rendererElement);
     }
 
     const starsGeometry = new THREE.BufferGeometry();
@@ -84,7 +83,7 @@ const StarBackground: React.FC = () => {
     // Cleanup on unmount
     return () => {
       if (mountRef.current) {
-        mountRef.current.removeChild(renderer.domElement);
+        mountRef.current.removeChild(rendererElement); // Use the local variable
       }
     };
   }, []);
@@ -111,7 +110,7 @@ const StarBackground: React.FC = () => {
   return (
     <div
       ref={mountRef}
-      className={`fixed top-0 left-0 w-full h-full bg-[#000000] transition-opacity duration-1000 opacity-100`}
+      className={`fixed top-0 left-0 w-full h-full bg-[#000401] transition-opacity duration-1000 opacity-100`}
     ></div>
   );
 };
