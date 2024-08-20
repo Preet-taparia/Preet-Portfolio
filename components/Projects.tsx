@@ -129,17 +129,17 @@ const Projects: React.FC = () => {
             </ToggleButton>
             <Divider />
             <ToggleButton
+              $active={toggle === "Frontend"}
+              onClick={() => setToggle("Frontend")}
+            >
+              Front End
+            </ToggleButton>
+            <Divider />
+            <ToggleButton
               $active={toggle === "Web3"}
               onClick={() => setToggle("Web3")}
             >
               Web3
-            </ToggleButton>
-            <Divider />
-            <ToggleButton
-              $active={toggle === "Devops"}
-              onClick={() => setToggle("Devops")}
-            >
-              Devops
             </ToggleButton>
             <Divider />
             <ToggleButton

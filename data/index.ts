@@ -15,7 +15,7 @@ export const gridItems = [
     className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
     imgClassName: "w-full h-full",
     titleClassName: "justify-end",
-    img: "/b1.svg",
+    img: "/About/b1.svg",
     spareImg: "",
   },
   {
@@ -45,8 +45,8 @@ export const gridItems = [
     className: "lg:col-span-2 md:col-span-3 md:row-span-1",
     imgClassName: "",
     titleClassName: "justify-start",
-    img: "/grid.svg",
-    spareImg: "/b4.svg",
+    img: "/About/grid.svg",
+    spareImg: "/About/b4.svg",
   },
 
   {
@@ -56,8 +56,8 @@ export const gridItems = [
     className: "md:col-span-3 md:row-span-2",
     imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
     titleClassName: "justify-center md:justify-start lg:justify-center",
-    img: "/b5.svg",
-    spareImg: "/grid.svg",
+    img: "/About/b5.svg",
+    spareImg: "/About/grid.svg",
   },
   {
     id: 6,
@@ -71,67 +71,93 @@ export const gridItems = [
   },
 ];
 
+// project image dimension 450 x 300
+
+// projext's tech with picture
+
+// { img: "/projectSkills/re.svg", name: "React.js" },
+// { img: "/projectSkills/gsap.svg", name: "GSAP" },
+// { img: "/projectSkills/tail.svg", name: "Tailwind Css" },
+// { img: "/projectSkills/ts.svg", name: "TypeScript" },
+// { img: "/projectSkills/three.svg", name: "Three.js" },
+// { img: "/projectSkills/bstrap.webp", name: "Bootstrap" },
+// { img: "/projectSkills/dj.webp", name: "Django" },
+// { img: "/projectSkills/express.png", name: "Express.js" },
+// { img: "/projectSkills/flask.png", name: "Flask" },
+// { img: "/projectSkills/go.webp", name: "Golang" },
+// { img: "/projectSkills/html.png", name: "HTML" },
+// { img: "/projectSkills/jinja.webp", name: "Jinja" },
+// { img: "/projectSkills/post.webp", name: "Postgres SQL" },
+// { img: "/projectSkills/py.png", name: "Python" },
+// { img: "/projectSkills/js.jpg", name: "JavaScript" },
+// { img: "/projectSkills/tf.webp", name: "TensorFlow" },
+// { img: "/projectSkills/", name: "" },
+// { img: "/projectSkills/", name: "" },
+
+// 
+// { img: "/projectSkills/c.svg", name: "C" },
+// { img: "/projectSkills/fm.svg", name: "C" },
+// { img: "/projectSkills/stream.svg", name: "Stream" },
+
 export const projects = [
   {
     id: 1,
-    title: "3D Solar System Planets to Explore",
-    des: "Explore the wonders of our solar system with this captivating 3D simulation of the planets using Three.js.",
-    img: "/p1.svg",
+    title: "Madhyam",
+    des: "Platform focused on breaking communication barriers by providing AI tools for sign language translation, audio conversion, and chatbot-based language translation.",
+    img: "/Project/madhyam.png",
     icons: [
-      { img: "/re.svg", name: "Re.js" },
-      { img: "/tail.svg", name: "Tailwind.css" },
-      { img: "/ts.svg", name: "TS" },
-      { img: "/three.svg", name: "Three" },
-      { img: "/fm.svg", name: "C" },
+      { img: "/projectSkills/flask.png", name: "Flask" },
+      { img: "/projectSkills/py.png", name: "Python" },
+      { img: "/projectSkills/js.jpg", name: "JavaScript" },
+      { img: "/projectSkills/tf.webp", name: "TensorFlow" },
+      { img: "/projectSkills/bstrap.webp", name: "Bootstrap" },
     ],
-    link: "/ui.earth.com",
-    category: "Web",
-  },
-  {
-    id: 2,
-    title: "Yoom - Video Conferencing App",
-    des: "Simplify your video conferencing experience with Yoom. Seamlessly connect with colleagues and friends. adasd sdasd xcz adsad sdasa awqwr cxz vx.",
-    img: "/p2.svg",
-    icons: [
-      { img: "/next.svg", name: "Next.js" },
-      { img: "/tail.svg", name: "Tailwind.css" },
-      { img: "/ts.svg", name: "TS" },
-      { img: "/stream.svg", name: "Stream" },
-      { img: "/c.svg", name: "C" },
-    ],
-    link: "/ui.yoom.com",
-    repo: "afasfs",
+    link: "",
+    repo: "https://github.com/Preet-taparia/Madhyam-2.0",
     category: "Other",
   },
   {
-    id: 3,
-    title: "AI Image SaaS - Canva Application",
-    des: "A REAL Software-as-a-Service app with AI features and a payments and credits system using the latest tech stack. adasd sdasd xcz adsad sdasa awqwr cxz vx",
-    img: "/p3.svg",
+    id: 2,
+    title: "Frictionless Pay",
+    des: "A system that enables the tracking of transactions on crypto wallets for invoices which also ensures that customers are paying for their own invoices and attach a reference to each transaction that can be tracked by the billing system.",
+    img: "/Project/frictionless.png",
     icons: [
-      { img: "/re.svg", name: "Next.js" },
-      { img: "/tail.svg", name: "RE.css" },
-      { img: "/ts.svg", name: "TS" },
-      { img: "/three.svg", name: "Stream" },
-      { img: "/c.svg", name: "C" },
+      { img: "/projectSkills/re.svg", name: "React.js" },
+      { img: "/projectSkills/express.png", name: "Express.js" },
+      { img: "/projectSkills/js.jpg", name: "JavaScript" },
+      { img: "/projectSkills/post.webp", name: "Postgres SQL" },
     ],
-    category: "App",
-    link: "a",
+    link: "",
+    repo: "https://github.com/Preet-taparia/formidium",
+    category: "Web3",
+  },
+  {
+    id: 3,
+    title: "Space Odyssey",
+    des: "A web application that combines the engaging content, real-time news, and interactive elements that highlight the beauty and mystery of the cosmos.",
+    img: "/Project/cosmic.png",
+    icons: [
+      { img: "/projectSkills/next.svg", name: "Next.js" },
+      { img: "/projectSkills/tail.svg", name: "Tailwind Css" },
+      { img: "/projectSkills/three.svg", name: "Three.js" },
+     ],
+    category: "Frontend",
+    link: "",
+    repo: "https://github.com/Preet-taparia/Space-website",
   },
   {
     id: 4,
-    title: "Animated Apple Iphone 3D Website",
-    des: "Recreated the Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects..",
-    img: "/p4.svg",
+    title: "Contract Smith",
+    des: "Your go-to solution for a hassle-free smart contract creation IDE, which is powered by AI and helps you in deploying the contract without any issues.",
+    img: "/Project/contactsmith.png",
     icons: [
-      { img: "/next.svg", name: "Next.js" },
-      { img: "/tail.svg", name: "GSAP.css" },
-      { img: "/ts.svg", name: "TS" },
-      { img: "/three.svg", name: "Stream" },
-      { img: "/gsap.svg", name: "C" },
+      { img: "/projectSkills/tail.svg", name: "Tailwind Css" },
+      { img: "/projectSkills/ts.svg", name: "TypeScript" },
+      { img: "/projectSkills/next.svg", name: "Next.js" },
     ],
-    link: "/ui.apple.com",
-    category: "Web",
+    link: "",
+    repo: "https://github.com/Preet-taparia/smart_contract_generator",
+    category: "Web3",
   },
 ];
 
@@ -161,14 +187,14 @@ export const workExperience = [
     title: "Teaching Assistant (C Prgramming)",
     desc: "Mentored juniors to gain practical knoweldge about both the fundamenatls of programming and C language.",
     className: "md:col-span-2",
-    thumbnail: "/exp1.svg",
+    thumbnail: "/Experience/exp1.svg",
   },
   {
     id: 2,
     title: "Freelance Full Stack Development",
     desc: "Created website for a local school",
     className: "md:col-span-2",
-    thumbnail: "/exp2.svg",
+    thumbnail: "/Experience/exp2.svg",
   },
 ];
 
@@ -193,6 +219,13 @@ export const achievements = [
     detail: "Completed",
     organisation: "HacktoberFest",
   },
+];
+
+export const combinedList = [
+  "Space", "Travel", "Chess", "Science",
+  "Space", "Travel", "Chess", "Science",
+  "Anime", "Marvel", "Music", "Maths",
+  "Anime", "Marvel", "Music", "Maths",
 ];
 
 export const socialMedia = [

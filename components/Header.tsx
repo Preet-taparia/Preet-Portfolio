@@ -15,13 +15,15 @@ const splitText = (text: string) => {
   ));
 };
 
-const Header = ({ startLine, endLine }: { startLine: string, endLine: string }) => {
+const Header = ({ startLine, endLine, cls }: { startLine: string, endLine: string, cls?: string }) => {
   return (
     <h1 className="heading py-10">
-      {splitText(startLine)}
-      <span className="text-purple">
-        {splitText(endLine)}
-      </span>
+      <div className={`${cls}`}>
+        {splitText(startLine)}
+        <span className="text-purple">
+          {splitText(endLine)}
+        </span>
+      </div>
     </h1>
   );
 };

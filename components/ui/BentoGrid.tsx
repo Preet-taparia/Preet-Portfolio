@@ -10,7 +10,7 @@ import GridGlobe from "./GridGlobe";
 import animationData from "@/data/confetti.json";
 import Image from "next/image";
 import MagicButton from "../MagicButton";
-import { achievements } from "@/data";
+import { achievements, combinedList } from "@/data";
 
 const marqueeVariants = {
   animate: {
@@ -64,8 +64,14 @@ export const BentoGridItem = ({
   titleClassName?: string;
   spareImg?: string;
 }) => {
-  const leftLists = ["Astronomy", "Travel", "Chess", "Astronomy", "Travel", "Chess"];
-  const rightLists = ["Anime", "Marvel", "Music", "Anime", "Marvel", "Music"];
+
+  const splitIndex = Math.ceil(combinedList.length / 2);
+  const leftLists = combinedList.slice(0, splitIndex);
+  const rightLists = combinedList.slice(splitIndex);
+  const interleavedLists = leftLists.flatMap((item, index) => [
+    item,
+    rightLists[index] || ""
+  ]);
 
   const [copied, setCopied] = useState(false);
 
@@ -142,7 +148,7 @@ export const BentoGridItem = ({
                   variants={marqueeVariants}
                   animate="animate"
                 >
-                  {leftLists.map((item, i) => (
+                  {interleavedLists.slice(0, interleavedLists.length / 2).map((item, i) => (
                     <span
                       key={i}
                       className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 lg:opacity-100 rounded-lg text-center bg-[#10132E]"
@@ -160,7 +166,7 @@ export const BentoGridItem = ({
                   variants={marqueeVariants}
                   animate="animate"
                 >
-                  {rightLists.map((item, i) => (
+                  {interleavedLists.slice(interleavedLists.length / 2).map((item, i) => (
                     <span
                       key={i}
                       className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 lg:opacity-100 rounded-lg text-center bg-[#10132E]"
