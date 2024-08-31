@@ -71,7 +71,7 @@ export const FloatingNav = ({
       {/* Desktop Nav */}
       <div
         className={cn(
-          "hidden md:flex max-w-fit md:min-w-fit fixed z-[50] top-4 inset-x-0 mx-auto px-6 md:px-10 lg:px-[10%] py-3 md:py-5 rounded-lg border border-black/10 shadow-lg items-center justify-center space-x-2 md:space-x-4 lg:space-x-6",
+          "hidden md:flex max-w-fit md:min-w-fit fixed z-[50] top-4 inset-x-0 mx-auto px-6 md:px-10 lg:px-[120px] 2xl:px-[200px] py-3 md:py-5 rounded-lg border border-black/10 shadow-lg items-center justify-center space-x-2 md:space-x-4 lg:space-x-6 xl:space-x-10 ",
           className
         )}
         style={{
@@ -86,7 +86,7 @@ export const FloatingNav = ({
             key={`link-${idx}`}
             href={navItem.link}
             className={cn(
-              "relative text-neutral-600 dark:text-neutral-50 items-center flex text-sm hover:text-neutral-500"
+              "relative text-neutral-600 dark:text-neutral-50 items-center flex text-sm 2xl:text-md hover:text-neutral-500"
             )}
           >
             {navItem.name}

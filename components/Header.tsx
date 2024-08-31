@@ -17,7 +17,7 @@ const splitText = (text: string) => {
 
 const Header = ({ startLine, endLine, cls }: { startLine: string, endLine: string, cls?: string }) => {
   return (
-    <h1 className="heading py-10">
+    <h1 className="heading py-10 cursor-default">
       <div className={`${cls}`}>
         {splitText(startLine)}
         <span className="text-purple">

@@ -4,15 +4,6 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
-const getRandomColor = () => {
-  const letters = "0123456789ABCDEF";
-  let color = "#";
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-};
-
 export const HoverEffect = ({
   items,
   className,
@@ -40,7 +31,7 @@ export const HoverEffect = ({
             {hoveredIndex === idx && (
               <motion.span
                 className="absolute inset-0 h-full w-full block rounded-3xl"
-                style={{ backgroundColor: getRandomColor() }}
+                style={{ backgroundColor: "#6A0DAD" }}
                 layoutId="hoverBackground"
                 initial={{ opacity: 0 }}
                 animate={{

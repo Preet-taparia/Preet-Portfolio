@@ -29,9 +29,15 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+  
+    if (!form.name || !form.email || !form.message) {
+      setError('All fields are required.');
+      return;
+    }
+  
     setLoading(true);
-    setError(null); // Clear any previous errors
-
+    setError(null);
+  
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -40,11 +46,11 @@ const Contact: React.FC = () => {
         },
         body: JSON.stringify(form),
       });
-
+  
       if (response.ok) {
         const result = await response.json();
-        setError(null); // Clear any previous errors
-        alert(result.message); // Display success message
+        setError(null);
+        alert(result.message);
         setForm({
           name: "",
           email: "",
@@ -52,10 +58,10 @@ const Contact: React.FC = () => {
         });
       } else {
         const result = await response.json();
-        setError(result.message); // Set error message
+        setError(result.message);
       }
     } catch (error) {
-      setError('An unexpected error occurred. Please try again later.'); // Set generic error message
+      setError('An unexpected error occurred. Please try again later.');
     } finally {
       setLoading(false);
     }
@@ -108,12 +114,18 @@ const Contact: React.FC = () => {
 
             {/* Submit Button */}
             <button
-              className="relative inline-flex h-12 w-full md:w-60 overflow-hidden mx-auto rounded-lg p-[1px] focus:outline-none"
+              className={`relative inline-flex h-12 w-full md:w-60 overflow-hidden mx-auto rounded-lg p-[1px] focus:outline-none ${error ? "bg-red-500" : "bg-slate-950"
+                }`}
               type="submit"
             >
-              <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+              <span
+                className={`absolute inset-[-1000%] animate-[spin_2s_linear_infinite] ${error
+                    ? "bg-[conic-gradient(from_90deg_at_50%_50%,#FFB3B3_0%,#B23939_50%,#FFB3B3_100%)]"
+                    : "bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]"
+                  }`}
+              />
               <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-slate-950 px-7 text-sm font-medium text-white backdrop-blur-3xl gap-2">
-                {loading ? "Sending..." : (error || "Send")}
+                {loading ? "Sending..." : error ? error : "Send"}
               </span>
             </button>
 

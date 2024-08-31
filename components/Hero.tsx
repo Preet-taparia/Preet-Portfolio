@@ -14,7 +14,7 @@ const Hero = () => {
           </p>
           <Header startLine={"Preet"} endLine={"Taparia"} cls="text-center text-[40px] md:text-5xl lg:text-6xl" />
           <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
-            I&apos;m a Computer Science Engineer with interest in backend and web3 technologies.
+            I&apos;m a Computer Science Engineer with Interest in Backend and Web3 Technologies.
           </p>
 
           <a href="#Projects">
