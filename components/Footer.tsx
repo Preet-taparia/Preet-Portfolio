@@ -1,27 +1,9 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { SiCodechef, SiLeetcode, SiGeeksforgeeks } from "react-icons/si";
 import { socialMedia } from "@/data";
+import getIcon from "./ui/Icons";
 
 const Footer = () => {
-  const getIcon = (icon: string) => {
-    switch (icon) {
-      case "github":
-        return <FontAwesomeIcon icon={faGithub} width={24} height={24} />;
-      case "linkedin":
-        return <FontAwesomeIcon icon={faLinkedin} width={24} height={24} />;
-      case "codechef":
-        return <SiCodechef size={24} />;
-      case "leetcode":
-        return <SiLeetcode size={24} />;
-      case "gfg":
-        return <SiGeeksforgeeks size={24} />;
-      default:
-        return null;
-    }
-  };
-
+ 
   return (
     <footer className="w-full py-5" id="footer">
       <div className="flex mt-0 md:flex-row flex-col justify-between items-center">

@@ -168,7 +168,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
         <Details>
           <Title>{project.title}</Title>
           <Tags>
-            <TooltipProvider>
+            <TooltipProvider delayDuration={500}>
               {project.icons.map((icon, index) => (
                 <Tooltip key={index}>
                   <TooltipTrigger>
