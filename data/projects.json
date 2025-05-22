@@ -1,1 +1,58 @@
-[]
+[
+    {
+      "id": "1",
+      "title": "TechTriview",
+      "slug": "techtriview",
+      "description": "Developed a live coding-interview platform featuring syntax-highlighted editor, collaborative whiteboard, and video/audio capabilities. Secured ₹40K seed funding from Atal Incubation Centre and successfully pitched at Aarohan Startup Summit 2025.",
+      "image": "/projects/techtriview.png",
+      "link_demo": "",
+      "link_github": "https://github.com/Preet-taparia/TechTriview",
+      "stacks": "[\"Next.js\", \"TypeScript\", \"Tailwind CSS\", \"Framer Motion\", \"WebSockets\"]",
+      "content": "# TechTriview - Live Coding Interview Platform\n\nTechTriview is a comprehensive live coding interview platform that revolutionizes the technical interview process.",
+      "is_show": true,
+      "is_featured": true,
+      "updated_at": "2025-04-30T00:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "title": "Security Rule Engine",
+      "slug": "security-rule-engine",
+      "description": "Engineered a network security system featuring a desktop client for packet capture and a centralized admin console for monitoring. Developed backend APIs and a Python client leveraging netfilter-queue and pyshark for efficient packet sniffing and analysis.",
+      "image": "/projects/security-rule-engine.png",
+      "link_demo": "",
+      "link_github": "https://github.com/Preet-taparia/Rule-Engine",
+      "stacks": "[\"Python\", \"Express.js\", \"React\", \"PostgreSQL\", \"Sequelize\", \"WebSockets\"]",
+      "content": "# Security Rule Engine - Network Security System\n\nA comprehensive network security solution that provides real-time packet monitoring and analysis capabilities.",
+      "is_show": true,
+      "is_featured": true,
+      "updated_at": "2024-11-30T00:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "title": "Formidium Invoice System",
+      "slug": "formidium-invoice-system",
+      "description": "Built a crypto-invoice platform with OTP authentication and real-time payment tracking, securing second runner-up at the Formidium Hackathon 2024. Developed the user-specific invoice management module and implemented payment status updates.",
+      "image": "/projects/frictionless.png",
+      "link_demo": "",
+      "link_github": "https://github.com/Preet-taparia/formidium",
+      "stacks": "[\"Express.js\", \"React\", \"PostgreSQL\", \"Nodemailer\"]",
+      "content": "# Formidium Invoice System - Crypto Payment Platform\n\nA cutting-edge cryptocurrency invoice management system that simplifies crypto payments for businesses and individuals.",
+      "is_show": true,
+      "is_featured": true,
+      "updated_at": "2024-06-30T00:00:00.000Z"
+    },
+    {
+      "id": "4",
+      "title": "Madhyam",
+      "slug": "madhyam",
+      "description": "Developed the backend and integrated AI for a real-time sign language translator, securing a Top 5 position in HackJKLU 2. Managed AI model interactions, backend workflows, and real-time communication via WebSockets.",
+      "image": "/projects/madhyam.png",
+      "link_demo": "",
+      "link_github": "https://github.com/Preet-taparia/Madhyam-2.0",
+      "stacks": "[\"Flask\", \"SocketIO\", \"OpenCV\", \"TensorFlow\", \"Speech Recognition API\"]",
+      "content": "# Madhyam - Breaking Communication Barriers\n\nMadhyam is an AI-powered platform designed to break communication barriers by providing comprehensive sign language translation and audio conversion tools.",
+      "is_show": true,
+      "is_featured": false,
+      "updated_at": "2024-01-31T00:00:00.000Z"
+    }
+  ]
