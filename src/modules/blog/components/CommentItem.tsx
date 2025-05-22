@@ -23,7 +23,7 @@ const CommentItem = ({ body_html, created_at, user }: CommentItemProps) => {
     <div className='flex gap-5 break-all dark:text-neutral-400'>
       <div className='flex-shrink-0'>
         <Image
-          src={user?.profile_image_90}
+          src={user?.profile_image_90 ?? '/default-profile.png'}
           alt={user?.name}
           width={40}
           height={40}

@@ -11,9 +11,7 @@
     "lint:fix": "eslint src --fix && yarn format",
     "typecheck": "tsc --noEmit --incremental false",
     "format": "prettier --write .",
-    "format:check": "prettier -c .",
-    "prepare": "husky install",
-    "postinstall": "prisma generate"
+    "format:check": "prettier -c ."
   },
   "dependencies": {
     "@giscus/react": "^2.4.0",
@@ -26,7 +24,6 @@
     "clsx": "^1.2.1",
     "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.1",
-    "firebase": "^10.14.1",
     "framer-motion": "^10.18.0",
     "gray-matter": "^4.0.3",
     "moment": "^2.30.1",
@@ -80,7 +77,6 @@
     "eslint-config-prettier": "^8.10.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-unused-imports": "^2.0.0",
-    "husky": "^8.0.0",
     "lint-staged": "^13.3.0",
     "postcss": "8.4.31",
     "prettier": "^3.5.3",
@@ -92,5 +88,8 @@
     "**/*.{js,jsx,ts,tsx,html,css,json}": [
       "yarn prettier --write"
     ]
+  },
+  "resolutions": {
+    "@types/react": "18.2.6"
   }
 }

@@ -151,11 +151,8 @@ export default async function handler(
       per_page: Number(per_page) || 9,
     });
 
-    // Debug log to see what's coming from Dev.to
-    console.log('Dev.to API Response:', responseData);
 
     if (!responseData?.data?.posts || !Array.isArray(responseData.data.posts)) {
-      console.error('Invalid posts data structure:', responseData?.data);
       return res.status(200).json({ 
         status: false, 
         error: 'Invalid response from Dev.to API' 
@@ -217,7 +214,6 @@ export default async function handler(
 
     res.status(200).json(responses);
   } catch (error) {
-    console.error('Blog API error:', error);
     res.status(200).json({ status: false, error });
   }
 }

@@ -1,8 +1,8 @@
 import { BsFillBootstrapFill, BsGithub } from 'react-icons/bs';
 import {
   SiCss3,
-  SiDocker,
   SiDjango,
+  SiDocker,
   SiExpress,
   SiFlask,
   SiFramer,
@@ -23,8 +23,8 @@ import {
   SiThreedotjs,
   SiTypescript,
   SiVercel,
-  SiVite,
   SiVisualstudiocode,
+  SiVite,
 } from 'react-icons/si';
 
 export type stacksProps = {

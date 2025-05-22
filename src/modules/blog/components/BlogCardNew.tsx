@@ -33,7 +33,9 @@ const BlogCardNew = ({
 }: BlogDetailProps) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
-  const readingTimeMinutes = calculateReadingTime(content?.rendered) ?? 0;
+  const readingTimeMinutes = content?.rendered
+    ? calculateReadingTime(content.rendered)
+    : 0;
   const tagList = tags_list || [];
 
   const defaultImage = '/images/placeholder.png';
@@ -59,7 +61,7 @@ const BlogCardNew = ({
         >
           <Image
             src={featured_image_url || defaultImage}
-            alt={title?.rendered}
+            alt={typeof title === 'string' ? title : title?.rendered ?? ''}
             fill={true}
             sizes='100vw, 100vh'
             className='h-full w-full transform object-cover object-left transition-transform duration-300 group-hover:scale-105 group-hover:blur-sm'
@@ -83,15 +85,15 @@ const BlogCardNew = ({
           <div className='flex flex-col justify-end'>
             <div className='flex flex-col space-y-3'>
               <h3 className=' text-lg font-medium text-neutral-100 group-hover:underline group-hover:underline-offset-4 '>
-                {title?.rendered}
+                {typeof title === 'string' ? title : title?.rendered}
               </h3>
               <div className='flex items-center gap-1 text-neutral-400'>
                 <DateIcon size={14} />
-                <span className='ml-0.5 text-xs'>{formatDate(date)}</span>
+                <span className='ml-0.5 text-xs'>{formatDate(date ?? '')}</span>
               </div>
               {isExcerpt && (
                 <p className='text-sm leading-relaxed text-neutral-400'>
-                  {formatExcerpt(excerpt?.rendered)}
+                  {formatExcerpt(excerpt && typeof excerpt !== 'string' ? excerpt.rendered : excerpt ?? '')}
                 </p>
               )}
             </div>
@@ -99,7 +101,7 @@ const BlogCardNew = ({
             <div className='flex justify-between gap-4 px-0.5 text-neutral-400'>
               <Tooltip title='by preetTaparia'>
                 <Image
-                  src='/images/apreet-taparia.jpeg'
+                  src='/images/preet-taparia.jpeg'
                   alt='Preet Taparia'
                   width={25}
                   height={25}
@@ -120,7 +122,7 @@ const BlogCardNew = ({
                 <div className='flex items-center gap-1'>
                   <ViewIcon size={14} />
                   <span className='ml-0.5 text-xs font-medium'>
-                    {total_views_count.toLocaleString()} VIEWS
+                    {(total_views_count ?? 0).toLocaleString()} VIEWS
                   </span>
                 </div>
                 <div className='flex items-center gap-1'>

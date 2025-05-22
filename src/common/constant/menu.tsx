@@ -5,6 +5,7 @@ import {
   BsInstagram as InstagramIcon,
   BsLinkedin as LinkedinIcon,
 } from 'react-icons/bs';
+import { FaDev as DevIcon } from 'react-icons/fa';
 import {
   FiBookOpen as LearnIcon,
   FiCoffee as ProjectIcon,
@@ -14,9 +15,6 @@ import {
   FiUser as ProfileIcon,
 } from 'react-icons/fi';
 import { IoHome as HomeIcon } from 'react-icons/io5';
-
-import { FaDev as DevIcon } from 'react-icons/fa';
-
 import { SiJavascript } from 'react-icons/si';
 
 import { MenuItemProps } from '../types/menu';

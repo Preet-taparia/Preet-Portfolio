@@ -91,8 +91,6 @@ const BlogDetail = ({
 
   const viewsCount = viewsData?.views || 0;
   const devTags = Array.isArray(tag_list) ? tag_list : [];
-  console.log('Dev.to tags:', devTags);
-
   const hasDevTags = devTags.length > 0;
 
   const readingTime = reading_time_minutes ||

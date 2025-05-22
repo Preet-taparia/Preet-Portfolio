@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://preet-portfolio.vercel.app
+Host: https://preet-portfolio.vercel.app/
 
 # Sitemaps
 Sitemap: https://preet-portfolio.vercel.app/sitemap.xml

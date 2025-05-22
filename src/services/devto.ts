@@ -142,7 +142,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 
-import { BlogItemProps, BlogDetailProps, TagObject } from '@/common/types/blog';
+import { BlogDetailProps, BlogItemProps, TagObject } from '@/common/types/blog';
 
 const BASE_URL = 'https://dev.to/api/';
 const BLOG_URL = `${BASE_URL}articles/`;

@@ -26,7 +26,6 @@ export default async function handler(
 
       return res.json(response);
     } catch (error) {
-      console.error('Error fetching views:', error);
       return res.status(500).json({ error: 'Failed to fetch content meta' });
     }
   } else if (req.method === 'POST') {
@@ -42,7 +41,6 @@ export default async function handler(
       });
       return res.json(contentMeta);
     } catch (error) {
-      console.error('Error updating views:', error);
       return res.status(500).json({ error: 'Failed to update views count' });
     }
   } else {

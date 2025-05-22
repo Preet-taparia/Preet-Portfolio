@@ -81,12 +81,6 @@ const BlogCarousel = () => {
     useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
   const { events } = useDraggable(ref);
 
-  // Add debugging to see what's happening
-  console.log('Blog API Response:', data);
-  console.log('Blog Data:', blogData);
-  console.log('Loading:', isLoading);
-  console.log('Error:', error);
-
   const renderBlogCards = () => {
     if (isLoading) {
       return Array.from({ length: 3 }, (_, index) => (

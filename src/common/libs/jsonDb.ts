@@ -54,8 +54,7 @@ export const contentMetaDb = {
     try {
       const data = JSON.parse(fs.readFileSync(CONTENT_META_PATH, 'utf8')) as ContentMeta[];
       return data.find(item => item.slug === params.where.slug) || null;
-    } catch (error) {
-      console.error('Error reading contentmeta data:', error);
+    } catch {
       return null;
     }
   },
@@ -65,33 +64,24 @@ export const contentMetaDb = {
     data: { views: { increment: number } },
     select?: { views: boolean } 
   }) => {
-    try {
-      const data = JSON.parse(fs.readFileSync(CONTENT_META_PATH, 'utf8')) as ContentMeta[];
-      let item = data.find(item => item.slug === params.where.slug);
-      
-      if (!item) {
-        // Create new entry if it doesn't exist
-        item = { slug: params.where.slug, views: 0 };
-        data.push(item);
-      }
-      
-      // Update views
-      if (params.data.views?.increment) {
-        item.views += params.data.views.increment;
-      }
-      
-      // Write back to file
-      fs.writeFileSync(CONTENT_META_PATH, JSON.stringify(data, null, 2));
-      
-      // Return selected fields
-      if (params.select?.views) {
-        return { views: item.views };
-      }
-      return item;
-    } catch (error) {
-      console.error('Error updating contentmeta:', error);
-      throw error;
+    const data = JSON.parse(fs.readFileSync(CONTENT_META_PATH, 'utf8')) as ContentMeta[];
+    let item = data.find(item => item.slug === params.where.slug);
+    
+    if (!item) {
+      item = { slug: params.where.slug, views: 0 };
+      data.push(item);
     }
+    
+    if (params.data.views?.increment) {
+      item.views += params.data.views.increment;
+    }
+    
+    fs.writeFileSync(CONTENT_META_PATH, JSON.stringify(data, null, 2));
+    
+    if (params.select?.views) {
+      return { views: item.views };
+    }
+    return item;
   }
 };
 
@@ -129,8 +119,7 @@ export const projectsDb = {
       }
       
       return data;
-    } catch (error) {
-      console.error('Error reading projects data:', error);
+    } catch {
       return [];
     }
   },
@@ -139,8 +128,7 @@ export const projectsDb = {
     try {
       const data = JSON.parse(fs.readFileSync(PROJECTS_PATH, 'utf8')) as Project[];
       return data.find(project => project.slug === params.where.slug) || null;
-    } catch (error) {
-      console.error('Error reading project data:', error);
+    } catch {
       return null;
     }
   }

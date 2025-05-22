@@ -18,7 +18,6 @@ import {
 import { CommandPaletteContext } from '@/common/context/CommandPaletteContext';
 import useIsMobile from '@/common/hooks/useIsMobile';
 import { MenuItemProps } from '@/common/types/menu';
-
 import QueryNotFound from '@/modules/cmdpallete/components/QueryNotFound';
 
 interface MenuOptionItemProps extends MenuItemProps {
