@@ -23,11 +23,6 @@ export default function Document() {
           href='/favicon/favicon-16x16.png'
         />
         <link rel='manifest' href='/favicon/site.webmanifest' />
-        <link
-          rel='mask-icon'
-          href='/favicon/safari-pinned-tab.svg'
-          color='#121212'
-        />
         <meta name='theme-color' content='#121212' />
       </Head>
       <body>
