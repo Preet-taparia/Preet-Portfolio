@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import clsx from 'clsx';
 import { useEffect, useRef } from 'react';
-import { LuPlay as PlayIcon, LuTrash2 as ClearIcon } from 'react-icons/lu';
+import { LuPlay as PlayIcon, LuTrash2 as ClearIcon, LuLoader2 } from 'react-icons/lu';
 import {
   ImperativePanelHandle,
   Panel,
@@ -15,15 +15,20 @@ import CodeEditor from './CodeEditor';
 import ConsoleOutput from './ConsoleOutput';
 import PanelFooter from './PanelFooter';
 import PanelHeader from './PanelHeader';
+import LanguageSelector from './LanguageSelector';
+import { SupportedLanguage } from './Playground';
 
 interface CodePlaygroundProps {
   id?: string | undefined;
   code: string;
   output: string;
   isFullScreen?: boolean;
+  isLoading?: boolean;
+  language: SupportedLanguage;
   onFullScreen?: () => void;
   onCloseFullScreen?: () => void;
   onRunCode?: () => void;
+  onLanguageChange: (language: SupportedLanguage) => void;
   onSetCode: (code: string) => void;
   onSetOutput: (output: string) => void;
   isError?: boolean;
@@ -34,9 +39,12 @@ const CodePlayground = ({
   code,
   output,
   isFullScreen,
+  isLoading = false,
+  language,
   onFullScreen,
   onCloseFullScreen,
   onRunCode,
+  onLanguageChange,
   onSetCode,
   onSetOutput,
   isError = false,
@@ -79,36 +87,50 @@ const CodePlayground = ({
             minSize={20}
             collapsible={true}
           >
-            <PanelHeader title='JavaScript'>
+            <PanelHeader title="Code Editor">
               <div className='flex items-center gap-5'>
-                <div
-                  className='cursor-pointer'
-                  onClick={handleClearCode}
-                  data-umami-event='Clear Editor Playground'
-                >
-                  <ClearIcon
-                    size={18}
-                    className={clsx('text-neutral-400', code && 'text-red-400')}
-                  />
-                </div>
-                <div
-                  className='cursor-pointer'
-                  onClick={onRunCode}
-                  data-umami-event='Run Code Playground'
-                >
-                  <PlayIcon
-                    size={18}
+                <LanguageSelector 
+                  currentLanguage={language}
+                  onLanguageChange={onLanguageChange}
+                />
+                <div className="flex items-center gap-3">
+                  <div
+                    className='cursor-pointer'
+                    onClick={handleClearCode}
+                    data-umami-event='Clear Editor Playground'
+                  >
+                    <ClearIcon
+                      size={18}
+                      className={clsx('text-neutral-400', code && 'text-red-400')}
+                    />
+                  </div>
+                  <div
                     className={clsx(
-                      'text-sky-500',
-                      !code && '!text-neutral-400',
+                      'cursor-pointer flex items-center gap-2',
+                      (!code || isLoading) && 'cursor-not-allowed opacity-50'
                     )}
-                  />
+                    onClick={!isLoading ? onRunCode : undefined}
+                    data-umami-event='Run Code Playground'
+                  >
+                    {isLoading ? (
+                      <LuLoader2 size={18} className="text-sky-500 animate-spin" />
+                    ) : (
+                      <PlayIcon
+                        size={18}
+                        className={clsx(
+                          'text-sky-500',
+                          !code && '!text-neutral-400',
+                        )}
+                      />
+                    )}
+                  </div>
                 </div>
               </div>
             </PanelHeader>
             <CodeEditor
               code={code}
               height='500px'
+              language={language}
               isFullScreen={isFullScreen}
               onChange={(newCode) =>
                 newCode !== undefined && onSetCode(newCode)
