@@ -1,15 +1,20 @@
 const Introduction = () => {
   return (
-    <section className='bg-cover bg-no-repeat '>
+    <section className='bg-cover bg-no-repeat'>
       <div className='space-y-3'>
-        <div className='flex gap-2  text-2xl font-medium lg:text-3xl'>
-          <h1>Hi, I&apos;m Preet</h1>{' '}
+        <div className='flex gap-2 text-2xl font-medium lg:text-3xl'>
+          <h1>
+            Hi, I&apos;m <span className="text-purple">Preet</span>
+          </h1>
           <div className='ml-1 animate-waving-hand'>👋</div>
         </div>
         <div className='space-y-4'>
           <ul className='ml-5 flex list-disc flex-col gap-1 text-neutral-700 dark:text-neutral-400 lg:flex-row lg:gap-10'>
             <li>
               Based in Jaipur, India <span className='ml-1'>🇮🇳</span>
+            </li>
+            <li>
+              IST (GMT+5:30)
             </li>
           </ul>
         </div>

@@ -14,6 +14,7 @@ module.exports = {
         darkText: '#E4E6EB',
         dark: '#121212',
         light: '#fafafa',
+        purple: "#CBACF9",
       },
       keyframes: {
         wave: {
@@ -41,12 +42,22 @@ module.exports = {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
         },
+        rubberBand: {
+          '0%': { transform: 'scale3d(1, 1, 1)' },
+          '30%': { transform: 'scale3d(1.25, .75, 1)' },
+          '40%': { transform: 'scale3d(.75, 1.25, 1)' },
+          '50%': { transform: 'scale3d(1.15, .85, 1)' },
+          '65%': { transform: 'scale3d(.95, 1.05, 1)' },
+          '75%': { transform: 'scale3d(1.05, .95, 1)' },
+          '100%': { transform: 'scale3d(1, 1, 1)' },
+        },
       },
       animation: {
         'waving-hand': 'wave 2s linear infinite',
         'flying-card': 'flying 3s infinite normal',
         'badge-pulse': 'badge 1.5s ease-out infinite',
         'looping-tag': 'loop 100s linear infinite',
+        rubberBand: 'rubberBand 1s both',
       },
     },
   },
