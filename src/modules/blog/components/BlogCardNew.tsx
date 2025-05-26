@@ -10,14 +10,13 @@ import { TbCalendarBolt as DateIcon } from 'react-icons/tb';
 import Breakline from '@/common/components/elements/Breakline';
 import Card from '@/common/components/elements/Card';
 import Image from '@/common/components/elements/Image';
-import Tooltip from '@/common/components/elements/Tooltip';
+
 import {
   calculateReadingTime,
   formatDate,
   formatExcerpt,
 } from '@/common/helpers';
 import { BlogDetailProps } from '@/common/types/blog';
-
 
 const BlogCardNew = ({
   id,
@@ -28,15 +27,13 @@ const BlogCardNew = ({
   content,
   excerpt,
   total_views_count,
-  tags_list,
   isExcerpt = true,
 }: BlogDetailProps) => {
-  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const readingTimeMinutes = content?.rendered
     ? calculateReadingTime(content.rendered)
     : 0;
-  const tagList = tags_list || [];
 
   const defaultImage = '/images/placeholder.png';
 
@@ -46,105 +43,74 @@ const BlogCardNew = ({
   };
 
   return (
-    <Link href={`/blog/${slug}?id=${id}`}>
+    <Link href={`/blog/${slug}?id=${id}`} passHref>
       <Card
-        className='group relative flex h-[400px] w-full flex-col rounded-lg border shadow-sm dark:border-neutral-800'
+        className='group relative flex h-[420px] w-full flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-lg transition-shadow duration-300 hover:shadow-2xl dark:border-neutral-800 dark:bg-neutral-900'
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div
-          className='relative rounded-xl duration-500'
-          style={{
-            height: '400px',
-            overflow: 'hidden',
-          }}
-        >
+        <div className='relative h-[220px] w-full overflow-hidden'>
           <Image
             src={featured_image_url || defaultImage}
             alt={typeof title === 'string' ? title : title?.rendered ?? ''}
-            fill={true}
-            sizes='100vw, 100vh'
-            className='h-full w-full transform object-cover object-left transition-transform duration-300 group-hover:scale-105 group-hover:blur-sm'
+            fill
+            sizes='100vw'
+            className='object-cover object-center transition-transform duration-500 group-hover:scale-110'
           />
-          <div className='absolute inset-0 bg-gradient-to-b from-black/20 to-black opacity-80 transition-opacity duration-300'></div>
+          <div className='absolute inset-0 bg-gradient-to-b from-black/30 to-black/80 opacity-80'></div>
         </div>
 
-        <div className='absolute flex h-full flex-col justify-between space-y-4 p-5'>
-          <div className='flex flex-wrap gap-2'>
-            {tagList?.map((tag) => (
-              <div
-                key={tag?.term_id}
-                className='rounded-full bg-neutral-900/50 px-2.5 py-1 font-mono text-xs text-neutral-400'
-              >
-                <span className='mr-1 font-semibold'>#</span>
-                {tag?.name.charAt(0).toUpperCase() + tag?.name.slice(1)}
-              </div>
-            ))}
+        <div className='flex flex-1 flex-col justify-between p-5'>
+          <div className='space-y-3'>
+            <h3 className='text-xl font-semibold text-white group-hover:underline'>
+              {typeof title === 'string' ? title : title?.rendered}
+            </h3>
+            <div className='flex items-center text-sm text-neutral-300'>
+              <DateIcon size={16} className='mr-1.5' />
+              <span>{formatDate(date ?? '')}</span>
+            </div>
+            {isExcerpt && (
+              <p className='text-sm text-neutral-300'>
+                {formatExcerpt(
+                  excerpt && typeof excerpt !== 'string'
+                    ? excerpt.rendered
+                    : excerpt ?? '',
+                )}
+              </p>
+            )}
           </div>
 
-          <div className='flex flex-col justify-end'>
-            <div className='flex flex-col space-y-3'>
-              <h3 className=' text-lg font-medium text-neutral-100 group-hover:underline group-hover:underline-offset-4 '>
-                {typeof title === 'string' ? title : title?.rendered}
-              </h3>
-              <div className='flex items-center gap-1 text-neutral-400'>
-                <DateIcon size={14} />
-                <span className='ml-0.5 text-xs'>{formatDate(date ?? '')}</span>
-              </div>
-              {isExcerpt && (
-                <p className='text-sm leading-relaxed text-neutral-400'>
-                  {formatExcerpt(excerpt && typeof excerpt !== 'string' ? excerpt.rendered : excerpt ?? '')}
-                </p>
-              )}
-            </div>
-            <Breakline className='!border-neutral-700' />
-            <div className='flex justify-between gap-4 px-0.5 text-neutral-400'>
-              <Tooltip title='by preetTaparia'>
-                <Image
-                  src='/images/preet-taparia.jpeg'
-                  alt='Preet Taparia'
-                  width={25}
-                  height={25}
-                  rounded='rounded-full'
-                  className='rotate-3 border border-neutral-500'
-                />
-              </Tooltip>
+          <Breakline className='!border-neutral-700' />
 
-              <motion.div
-                variants={slideDownVariants}
-                initial='visible'
-                animate={isHovered ? 'hidden' : 'visible'}
-                className={clsx(
-                  'flex justify-between gap-4 ',
-                  isHovered && 'hidden',
-                )}
-              >
-                <div className='flex items-center gap-1'>
-                  <ViewIcon size={14} />
-                  <span className='ml-0.5 text-xs font-medium'>
-                    {(total_views_count ?? 0).toLocaleString()} VIEWS
-                  </span>
-                </div>
-                <div className='flex items-center gap-1'>
-                  <ClockIcon size={14} />
-                  <span className='ml-0.5 text-xs font-medium'>
-                    {readingTimeMinutes.toLocaleString()} MINS READ
-                  </span>
-                </div>
-              </motion.div>
-              <motion.div
-                variants={slideDownVariants}
-                initial='hidden'
-                animate={isHovered ? 'visible' : 'hidden'}
-                className={clsx(
-                  'flex items-center gap-1',
-                  !isHovered && 'hidden',
-                )}
-              >
-                <span className='mr-0.5 text-xs font-medium'>READ MORE</span>
-                <MoreIcon size={16} />
-              </motion.div>
-            </div>
+          <div className='flex justify-between items-center pt-2 text-neutral-300'>
+            <motion.div
+              variants={slideDownVariants}
+              initial='visible'
+              animate={isHovered ? 'hidden' : 'visible'}
+              className={clsx('flex gap-4', isHovered && 'hidden')}
+            >
+              <div className='flex items-center gap-1'>
+                <ViewIcon size={14} />
+                <span className='text-xs font-medium'>
+                  {(total_views_count ?? 0).toLocaleString()} views
+                </span>
+              </div>
+              <div className='flex items-center gap-1'>
+                <ClockIcon size={14} />
+                <span className='text-xs font-medium'>
+                  {readingTimeMinutes.toLocaleString()} min read
+                </span>
+              </div>
+            </motion.div>
+            <motion.div
+              variants={slideDownVariants}
+              initial='hidden'
+              animate={isHovered ? 'visible' : 'hidden'}
+              className={clsx('flex items-center gap-1', !isHovered && 'hidden')}
+            >
+              <span className='text-xs font-medium'>Read More</span>
+              <MoreIcon size={16} />
+            </motion.div>
           </div>
         </div>
       </Card>

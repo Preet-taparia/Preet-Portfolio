@@ -44,7 +44,7 @@ const BlogCarousel = () => {
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: -100 }}
         transition={{ duration: 0.5 }}
-        className='min-w-[326px] gap-x-5'
+        className='w-full max-w-[340px] flex-shrink-0'
       >
         <BlogCardNew {...item} />
       </motion.div>
