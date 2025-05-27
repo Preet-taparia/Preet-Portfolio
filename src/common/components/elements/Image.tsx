@@ -33,13 +33,13 @@ const Image = (props: ImageProps) => {
         )}
         src={src}
         alt={alt}
-        loading='lazy'
-        // priority={true}
+        loading="lazy"
         quality={100}
-        onLoadingComplete={() => setLoading(false)}
+        onLoad={() => setLoading(false)}
         {...rest}
       />
     </div>
   );
 };
+
 export default Image;
