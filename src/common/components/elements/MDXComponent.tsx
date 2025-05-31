@@ -30,8 +30,14 @@ const MDXComponent = ({ children }: MarkdownRendererProps) => {
             {...props}
           />
         ),
-        p: (props) => <div {...props} />,
-        h2: (props) => (
+        p: (props) => <p className="mb-4 leading-relaxed" {...props} />,
+        img: ({ src = '', alt = '' }) => (
+          <img
+            src={src}
+            alt={alt}
+            className="my-4 rounded-lg shadow-md max-w-full h-auto"
+          />
+        ), h2: (props) => (
           <h2
             className='text-xl font-medium dark:text-neutral-300'
             {...props}
