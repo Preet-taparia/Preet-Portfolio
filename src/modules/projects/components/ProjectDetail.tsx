@@ -42,7 +42,7 @@ const ProjectDetail = ({
         width={800}
         height={400}
         alt={title}
-        className='hover:scale-105'
+        className='w-full aspect-[2/1] rounded-xl object-cover object-center transition-transform duration-300 hover:scale-105'
       />
       {content && (
         <div className='mt-5 space-y-6 leading-[1.8] dark:text-neutral-300'>
