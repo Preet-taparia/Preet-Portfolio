@@ -13,9 +13,9 @@ import {
   FiPieChart as AnalyticsIcon,
   FiRss as BlogIcon,
   FiUser as ProfileIcon,
+  FiCode as CodeIcon,
 } from 'react-icons/fi';
 import { IoHome as HomeIcon } from 'react-icons/io5';
-import { SiJavascript } from 'react-icons/si';
 
 import { MenuItemProps } from '../types/menu';
 
@@ -89,9 +89,9 @@ export const MENU_ITEMS: MenuItemProps[] = [
 
 export const MENU_APPS: MenuItemProps[] = [
   {
-    title: 'JS Playground',
+    title: 'Playground',
     href: '/playground',
-    icon: <SiJavascript size={iconSize} />,
+    icon: <CodeIcon size={iconSize} />,
     isShow: true,
     isExternal: false,
     eventName: 'Pages: Playground',

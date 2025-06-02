@@ -98,7 +98,7 @@ const ContentDetail = ({ content, frontMatter }: ContentDetailProps) => {
       {isShowComment && (
         <section
           id='comments'
-          className='my-10 border-t border-gray-300 dark:border-neutral-700'
+          className='my-10 dark:border-neutral-700'
         >
           <GiscusComment />
         </section>

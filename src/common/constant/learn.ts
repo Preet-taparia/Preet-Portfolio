@@ -5,9 +5,9 @@ export const LEARN_CONTENTS: ContentProps[] = [
     id: 1,
     title: 'JavasScript Fundamental',
     slug: 'js-fundamental',
-    description: 'Master the fundamentals of programming in JavaScript.',
+    description: 'Master the fundamentals of programming in JavaScript language.',
     image: 'https://cloud.aulianza.com/public/images/learn/javascript.webp',
-    is_new: true,
+    is_new: false,
     level: 'Beginner',
     is_show: true,
   },
@@ -17,6 +17,18 @@ export const LEARN_CONTENTS: ContentProps[] = [
     slug: 'problem-solving',
     description:
       'Learn problem solving in JavaScript with detailed explanations.',
+    image:
+      'https://cloud.aulianza.com/public/images/learn/learn-problem-solving.png',
+    is_new: false,
+    level: 'All Levels',
+    is_show: true,
+  },
+  {
+    id: 3,
+    title: 'System Design',
+    slug: 'system-design',
+    description:
+      'System design is the blueprint for building efficient and scalable systems.',
     image:
       'https://cloud.aulianza.com/public/images/learn/learn-problem-solving.png',
     is_new: false,

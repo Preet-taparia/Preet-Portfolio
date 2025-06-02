@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const DB_DIR = path.join(process.cwd(), 'data');
+const DB_DIR = path.join(process.cwd(), 'src', 'data');
 const CONTENT_META_PATH = path.join(DB_DIR, 'contentmeta.json');
 const PROJECTS_PATH = path.join(DB_DIR, 'projects.json');
 
