@@ -1,24 +1,43 @@
-import Image from './Image';
+'use client';
+
+import { useEffect, useState } from 'react';
 
 const TopBar = () => {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const dismissed = sessionStorage.getItem('topBarDismissed');
+    if (!dismissed) {
+      setVisible(true);
+    }
+  }, []);
+
+  const handleClose = () => {
+    setVisible(false);
+    sessionStorage.setItem('topBarDismissed', 'true');
+  };
+
+  if (!visible) return null;
+
   return (
-    <div className='hidden items-center justify-center gap-x-2 bg-cover bg-no-repeat p-2.5 text-sm shadow-lg backdrop-blur-2xl dark:border-b dark:border-neutral-800 dark:text-neutral-300 xl:flex'>
-      <span>🚀</span>
-      <span>Just launched my landing page website. check it out :</span>
-      <a
-        href='https://aulianza.com/?utm_source=preet-portfolio.vercel.app&utm_medium=referral&ref=preet-portfolio.vercel.app'
-        target='_blank'
-        className='ml-0.5 underline'
+    <aside
+      role="alert"
+      aria-live="polite"
+      className="hidden items-center justify-center pt-6 gap-x-4 mx-auto"
+    >
+      <div className="flex items-center gap-x-2 border-b-2">
+        <p className="text-sm font-medium leading-tight">
+          🚧 This portfolio site is currently being tested — things might look off or behave unexpectedly.
+        </p>
+      <button
+        onClick={handleClose}
+        aria-label="Dismiss testing notification"
+        className="underline hover:text-purple"
       >
-        aulianza.com
-      </a>
-      <Image
-        src='/images/dot_new_animated.svg'
-        width={30}
-        height={30}
-        alt='new'
-      />
-    </div>
+        Dismiss
+      </button>
+      </div>
+    </aside>
   );
 };
 
