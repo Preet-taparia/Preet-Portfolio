@@ -33,8 +33,9 @@ export const LEARN_CONTENTS: ContentProps[] = [
       'https://cloud.aulianza.com/public/images/learn/learn-problem-solving.png',
     is_new: false,
     level: 'All Levels',
-    is_show: true,
-  },  {
+    is_show: false,
+  },
+  {
     id: 4,
     title: 'Understanding Flask Framework',
     slug: 'understanding-flask-framework',
@@ -44,6 +45,6 @@ export const LEARN_CONTENTS: ContentProps[] = [
       'https://cloud.aulianza.com/public/images/learn/learn-problem-solving.png',
     is_new: false,
     level: 'All Levels',
-    is_show: true,
+    is_show: false,
   },
 ];
