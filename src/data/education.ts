@@ -1,4 +1,4 @@
-import { EducationProps } from '../types/education';
+import { EducationProps } from '../common/types/education';
 
 export const EDUCATION: EducationProps[] = [
   {

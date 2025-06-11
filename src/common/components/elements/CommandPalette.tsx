@@ -14,7 +14,7 @@ import {
   EXTERNAL_LINKS,
   MENU_ITEMS,
   SOCIAL_MEDIA,
-} from '@/common/constant/menu';
+} from '@/data/menu';
 import { CommandPaletteContext } from '@/common/context/CommandPaletteContext';
 import useIsMobile from '@/common/hooks/useIsMobile';
 import { MenuItemProps } from '@/common/types/menu';

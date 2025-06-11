@@ -1,5 +1,5 @@
 import Breakline from '@/common/components/elements/Breakline';
-import { GITHUB_ACCOUNTS } from '@/common/constant/github';
+import { GITHUB_ACCOUNTS } from '@/data/github';
 
 import CodingActive from './CodingActive';
 import Contributions from './Contributions';

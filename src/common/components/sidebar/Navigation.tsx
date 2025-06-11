@@ -1,4 +1,4 @@
-import { MENU_APPS, MENU_ITEMS } from '@/common/constant/menu';
+import { MENU_APPS, MENU_ITEMS } from '@/data/menu';
 
 import Menu from './Menu';
 import Breakline from '../elements/Breakline';

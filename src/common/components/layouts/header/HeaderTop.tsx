@@ -9,7 +9,7 @@ import {
   MdVerified as VerifiedIcon,
 } from 'react-icons/md';
 
-import { MENU_ITEMS } from '@/common/constant/menu';
+import { MENU_ITEMS } from '@/data/menu';
 import { CommandPaletteContext } from '@/common/context/CommandPaletteContext';
 
 import Image from '../../elements/Image';

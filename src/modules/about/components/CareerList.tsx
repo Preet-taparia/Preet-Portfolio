@@ -1,4 +1,4 @@
-import { CAREERS } from '@/common/constant/careers';
+import { CAREERS } from '@/data/careers';
 
 import CareerCard from './CareerCard';
 

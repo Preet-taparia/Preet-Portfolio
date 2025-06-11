@@ -6,7 +6,7 @@ import BackButton from '@/common/components/elements/BackButton';
 import Container from '@/common/components/elements/Container';
 import Loading from '@/common/components/elements/Loading';
 import PageHeading from '@/common/components/elements/PageHeading';
-import { LEARN_CONTENTS } from '@/common/constant/learn';
+import { LEARN_CONTENTS } from '@/data/learn';
 import { loadMdxFiles } from '@/common/libs/mdx';
 import { ContentProps, MdxFileContentProps } from '@/common/types/learn';
 import ContentList from '@/modules/learn/components/ContentList';

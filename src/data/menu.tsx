@@ -17,7 +17,7 @@ import {
 } from 'react-icons/fi';
 import { IoHome as HomeIcon } from 'react-icons/io5';
 
-import { MenuItemProps } from '../types/menu';
+import { MenuItemProps } from '../common/types/menu';
 
 const iconSize = 20;
 

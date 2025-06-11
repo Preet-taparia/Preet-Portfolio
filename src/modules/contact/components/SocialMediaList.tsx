@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 
 import Button from '@/common/components/elements/Button';
-import { SOCIAL_MEDIA } from '@/common/constant/menu';
+import { SOCIAL_MEDIA } from '@/data/menu';
 
 const SocialMediaList = () => {
   const handleAction = (link: string) => window.open(link, '_blank');

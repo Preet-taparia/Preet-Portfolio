@@ -7,7 +7,7 @@ import {
   BsTv,
 } from 'react-icons/bs';
 
-import { DeviceInfoProps } from '../types/spotify';
+import { DeviceInfoProps } from '../common/types/spotify';
 
 const iconSize = 24;
 const iconClassName = 'w-auto text-neutral-700 dark:text-neutral-300';

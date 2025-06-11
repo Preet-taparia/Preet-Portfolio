@@ -1,7 +1,7 @@
 import Image from '@/common/components/elements/Image';
 import MDXComponent from '@/common/components/elements/MDXComponent';
 import Tooltip from '@/common/components/elements/Tooltip';
-import { STACKS } from '@/common/constant/stacks';
+import { STACKS } from '@/data/stacks';
 import { ProjectItemProps } from '@/common/types/projects';
 
 import ProjectLink from './ProjectLink';

@@ -1,4 +1,4 @@
-import { CareerProps } from '../types/careers';
+import { CareerProps } from '../common/types/careers';
 
 export const CAREERS: CareerProps[] = [
   {

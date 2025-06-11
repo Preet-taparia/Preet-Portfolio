@@ -1,4 +1,4 @@
-import { ContentProps } from '../types/learn';
+import { ContentProps } from '../common/types/learn';
 
 export const LEARN_CONTENTS: ContentProps[] = [
   {
@@ -16,7 +16,7 @@ export const LEARN_CONTENTS: ContentProps[] = [
     title: 'Problem Solving',
     slug: 'problem-solving',
     description:
-      'Learn problem solving in JavaScript with detailed explanations.',
+      'Learn problem solving with detailed explanations.',
     image:
       'https://cloud.aulianza.com/public/images/learn/learn-problem-solving.png',
     is_new: false,
@@ -29,6 +29,17 @@ export const LEARN_CONTENTS: ContentProps[] = [
     slug: 'system-design',
     description:
       'System design is the blueprint for building efficient and scalable systems.',
+    image:
+      'https://cloud.aulianza.com/public/images/learn/learn-problem-solving.png',
+    is_new: false,
+    level: 'All Levels',
+    is_show: true,
+  },  {
+    id: 4,
+    title: 'Understanding Flask Framework',
+    slug: 'understanding-flask-framework',
+    description:
+      'Flask is a micro web framework for Python, designed for simplicity and flexibility.',
     image:
       'https://cloud.aulianza.com/public/images/learn/learn-problem-solving.png',
     is_new: false,

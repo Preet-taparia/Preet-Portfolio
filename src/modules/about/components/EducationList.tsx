@@ -1,4 +1,4 @@
-import { EDUCATION } from '@/common/constant/education';
+import { EDUCATION } from '@/data/education';
 
 import EducationCard from './EducationCard';
 
