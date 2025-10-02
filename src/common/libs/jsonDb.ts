@@ -99,7 +99,7 @@ export const projectsDb = {
     orderBy?: Array<{ [key: string]: 'asc' | 'desc' }>
   }): Promise<DbProject[]> => {
     try {
-      let rawData = JSON.parse(fs.readFileSync(PROJECTS_PATH, 'utf8')) as Project[];
+      const rawData = JSON.parse(fs.readFileSync(PROJECTS_PATH, 'utf8')) as Project[];
       
       // Transform the data to match DbProject interface
       let data: DbProject[] = rawData.map(project => ({
@@ -144,7 +144,6 @@ export const projectsDb = {
 
       return data;
     } catch (error) {
-      console.error('Error reading projects:', error);
       return [];
     }
   },
@@ -172,7 +171,6 @@ export const projectsDb = {
         updated_at: project.updated_at,
       };
     } catch (error) {
-      console.error('Error reading project:', error);
       return null;
     }
   }

@@ -49,7 +49,6 @@ export default async function handler(
       } 
     });
   } catch (error) {
-    console.error('Projects API Error:', error);
     res.status(500).json({ 
       status: false, 
       error: 'Failed to fetch projects' 
