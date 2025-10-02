@@ -33,9 +33,9 @@ const ProfileHeader = ({ expandMenu, imageSize }: ProfileHeaderProps) => {
             </h2>
           </Link>
         </div>
-        <div className='hidden text-[15px] text-neutral-600 transition-all duration-300 hover:text-neutral-700 dark:text-neutral-500 dark:hover:text-neutral-400 lg:flex'>
+        {/* <div className='hidden text-[15px] text-neutral-600 transition-all duration-300 hover:text-neutral-700 dark:text-neutral-500 dark:hover:text-neutral-400 lg:flex'>
           @preettaparia
-        </div>
+        </div> */}
       </>
     </div>
   );

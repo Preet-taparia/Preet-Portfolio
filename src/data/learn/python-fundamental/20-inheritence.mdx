@@ -1,0 +1,151 @@
+---
+id: 62
+chapter_id: 6
+chapter_title: 'Chapter 6 : Object Oriented Programming'
+title: 'Introduction to Control Flow'
+category: 'Python Fundamental'
+language: 'Python'
+difficulty: 'Easy'
+source: null
+cover_url: 'https://res.cloudinary.com/dyfnerbzk/image/upload/v1751614675/python-fundamentals_pqlorx.webp'
+source_url: null
+created_at: '2025-06-17'
+updated_at: '2025-06-17'
+is_playground: true
+is_comment: true
+---
+
+
+
+
+
+```
+
+### 8.2 Inheritance and Method Resolution
+
+```python
+# Single inheritance
+class Animal:
+    def __init__(self, name: str, species: str):
+        self.name = name
+        self.species = species
+        self.energy = 100
+    
+    def eat(self, food: str) -> None:
+        print(f"{self.name} is eating {food}")
+        self.energy += 10
+    
+    def sleep(self, hours: int) -> None:
+        print(f"{self.name} is sleeping for {hours} hours")
+        self.energy += hours * 5
+    
+    def make_sound(self) -> str:
+        return "Some generic animal sound"
+
+class Dog(Animal):
+    def __init__(self, name: str, breed: str):
+        super().__init__(name, "Canine")  # Call parent constructor
+        self.breed = breed
+        self.loyalty = 100
+    
+    def make_sound(self) -> str:  # Method overriding
+        return "Woof!"
+    
+    def fetch(self, item: str) -> None:
+        print(f"{self.name} is fetching the {item}")
+        self.energy -= 5
+        self.loyalty += 1
+    
+    def eat(self, food: str) -> None:  # Method overriding with extension
+        super().eat(food)  # Call parent method
+        if food == "treat":
+            self.loyalty += 5
+
+# Multiple inheritance and Method Resolution Order (MRO)
+class Swimmer:
+    def swim(self) -> None:
+        print("Swimming gracefully")
+
+class Flyer:
+    def fly(self) -> None:
+        print("Flying through the sky")
+
+class Duck(Animal, Swimmer, Flyer):
+    def __init__(self, name: str):
+        super().__init__(name, "Duck")
+    
+    def make_sound(self) -> str:
+        return "Quack!"
+
+# Method Resolution Order inspection
+duck = Duck("Donald")
+print(Duck.__mro__)  # Shows the order of method resolution
+print(Duck.mro())    # Alternative way to see MRO
+
+# Diamond problem resolution
+class A:
+    def method(self):
+        print("A.method")
+
+class B(A):
+    def method(self):
+        print("B.method")
+        super().method()
+
+class C(A):
+    def method(self):
+        print("C.method")
+        super().method()
+
+class D(B, C):
+    def method(self):
+        print("D.method")
+        super().method()
+
+# D().method() will print: D.method, B.method, C.method, A.method
+```
+
+
+
+### 6.3 Multiple Inheritance & Method Resolution Order (MRO)
+```python
+class A:
+    def method(self):
+        print("A.method")
+
+class B(A):
+    def method(self):
+        print("B.method")
+        super().method()
+
+class C(A):
+    def method(self):
+        print("C.method")
+        super().method()
+
+class D(B, C):
+    def method(self):
+        print("D.method")
+        super().method()
+
+# Method Resolution Order
+print(D.__mro__)  # Shows the order: D -> B -> C -> A -> object
+d = D()
+d.method()  # D.method, B.method, C.method, A.method
+
+# Cooperative inheritance with **kwargs
+class Vehicle:
+    def __init__(self, make, model, **kwargs):
+        super().__init__(**kwargs)
+        self.make = make
+        self.model = model
+
+class Electric:
+    def __init__(self, battery_capacity, **kwargs):
+        super().__init__(**kwargs)
+        self.battery_capacity = battery_capacity
+
+class ElectricCar(Vehicle, Electric):
+    def __init__(self, make, model, battery_capacity, **kwargs):
+        super().__init__(make=make, model=model, battery_capacity=battery_capacity, **kwargs)
+```

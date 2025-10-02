@@ -3,6 +3,7 @@ import axios from 'axios';
 import querystring from 'querystring';
 
 import { PAIR_DEVICES } from '@/data/devices';
+
 import {
   AccessTokenResponseProps,
   DeviceDataProps,

@@ -3,6 +3,7 @@ import { Fragment } from 'react';
 import { BsCpu as DeviceIcon, BsDot as DotIcon } from 'react-icons/bs';
 
 import { PAIR_DEVICES } from '@/data/devices';
+
 import { DeviceProps } from '@/common/types/spotify';
 
 import AnimatedBars from './AnimatedBars';

@@ -1,0 +1,324 @@
+---
+id: 52
+chapter_id: 5
+chapter_title: 'Chapter 5 : Functional Programming'
+title: 'Introduction to Control Flow'
+category: 'Python Fundamental'
+language: 'Python'
+difficulty: 'Easy'
+source: null
+cover_url: 'https://res.cloudinary.com/dyfnerbzk/image/upload/v1751614675/python-fundamentals_pqlorx.webp'
+source_url: null
+created_at: '2025-06-15'
+updated_at: '2025-06-15'
+is_playground: true
+is_comment: true
+---
+
+
+
+
+#### 7.4.1 Higher-Order Functions
+```python
+# Functions that take functions as arguments
+def apply_operation(numbers, operation):
+    return [operation(x) for x in numbers]
+
+def square(x):
+    return x ** 2
+
+def cube(x):
+    return x ** 3
+
+numbers = [1, 2, 3, 4, 5]
+squares = apply_operation(numbers, square)
+cubes = apply_operation(numbers, cube)
+
+# Built-in higher-order functions
+from functools import reduce
+import operator
+
+numbers = [1, 2, 3, 4, 5]
+mapped = list(map(square, numbers))              # [1, 4, 9, 16, 25]
+filtered = list(filter(lambda x: x % 2 == 0, numbers))  # [2, 4]
+reduced = reduce(operator.add, numbers)          # 15 (sum of all)
+```
+
+#### 7.4.2 Closures and Factory Functions
+```python
+# Closure inspection
+print(double.__closure__)               # Shows closure cells
+print(double.__closure__[0].cell_contents)  # 2
+
+# Configuration factory pattern
+def create_database_config(host, port):
+    def get_connection_string(database):
+        return f"postgresql://{host}:{port}/{database}"
+    
+    def get_backup_path(database):
+        return f"/backups/{host}/{database}"
+    
+    return {
+        'connection_string': get_connection_string,
+        'backup_path': get_backup_path
+    }
+
+db_config = create_database_config('localhost', 5432)
+print(db_config['connection_string']('myapp'))  # postgresql://localhost:5432/myapp
+```
+
+#### 7.4.3 Decorators - Advanced Function Modification
+```python
+import functools
+import time
+from typing import Callable, Any
+
+# Basic decorator structure
+def simple_decorator(func):
+    @functools.wraps(func)  # Preserves original function metadata
+    def wrapper(*args, **kwargs):
+        print(f"Calling function: {func.__name__}")
+        result = func(*args, **kwargs)
+        print(f"Function {func.__name__} completed")
+        return result
+    return wrapper
+
+@simple_decorator
+def greet(name):
+    return f"Hello, {name}!"
+
+# Decorator with parameters
+def retry(max_attempts: int, delay: float = 1.0):
+    def decorator(func: Callable) -> Callable:
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs) -> Any:
+            for attempt in range(max_attempts):
+                try:
+                    return func(*args, **kwargs)
+                except Exception as e:
+                    if attempt == max_attempts - 1:
+                        raise e
+                    print(f"Attempt {attempt + 1} failed: {e}. Retrying in {delay}s...")
+                    time.sleep(delay)
+        return wrapper
+    return decorator
+
+@retry(max_attempts=3, delay=0.5)
+def unreliable_function():
+    import random
+    if random.random() < 0.7:
+        raise Exception("Random failure")
+    return "Success!"
+
+# Class-based decorators
+class TimingDecorator:
+    def __init__(self, func):
+        self.func = func
+        self.call_count = 0
+        
+    def __call__(self, *args, **kwargs):
+        self.call_count += 1
+        start_time = time.time()
+        result = self.func(*args, **kwargs)
+        end_time = time.time()
+        print(f"{self.func.__name__} took {end_time - start_time:.4f}s (call #{self.call_count})")
+        return result
+
+@TimingDecorator
+def slow_function():
+    time.sleep(0.1)
+    return "Done"
+
+# Property decorators for classes
+class Circle:
+    def __init__(self, radius):
+        self._radius = radius
+    
+    @property
+    def radius(self):
+        return self._radius
+    
+    @radius.setter
+    def radius(self, value):
+        if value < 0:
+            raise ValueError("Radius cannot be negative")
+        self._radius = value
+    
+    @property
+    def area(self):
+        return 3.14159 * self._radius ** 2
+    
+    @property
+    def circumference(self):
+        return 2 * 3.14159 * self._radius
+
+# Multiple decorators
+@retry(max_attempts=2)
+@simple_decorator
+def complex_function():
+    return "Complex result"
+```
+
+#### 7.4.4 Lambda Functions and Functional Programming
+```python
+# Lambda functions for simple operations
+square = lambda x: x ** 2
+add = lambda x, y: x + y
+
+# Common use cases with built-in functions
+data = [('Alice', 85), ('Bob', 90), ('Charlie', 78), ('Diana', 92)]
+
+# Sorting with lambda
+sorted_by_name = sorted(data, key=lambda x: x[0])
+sorted_by_score = sorted(data, key=lambda x: x[1], reverse=True)
+
+# Filtering with lambda
+high_scores = list(filter(lambda x: x[1] > 80, data))
+
+# Mapping with lambda
+names_only = list(map(lambda x: x[0], data))
+
+# Complex lambda with conditional
+grade_letter = lambda score: 'A' if score >= 90 else 'B' if score >= 80 else 'C'
+grades = list(map(lambda x: (x[0], grade_letter(x[1])), data))
+```
+
+
+### 5.1 Function Objects & Introspection
+```python
+import inspect
+from functools import wraps, partial, singledispatch
+
+def example_function(a, b=10, *args, **kwargs):
+    """Example function with various parameter types."""
+    return a + b
+
+# Function introspection
+print(example_function.__name__)        # Function name
+print(example_function.__doc__)         # Docstring
+print(example_function.__code__)        # Code object
+print(example_function.__defaults__)    # Default values
+print(example_function.__kwdefaults__)  # Keyword-only defaults
+
+# Using inspect module
+sig = inspect.signature(example_function)
+print(sig)  # (a, b=10, *args, **kwargs)
+
+for param in sig.parameters.values():
+    print(f"{param.name}: {param.kind} = {param.default}")
+```
+
+### 5.2 Advanced Decorators
+```python
+import time
+import functools
+from typing import Callable, Any
+
+# Decorator with arguments
+def retry(max_attempts: int = 3, delay: float = 1.0):
+    def decorator(func: Callable) -> Callable:
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            for attempt in range(max_attempts):
+                try:
+                    return func(*args, **kwargs)
+                except Exception as e:
+                    if attempt == max_attempts - 1:
+                        raise
+                    print(f"Attempt {attempt + 1} failed: {e}")
+                    time.sleep(delay)
+        return wrapper
+    return decorator
+
+# Timer decorator
+def timer(func: Callable) -> Callable:
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        end = time.time()
+        print(f"{func.__name__} took {end - start:.4f} seconds")
+        return result
+    return wrapper
+
+# Class-based decorator
+class CountCalls:
+    def __init__(self, func):
+        self.func = func
+        self.count = 0
+        functools.update_wrapper(self, func)
+    
+    def __call__(self, *args, **kwargs):
+        self.count += 1
+        print(f"{self.func.__name__} called {self.count} times")
+        return self.func(*args, **kwargs)
+
+# Property decorators
+class Circle:
+    def __init__(self, radius):
+        self._radius = radius
+    
+    @property
+    def radius(self):
+        return self._radius
+    
+    @radius.setter
+    def radius(self, value):
+        if value < 0:
+            raise ValueError("Radius cannot be negative")
+        self._radius = value
+    
+    @property
+    def area(self):
+        return 3.14159 * self._radius ** 2
+```
+
+### 5.3 Functional Programming Tools
+```python
+from functools import reduce, partial, lru_cache
+from operator import add, mul, itemgetter
+
+# Map, filter, reduce
+numbers = [1, 2, 3, 4, 5]
+squared = list(map(lambda x: x**2, numbers))
+evens = list(filter(lambda x: x % 2 == 0, numbers))
+sum_all = reduce(add, numbers)  # or just sum(numbers)
+
+# Partial functions
+def multiply(x, y, z):
+    return x * y * z
+
+double = partial(multiply, 2)
+print(double(3, 4))  # 24 (2 * 3 * 4)
+
+# LRU Cache for memoization
+@lru_cache(maxsize=128)
+def fibonacci(n):
+    if n < 2:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+print(fibonacci(100))  # Fast due to caching
+print(fibonacci.cache_info())  # Cache statistics
+
+# Single dispatch (function overloading)
+@singledispatch
+def process(arg):
+    print(f"Processing {type(arg).__name__}: {arg}")
+
+@process.register
+def _(arg: int):
+    print(f"Processing integer: {arg * 2}")
+
+@process.register
+def _(arg: str):
+    print(f"Processing string: {arg.upper()}")
+
+@process.register
+def _(arg: list):
+    print(f"Processing list of {len(arg)} items")
+
+process(42)        # Processing integer: 84
+process("hello")   # Processing string: HELLO
+process([1,2,3])   # Processing list of 3 items
+```

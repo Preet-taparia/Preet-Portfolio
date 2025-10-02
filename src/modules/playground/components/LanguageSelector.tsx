@@ -1,4 +1,5 @@
-import { SiJavascript, SiTypescript, SiPython } from 'react-icons/si';
+import { SiJavascript, SiPython,SiTypescript } from 'react-icons/si';
+
 import { SupportedLanguage } from './Playground';
 
 interface LanguageSelectorProps {

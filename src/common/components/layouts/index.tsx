@@ -10,7 +10,6 @@ import HeaderSidebar from './header/HeaderSidebar';
 import HeaderTop from './header/HeaderTop';
 // import NowPlayingBar from '../elements/NowPlayingBar';
 // import NowPlayingCard from '../elements/NowPlayingCard';
-
 import TopBar from '../elements/TopBar';
 
 interface LayoutProps {
@@ -46,7 +45,7 @@ const Layout = ({ children }: LayoutProps) => {
       >
         {isFullPageHeader ? (
           <div className='flex flex-col xl:pb-8'>
-            <HeaderTop />
+            {/* <HeaderTop /> */}
             <main className='transition-all duration-300'>{children}</main>
           </div>
         ) : (

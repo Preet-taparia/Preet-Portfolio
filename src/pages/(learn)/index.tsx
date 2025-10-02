@@ -1,9 +1,10 @@
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 
+import { LEARN_CONTENTS } from '@/data/learn';
+
 import Container from '@/common/components/elements/Container';
 import PageHeading from '@/common/components/elements/PageHeading';
-import { LEARN_CONTENTS } from '@/data/learn';
 import LearnModule from '@/modules/learn';
 
 const PAGE_TITLE = 'Learn';

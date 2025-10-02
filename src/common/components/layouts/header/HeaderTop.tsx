@@ -10,10 +10,11 @@ import {
 } from 'react-icons/md';
 
 import { MENU_ITEMS } from '@/data/menu';
+
 import { CommandPaletteContext } from '@/common/context/CommandPaletteContext';
 
 import Image from '../../elements/Image';
-import ThemeToggleButton from '../../elements/ThemeToggleButton';
+// import ThemeToggleButton from '../../elements/ThemeToggleButton';
 import Tooltip from '../../elements/Tooltip';
 import Profile from '../../sidebar/Profile';
 
@@ -76,7 +77,7 @@ const HeaderTop = () => {
               ))}
             </div>
           )}
-
+{/* 
           {!showMenu && (
             <>
               <ThemeToggleButton />
@@ -86,7 +87,7 @@ const HeaderTop = () => {
                 size={20}
               />
             </>
-          )}
+          )} */}
 
           <button
             className='flex items-center gap-2 rounded-md border p-2 backdrop-blur dark:border-neutral-700 dark:bg-neutral-900'

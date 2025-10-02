@@ -1,0 +1,117 @@
+---
+id: 51
+chapter_id: 5
+chapter_title: 'Chapter 5 : Functional Programming'
+title: 'Introduction to Control Flow'
+category: 'Python Fundamental'
+language: 'Python'
+difficulty: 'Easy'
+source: null
+cover_url: 'https://res.cloudinary.com/dyfnerbzk/image/upload/v1751614675/python-fundamentals_pqlorx.webp'
+source_url: null
+created_at: '2025-06-15'
+updated_at: '2025-06-15'
+is_playground: true
+is_comment: true
+---
+
+
+
+
+
+## 7. Functions and Scope
+
+### 7.1 Function Definition and Call Mechanics
+
+```python
+# Function objects and attributes
+def greet(name, greeting="Hello"):
+    """Greet a person with a custom message."""
+    return f"{greeting}, {name}!"
+
+# Functions are first-class objects
+print(type(greet))                      # <class 'function'>
+print(greet.__name__)                   # 'greet'
+print(greet.__doc__)                    # Function docstring
+print(greet.__defaults__)               # ('Hello',) - default arguments
+
+# Function annotations (Python 3.5+)
+def add_numbers(a: int, b: int) -> int:
+    """Add two numbers and return the result."""
+    return a + b
+
+print(add_numbers.__annotations__)      # {'a': <class 'int'>, 'b': <class 'int'>, 'return': <class 'int'>}
+```
+
+### 7.2 Parameter Passing and Argument Types
+
+```python
+# Positional and keyword arguments
+def flexible_function(a, b, c=3, *args, **kwargs):
+    print(f"a={a}, b={b}, c={c}")
+    print(f"args={args}")
+    print(f"kwargs={kwargs}")
+
+flexible_function(1, 2)                 # a=1, b=2, c=3, args=(), kwargs={}
+flexible_function(1, 2, 4, 5, 6, x=7)  # a=1, b=2, c=4, args=(5, 6), kwargs={'x': 7}
+
+# Keyword-only arguments (Python 3+)
+def keyword_only_func(a, b, *, c, d=4):
+    return a + b + c + d
+
+# keyword_only_func(1, 2, 3, 4)        # Error: c must be keyword
+result = keyword_only_func(1, 2, c=3)  # OK
+
+# Positional-only arguments (Python 3.8+)
+def positional_only_func(a, b, /, c, d):
+    return a + b + c + d
+
+result = positional_only_func(1, 2, c=3, d=4)  # OK
+# result = positional_only_func(a=1, b=2, c=3, d=4)  # Error
+```
+
+### 7.3 Scope and Namespace Deep Dive
+
+```python
+# LEGB Rule: Local, Enclosing, Global, Built-in
+global_var = "global"
+
+def outer_function():
+    outer_var = "outer"
+    
+    def inner_function():
+        inner_var = "inner"
+        # Access order: inner_var -> outer_var -> global_var -> built-ins
+        print(f"Inner: {inner_var}")
+        print(f"Outer: {outer_var}")
+        print(f"Global: {global_var}")
+        print(f"Built-in: {len([1, 2, 3])}")  # len is built-in
+    
+    inner_function()
+
+# Global and nonlocal keywords
+counter = 0
+
+def increment_global():
+    global counter
+    counter += 1
+
+def create_counter():
+    count = 0
+    
+    def increment():
+        nonlocal count
+        count += 1
+        return count
+    
+    return increment
+
+# Namespace inspection
+def namespace_demo():
+    local_var = "local"
+    print("Local namespace:", locals())
+    print("Global namespace keys:", list(globals().keys()))
+
+# Module-level variables vs global variables
+import builtins
+print("Built-in namespace:", dir(builtins))

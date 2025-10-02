@@ -1,0 +1,146 @@
+---
+id: 2
+chapter_id: 1
+chapter_title: 'Chapter 1 : Basics'
+title: 'Input and Output'
+category: 'Python Fundamental'
+language: 'Python'
+difficulty: 'Easy'
+source: null
+cover_url: 'https://res.cloudinary.com/dyfnerbzk/image/upload/v1751614675/python-fundamentals_pqlorx.webp'
+source_url: null
+created_at: '2025-06-15'
+updated_at: '2025-06-15'
+is_playground: true
+is_comment: true
+---
+
+## Input and Output
+
+Interactive programs rely on input and output. Python’s built‑in `input()` and `print()` functions, combined with file I/O methods, cover most needs for reading and writing data.
+
+### `print()` Function
+
+Use `print()` to display values. It accepts multiple objects and optional keyword parameters:
+
+```python
+# Display multiple values
+name = "Alice"
+age = 25
+print("Name:", name, "Age:", age)  # Name: Alice Age: 25
+
+# Custom separator and ending
+print("A", "B", "C", sep=" - ", end="\n---\n")
+# A - B - C
+# ---
+```
+
+#### Key Parameters
+
+* `sep` (str): Separator between objects (default `' '`).
+* `end` (str): String appended after all objects (default `"\n"`).
+* `file` (file-like): Destination (default standard output).
+* `flush` (bool): Flush buffer immediately (default `False`).
+
+### `input()` Function
+
+`input(prompt)` displays `prompt` (optional) and returns the user’s entry as a string:
+
+```python
+username = input("Enter your username: ")
+print(f"Welcome, {username}!")
+```
+
+Since it returns a string, convert to other types when needed:
+
+```python
+# Safe conversion with validation
+while True:
+    raw = input("Enter a positive integer: ")
+    try:
+        number = int(raw)
+        if number > 0:
+            break
+        print("Must be positive.")
+    except ValueError:
+        print("Please enter a valid integer.")
+print(f"You entered {number}.")
+```
+
+## String Formatting
+
+Modern Python favors f-strings for embedding expressions:
+
+```python
+pi = 3.14159
+print(f"Pi ≈ {pi:.2f}")             # Pi ≈ 3.14
+print(f"Next year, {name} will be {age+1}.")
+```
+
+Alternatively, use `.format()` when compatibility is needed:
+
+```python
+print("{0} scored {1:.1f}".format(name, 95.5))
+```
+
+### When to Use Which
+
+* **F‑strings**: Python 3.6+, concise and fast.
+* **`.format()`**: Backward-compatible with Python 3.0+.
+
+## File I/O Basics
+
+Use `with` statements for safe file operations:
+
+```python
+# Writing text
+lines = ["First line", "Second line"]
+with open('output.txt', 'w') as f:
+    for line in lines:
+        print(line, file=f)
+
+# Reading text
+with open('output.txt', 'r') as f:
+    for i, line in enumerate(f, 1):
+        print(f"{i}: {line.strip()}")
+```
+
+#### Tips
+
+* Opening with `'a'` appends instead of overwriting.
+* Catch `FileNotFoundError` to handle missing files.
+
+## Practical Example: Simple Calculator
+
+A concise demo combining `input()`, conversion, error handling, and `print()`:
+
+```python
+def simple_calc():
+    try:
+        x = float(input("First number: "))
+        op = input("Operator (+, -, *, /): ").strip()
+        y = float(input("Second number: "))
+    except ValueError:
+        print("Invalid number.")
+        return
+
+    ops = {'+': x+y, '-': x-y, '*': x*y, '/': x/y if y else None}
+    result = ops.get(op)
+    if result is None:
+        print("Error: invalid operator or division by zero.")
+    else:
+        print(f"{x} {op} {y} = {result}")
+
+simple_calc()
+```
+
+## Best Practices
+
+1. **Clear prompts**: e.g., `input("Enter age (years): ")`.
+2. **Validate input**: Always check and convert safely.
+3. **Use f-strings**: For readability and speed.
+4. **Manage files with `with`**: Ensures closure even on errors.
+
+---
+
+*Next up: **Control Flow** → `/src/data/learn/python-fundamental/6-control-flow.mdx`*

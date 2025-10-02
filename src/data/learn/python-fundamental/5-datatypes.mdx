@@ -1,0 +1,109 @@
+---
+id: 20
+chapter_id: 2
+chapter_title: 'Chapter 2 : Data Types'
+title: 'Introduction to Data Types'
+category: 'Python Fundamental'
+language: 'Python'
+difficulty: 'Easy'
+source: null
+cover_url: 'https://res.cloudinary.com/dyfnerbzk/image/upload/v1751614675/python-fundamentals_pqlorx.webp'
+source_url: null
+created_at: '2025-06-16'
+updated_at: '2025-06-16'
+is_playground: true
+is_comment: true
+---
+
+## Introduction to Python Data Types
+
+Python's type system is one of its most powerful features, providing a rich set of built-in data types that are both flexible and efficient. Understanding these data types is crucial for writing effective Python code.
+
+## Categories of Python Data Types
+
+Python data types can be broadly categorized into several groups:
+
+### 1. **Numeric Types**
+- **int**: Arbitrary precision integers
+- **float**: Double-precision floating-point numbers (IEEE 754)
+- **complex**: Complex numbers with real and imaginary parts
+
+*Key Features*: Arbitrary precision for integers, IEEE 754 compliance for floats, full mathematical operations support
+
+### 2. **Sequence Types** 
+- **str**: Immutable Unicode character sequences
+- **list**: Mutable ordered collections
+- **tuple**: Immutable ordered collections
+- **range**: Immutable arithmetic sequences
+
+*Key Features*: Ordered collections, indexing, slicing, iteration support
+
+### 3. **Mapping Types**
+- **dict**: Mutable key-value mappings (hash tables)
+
+*Key Features*: Hash table implementation, O(1) average lookup time, maintains insertion order (Python 3.7+)
+
+### 4. **Set Types**
+- **set**: Mutable collections of unique elements
+- **frozenset**: Immutable collections of unique elements
+
+*Key Features*: Mathematical set operations, uniqueness guarantee, hash table implementation
+
+### 5. **Boolean Type**
+- **bool**: Truth value representation (subclass of int)
+
+*Key Features*: Two values (True/False), inherits from int, used in conditional logic
+
+### 6. **Binary Types**
+- **bytes**: Immutable byte sequences
+- **bytearray**: Mutable byte sequences
+- **memoryview**: Memory view objects for buffer protocol
+
+*Key Features*: Raw byte manipulation, memory efficiency, buffer protocol support
+
+### 7. **None Type**
+- **NoneType**: Represents absence of value
+
+*Key Features*: Singleton object, commonly used as default value or placeholder
+
+## Type Hierarchy and Relationships
+
+```
+object (base class for all types)
+├── NoneType
+├── bool (subclass of int)
+├── int
+├── float
+├── complex
+├── str
+├── bytes
+├── bytearray
+├── list
+├── tuple
+├── dict
+├── set
+├── frozenset
+├── range
+└── memoryview
+```
+
+## Memory Management and Performance
+
+- **Immutable types**: str, int, float, complex, tuple, frozenset, bytes
+- **Mutable types**: list, dict, set, bytearray
+- **Hash table based**: dict, set, frozenset
+- **Dynamic arrays**: list
+
+## Common Operations Across Types
+
+### Universal Operations
+- `type(obj)`: Get object type
+- `isinstance(obj, type)`: Check if object is instance of type
+- `id(obj)`: Get object identity
+- `hash(obj)`: Get hash value (for hashable types)
+
+### Collection Operations
+- `len(collection)`: Get length
+- `in` / `not in`: Membership testing
+- Iteration: `for item in collection`
+- Boolean context: Empty collections are falsy

@@ -3,8 +3,9 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FiExternalLink as LinkIcon } from 'react-icons/fi';
 
-import Tooltip from '@/common/components/elements/Tooltip';
 import { STACKS } from '@/data/stacks';
+
+import Tooltip from '@/common/components/elements/Tooltip';
 import { SubContentMetaProps } from '@/common/types/learn';
 
 const ContentDetailHeader = ({

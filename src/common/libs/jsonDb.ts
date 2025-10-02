@@ -10,7 +10,25 @@ interface ContentMeta {
   views: number;
 }
 
+// This matches your JSON file structure
 export interface Project {
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  image: string;
+  is_featured: boolean;
+  link_demo?: string;    // Maps to demo_url in interface
+  link_github?: string;  // Maps to github_url in interface  
+  stacks: string;        // JSON string of tech stack array
+  content?: string;
+  is_show: boolean;
+  created_at?: string;
+  updated_at: string;
+}
+
+// Interface for the database operations
+export interface DbProject {
   id: string;
   title: string;
   slug: string;
@@ -19,9 +37,10 @@ export interface Project {
   is_featured: boolean;
   demo_url?: string;
   github_url?: string;
-  tech_stack: string[];
+  tech_stack: string[] | string;
   content?: string;
-  created_at: string;
+  is_show: boolean;
+  created_at?: string;
   updated_at: string;
 }
 
@@ -78,16 +97,33 @@ export const contentMetaDb = {
 export const projectsDb = {
   findMany: async (params?: {
     orderBy?: Array<{ [key: string]: 'asc' | 'desc' }>
-  }) => {
+  }): Promise<DbProject[]> => {
     try {
-      let data = JSON.parse(fs.readFileSync(PROJECTS_PATH, 'utf8')) as Project[];
+      let rawData = JSON.parse(fs.readFileSync(PROJECTS_PATH, 'utf8')) as Project[];
+      
+      // Transform the data to match DbProject interface
+      let data: DbProject[] = rawData.map(project => ({
+        id: project.id,
+        title: project.title,
+        slug: project.slug,
+        description: project.description,
+        image: project.image,
+        is_featured: project.is_featured,
+        demo_url: project.link_demo,
+        github_url: project.link_github,
+        tech_stack: project.stacks ? JSON.parse(project.stacks) : [],
+        content: project.content,
+        is_show: project.is_show ?? true, // Default to true if undefined
+        created_at: project.created_at,
+        updated_at: project.updated_at,
+      }));
 
       if (params?.orderBy) {
         for (const orderItem of params.orderBy) {
           const [field, direction] = Object.entries(orderItem)[0];
           data = data.sort((a, b) => {
-            const valueA = a[field as keyof Project];
-            const valueB = b[field as keyof Project];
+            const valueA = a[field as keyof DbProject];
+            const valueB = b[field as keyof DbProject];
 
             if (typeof valueA === 'boolean' && typeof valueB === 'boolean') {
               return direction === 'desc'
@@ -107,16 +143,36 @@ export const projectsDb = {
       }
 
       return data;
-    } catch {
+    } catch (error) {
+      console.error('Error reading projects:', error);
       return [];
     }
   },
 
-  findUnique: async (params: { where: { slug: string } }) => {
+  findUnique: async (params: { where: { slug: string } }): Promise<DbProject | null> => {
     try {
-      const data = JSON.parse(fs.readFileSync(PROJECTS_PATH, 'utf8')) as Project[];
-      return data.find(project => project.slug === params.where.slug) || null;
-    } catch {
+      const rawData = JSON.parse(fs.readFileSync(PROJECTS_PATH, 'utf8')) as Project[];
+      const project = rawData.find(project => project.slug === params.where.slug);
+      
+      if (!project) return null;
+
+      return {
+        id: project.id,
+        title: project.title,
+        slug: project.slug,
+        description: project.description,
+        image: project.image,
+        is_featured: project.is_featured,
+        demo_url: project.link_demo,
+        github_url: project.link_github,
+        tech_stack: project.stacks ? JSON.parse(project.stacks) : [],
+        content: project.content,
+        is_show: project.is_show,
+        created_at: project.created_at,
+        updated_at: project.updated_at,
+      };
+    } catch (error) {
+      console.error('Error reading project:', error);
       return null;
     }
   }

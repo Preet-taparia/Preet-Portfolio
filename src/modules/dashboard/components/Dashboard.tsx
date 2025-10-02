@@ -1,5 +1,6 @@
-import Breakline from '@/common/components/elements/Breakline';
 import { GITHUB_ACCOUNTS } from '@/data/github';
+
+import Breakline from '@/common/components/elements/Breakline';
 
 import CodingActive from './CodingActive';
 import Contributions from './Contributions';

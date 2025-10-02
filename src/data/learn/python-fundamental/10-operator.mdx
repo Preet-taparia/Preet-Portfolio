@@ -1,0 +1,218 @@
+---
+id: 30
+chapter_id: 3
+chapter_title: 'Chapter 3 : Operators'
+title: 'Operators in python'
+category: 'Python Fundamental'
+language: 'Python'
+difficulty: 'Easy'
+source: null
+cover_url: 'https://res.cloudinary.com/dyfnerbzk/image/upload/v1751614675/python-fundamentals_pqlorx.webp'
+source_url: null
+created_at: '2025-06-15'
+updated_at: '2025-06-15'
+is_playground: true
+is_comment: true
+---
+
+
+
+### 3.1 Operator Overloading
+```python
+class Vector:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    
+    def __add__(self, other):
+        return Vector(self.x + other.x, self.y + other.y)
+    
+    def __sub__(self, other):
+        return Vector(self.x - other.x, self.y - other.y)
+    
+    def __mul__(self, scalar):
+        return Vector(self.x * scalar, self.y * scalar)
+    
+    def __rmul__(self, scalar):  # Right multiplication
+        return self.__mul__(scalar)
+    
+    def __truediv__(self, scalar):
+        return Vector(self.x / scalar, self.y / scalar)
+    
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y
+    
+    def __repr__(self):
+        return f"Vector({self.x}, {self.y})"
+    
+    def __abs__(self):
+        return (self.x**2 + self.y**2)**0.5
+
+v1 = Vector(1, 2)
+v2 = Vector(3, 4)
+print(v1 + v2)  # Vector(4, 6)
+print(v1 * 2)   # Vector(2, 4)
+print(2 * v1)   # Vector(2, 4) - uses __rmul__
+```
+
+### 3.2 Comparison and Chaining
+```python
+# Comparison chaining
+x = 5
+print(1 < x < 10)  # True - equivalent to (1 < x) and (x < 10)
+
+# Custom comparison
+from functools import total_ordering
+
+@total_ordering
+class Student:
+    def __init__(self, name, grade):
+        self.name = name
+        self.grade = grade
+    
+    def __eq__(self, other):
+        return self.grade == other.grade
+    
+    def __lt__(self, other):
+        return self.grade < other.grade
+    
+    def __repr__(self):
+        return f"Student({self.name}, {self.grade})"
+
+students = [Student("Alice", 85), Student("Bob", 90), Student("Charlie", 78)]
+students.sort()
+print(students)
+```
+
+### 3.3 Walrus Operator (Python 3.8+)
+```python
+# Assignment expressions
+import re
+
+# Traditional approach
+text = "The answer is 42"
+match = re.search(r'\d+', text)
+if match:
+    number = match.group()
+    print(f"Found number: {number}")
+
+# With walrus operator
+if (match := re.search(r'\d+', text)):
+    print(f"Found number: {match.group()}")
+
+# In list comprehensions
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+squared_evens = [square for n in numbers if (square := n**2) % 2 == 0]
+print(squared_evens)  # [4, 16, 36, 64, 100]
+```
+
+### 5.1 Operator Precedence and Associativity
+
+```python
+# Precedence (highest to lowest):
+# 1. () - Parentheses
+# 2. ** - Exponentiation (right associative)
+# 3. +x, -x, ~x - Unary operators
+# 4. *, /, //, % - Multiplication, division, modulus
+# 5. +, - - Addition, subtraction
+# 6. <<, >> - Bit shifts
+# 7. & - Bitwise AND
+# 8. ^ - Bitwise XOR
+# 9. | - Bitwise OR
+# 10. ==, !=, <, >, <=, >=, is, is not, in, not in - Comparisons
+# 11. not - Boolean NOT
+# 12. and - Boolean AND
+# 13. or - Boolean OR
+
+# Examples of precedence
+result = 2 + 3 * 4                      # 14, not 20
+result = 2 ** 3 ** 2                    # 512 (2^(3^2)), not 64
+result = not True or False              # False (not True) or False
+```
+
+### 5.2 Arithmetic Operators Deep Dive
+
+```python
+import operator
+
+# Standard arithmetic
+a, b = 10, 3
+print(f"Division: {a / b}")             # 3.3333... (always float)
+print(f"Floor division: {a // b}")      # 3 (floor of division)
+print(f"Modulus: {a % b}")              # 1 (remainder)
+print(f"Power: {a ** b}")               # 1000
+
+# Operator module for functional approach
+print(operator.add(a, b))               # 13
+print(operator.truediv(a, b))           # 3.333...
+print(operator.floordiv(a, b))          # 3
+
+# Augmented assignment operators
+x = 5
+x += 3          # x = x + 3
+x *= 2          # x = x * 2
+x **= 2         # x = x ** 2
+print(x)        # 256
+```
+
+### 5.3 Comparison and Boolean Operators
+
+```python
+# Chained comparisons
+x = 5
+print(1 < x < 10)                       # True (equivalent to 1 < x and x < 10)
+print(10 > x > 0)                       # True
+
+# Identity vs equality
+a = [1, 2, 3]
+b = [1, 2, 3]
+c = a
+
+print(a == b)    # True (same content)
+print(a is b)    # False (different objects)
+print(a is c)    # True (same object)
+
+# Boolean operators short-circuit evaluation
+def true_func():
+    print("True function called")
+    return True
+
+def false_func():
+    print("False function called")
+    return False
+
+# Short-circuit: false_func never called
+result = false_func() and true_func()
+
+# Short-circuit: true_func never called
+result = true_func() or false_func()
+```
+
+### 5.4 Bitwise Operations
+
+```python
+# Bitwise operators work on binary representations
+a = 60  # 111100 in binary
+b = 13  # 001101 in binary
+
+print(f"AND: {a & b}")                  # 12 (001100)
+print(f"OR: {a | b}")                   # 61 (111101)
+print(f"XOR: {a ^ b}")                  # 49 (110001)
+print(f"NOT: {~a}")                     # -61 (two's complement)
+print(f"Left shift: {a << 2}")          # 240 (shift left 2 bits)
+print(f"Right shift: {a >> 2}")         # 15 (shift right 2 bits)
+
+# Practical applications
+# Check if number is power of 2
+def is_power_of_2(n):
+    return n > 0 and (n & (n - 1)) == 0
+
+print(is_power_of_2(8))                 # True
+print(is_power_of_2(6))                 # False
+
+# Toggle bit
+def toggle_bit(num, position):
+    return num ^ (1 << position)
+
+print(toggle_bit(5, 1))                 # 7 (101 -> 111)
+```

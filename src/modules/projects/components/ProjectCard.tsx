@@ -2,10 +2,11 @@ import Link from 'next/link';
 import { AiFillPushpin as PinIcon } from 'react-icons/ai';
 import { HiOutlineArrowSmRight as ViewIcon } from 'react-icons/hi';
 
+import { STACKS } from '@/data/stacks';
+
 import Card from '@/common/components/elements/Card';
 import Image from '@/common/components/elements/Image';
 import Tooltip from '@/common/components/elements/Tooltip';
-import { STACKS } from '@/data/stacks';
 import { ProjectItemProps } from '@/common/types/projects';
 
 const ProjectCard = ({
@@ -16,7 +17,16 @@ const ProjectCard = ({
   stacks,
   is_featured,
 }: ProjectItemProps) => {
-  const stacksArray = JSON.parse(stacks);
+  // Safely parse the stacks with fallback
+  let stacksArray: string[] = [];
+  try {
+    if (stacks) {
+      stacksArray = JSON.parse(stacks);
+    }
+  } catch (error) {
+    console.warn('Failed to parse stacks:', stacks, error);
+    stacksArray = [];
+  }
 
   return (
     <Link href={`/projects/${slug}`}>

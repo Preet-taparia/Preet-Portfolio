@@ -1,20 +1,21 @@
 import { Combobox, Dialog, Transition } from '@headlessui/react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
-import { useTheme } from 'next-themes';
+// import { useTheme } from 'next-themes';
 import { Fragment, useContext, useEffect, useState } from 'react';
 import {
-  BiMoon as DarkModeIcon,
+  // BiMoon as DarkModeIcon,
   BiSearch as SearchIcon,
-  BiSun as LightModeIcon,
+  // BiSun as LightModeIcon,
 } from 'react-icons/bi';
 import { useDebounce } from 'usehooks-ts';
 
 import {
-  EXTERNAL_LINKS,
+  // EXTERNAL_LINKS,
   MENU_ITEMS,
   SOCIAL_MEDIA,
 } from '@/data/menu';
+
 import { CommandPaletteContext } from '@/common/context/CommandPaletteContext';
 import useIsMobile from '@/common/hooks/useIsMobile';
 import { MenuItemProps } from '@/common/types/menu';
@@ -38,7 +39,7 @@ const CommandPalette = () => {
   const router = useRouter();
   const isMobile = useIsMobile();
   const { isOpen, setIsOpen } = useContext(CommandPaletteContext);
-  const { resolvedTheme, setTheme } = useTheme();
+  // const { resolvedTheme, setTheme } = useTheme();
   const queryDebounce = useDebounce(query, 500);
 
   const placeholders = [
@@ -63,32 +64,32 @@ const CommandPalette = () => {
         closeOnSelect: true,
       })),
     },
-    {
-      title: 'EXTERNAL LINKS',
-      children: EXTERNAL_LINKS?.map((menu) => ({
-        ...menu,
-        closeOnSelect: true,
-      })),
-    },
-    {
-      title: 'APPEARANCE',
-      children: [
-        {
-          icon:
-            resolvedTheme === 'dark' ? (
-              <LightModeIcon size={20} />
-            ) : (
-              <DarkModeIcon size={20} />
-            ),
-          title: `Switch to ${resolvedTheme === 'dark' ? 'Light' : 'Dark'
-            } Mode`,
-          click: () => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark'),
-          href: '#',
-          isExternal: false,
-          closeOnSelect: false,
-        },
-      ],
-    },
+    // {
+    //   title: 'EXTERNAL LINKS',
+    //   children: EXTERNAL_LINKS?.map((menu) => ({
+    //     ...menu,
+    //     closeOnSelect: true,
+    //   })),
+    // },
+    // {
+    //   title: 'APPEARANCE',
+    //   children: [
+    //     {
+    //       icon:
+    //         resolvedTheme === 'dark' ? (
+    //           <LightModeIcon size={20} />
+    //         ) : (
+    //           <DarkModeIcon size={20} />
+    //         ),
+    //       title: `Switch to ${resolvedTheme === 'dark' ? 'Light' : 'Dark'
+    //         } Mode`,
+    //       click: () => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark'),
+    //       href: '#',
+    //       isExternal: false,
+    //       closeOnSelect: false,
+    //     },
+    //   ],
+    // },
   ];
 
   const filterMenuOptions: MenuOptionProps[] = queryDebounce
@@ -100,7 +101,9 @@ const CommandPalette = () => {
     }))
     : menuOptions;
 
-  const handleSelect = (menu: MenuOptionItemProps) => {
+  const handleSelect = (menu: MenuOptionItemProps | null) => {
+    if (!menu) return;
+
     setQuery('');
 
     if (menu.closeOnSelect) setIsOpen(false);
@@ -180,7 +183,7 @@ const CommandPalette = () => {
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >
-          <Dialog.Overlay className='fixed inset-0 bg-neutral-600/90 dark:bg-neutral-900/90' />
+          <div className='fixed inset-0 bg-neutral-600/90 dark:bg-neutral-900/90' />
         </Transition.Child>
 
         <Dialog.Panel>
@@ -194,7 +197,7 @@ const CommandPalette = () => {
             leaveTo='opacity-0 scale-95'
           >
             <Combobox
-              onChange={(menu: MenuOptionItemProps) => handleSelect(menu)}
+              onChange={handleSelect}
               as='div'
               className='shadow-3xl relative mx-auto max-w-xl overflow-hidden rounded-xl border-2 border-neutral-100 bg-white ring-1 ring-black/5 backdrop-blur dark:divide-neutral-600 dark:border-neutral-800 dark:bg-[#1b1b1b80]'
             >

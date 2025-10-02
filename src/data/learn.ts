@@ -6,7 +6,7 @@ export const LEARN_CONTENTS: ContentProps[] = [
     title: 'JavasScript Fundamental',
     slug: 'js-fundamental',
     description: 'Master the fundamentals of programming in JavaScript language.',
-    image: 'https://cloud.aulianza.com/public/images/learn/javascript.webp',
+    image: 'https://res.cloudinary.com/dyfnerbzk/image/upload/v1751614675/python-fundamentals_pqlorx.webp',
     is_new: false,
     level: 'Beginner',
     is_show: true,
@@ -46,5 +46,17 @@ export const LEARN_CONTENTS: ContentProps[] = [
     is_new: false,
     level: 'All Levels',
     is_show: false,
+  },
+  {
+    id: 5,
+    title: 'Python Fundamental',
+    slug: 'python-fundamental',
+    description:
+      'Python is a high level langugage.',
+    image:
+      'https://cloud.aulianza.com/public/images/learn/learn-problem-solving.png',
+    is_new: false,
+    level: 'All Levels',
+    is_show: true,
   },
 ];

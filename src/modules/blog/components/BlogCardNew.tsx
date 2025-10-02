@@ -10,7 +10,6 @@ import { TbCalendarBolt as DateIcon } from 'react-icons/tb';
 import Breakline from '@/common/components/elements/Breakline';
 import Card from '@/common/components/elements/Card';
 import Image from '@/common/components/elements/Image';
-
 import {
   calculateReadingTime,
   formatDate,

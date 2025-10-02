@@ -1,0 +1,236 @@
+---
+id: 4
+chapter_id: 1
+chapter_title: 'Chapter 1 : Basics'
+title: 'Variables'
+category: 'Python Fundamental'
+language: 'Python'
+difficulty: 'Easy'
+source: null
+cover_url: 'https://res.cloudinary.com/dyfnerbzk/image/upload/v1751614675/python-fundamentals_pqlorx.webp'
+source_url: null
+created_at: '2025-06-15'
+updated_at: '2025-06-15'
+is_playground: true
+is_comment: true
+---
+
+## What are Variables?
+
+Variables in Python are named containers that store data values. Think of them as labeled boxes where you can put different types of information and retrieve them later. Unlike some programming languages, Python variables don't need to be declared with a specific type before use.
+
+## Creating Variables (Assignment)
+
+Variables are created the moment you assign a value to them using the assignment operator `=`.
+
+```python
+# Creating variables
+name = "Alice"
+age = 25
+height = 5.6
+is_student = True
+```
+
+## Variable Naming Rules and Conventions
+
+### Rules (Must Follow)
+- Must start with a letter (a-z, A-Z) or underscore (_)
+- Can contain letters, numbers, and underscores
+- Cannot start with a number
+- Cannot contain spaces or special characters (@, #, $, %, etc.)
+- Cannot use Python keywords (reserved words)
+
+```python
+# Valid variable names
+username = "john"
+user_age = 30
+_private_var = "hidden"
+firstName = "Jane"
+score2 = 95
+
+# Invalid variable names
+# 2name = "invalid"        # starts with number
+# user-name = "invalid"    # contains hyphen
+# class = "invalid"        # Python keyword
+```
+
+### Conventions (Best Practices)
+- Use lowercase with underscores for regular variables (snake_case)
+- Use ALL_CAPS for constants
+- Use descriptive names
+- Avoid single-letter names except for counters
+
+```python
+# Good naming conventions
+student_count = 50
+MAX_ATTEMPTS = 3
+user_email_address = "user@example.com"
+
+# Less ideal but valid
+x = 10
+n = "name"
+```
+
+## Python Keywords (Reserved Words)
+
+These words cannot be used as variable names:
+
+```python
+# Python keywords (cannot be used as variable names)
+"""
+False, None, True, and, as, assert, break, class, continue, def,
+del, elif, else, except, finally, for, from, global, if, import,
+in, is, lambda, nonlocal, not, or, pass, raise, return, try,
+while, with, yield, async, await
+"""
+```
+
+## Basic Variable Examples
+
+```python
+# Variables can hold different types of values
+name = "Alice"
+age = 25
+height = 5.6
+is_student = True
+```
+
+## Variable Assignment Variations
+
+### Multiple Assignment
+```python
+# Assign same value to multiple variables
+x = y = z = 0
+
+# Assign different values to multiple variables
+name, age, city = "Alice", 25, "Boston"
+
+# Swapping variables
+a, b = 5, 10
+a, b = b, a  # Now a=10, b=5
+```
+
+### Augmented Assignment
+```python
+x = 10
+x += 5    # x = x + 5, result: 15
+x -= 3    # x = x - 3, result: 12
+x *= 2    # x = x * 2, result: 24
+x /= 4    # x = x / 4, result: 6.0
+x //= 2   # x = x // 2, result: 3.0
+x %= 2    # x = x % 2, result: 1.0
+x **= 3   # x = x ** 3, result: 1.0
+```
+
+
+
+## Variable Scope
+
+### Global Variables
+```python
+# Global variable (defined outside functions)
+global_var = "I'm global"
+
+def my_function():
+    print(global_var)  # Can access global variable
+
+my_function()  # Output: I'm global
+```
+
+### Local Variables
+```python
+def my_function():
+    local_var = "I'm local"  # Local variable
+    print(local_var)
+
+my_function()  # Output: I'm local
+# print(local_var)  # Error: local_var is not defined outside function
+```
+
+### Global Keyword
+```python
+counter = 0  # Global variable
+
+def increment():
+    global counter  # Declare we want to modify global variable
+    counter += 1
+
+increment()
+print(counter)  # Output: 1
+```
+
+## Constants
+
+Python doesn't have built-in constants, but by convention, variables in ALL_CAPS are treated as constants:
+
+```python
+# Constants (by convention)
+PI = 3.14159
+MAX_SIZE = 100
+DEFAULT_COLOR = "blue"
+
+# These can still be changed, but shouldn't be
+PI = 3.14  # Possible but not recommended
+```
+
+## Memory and Variable References
+
+```python
+# Variables are references to objects in memory
+a = 10
+b = a  # b gets the same value as a
+
+a = 20
+print(b)  # Output: 10 - b is not affected for simple values
+
+# For mutable objects, variables reference the same object
+list_a = [1, 2, 3]
+list_b = list_a  # list_b points to the same list as list_a
+
+list_a.append(4)
+print(list_b)  # Output: [1, 2, 3, 4] - list_b is affected too!
+```
+
+## Best Practices
+
+1. **Use descriptive names**: `student_count` instead of `sc`
+2. **Follow naming conventions**: Use snake_case for variables
+3. **Initialize variables**: Don't use variables before assignment
+4. **Use constants for fixed values**: `TAX_RATE = 0.08`
+5. **Be consistent**: Stick to one naming style throughout your code
+6. **Avoid magic numbers**: Use named constants instead of hardcoded values
+
+```python
+# Good practice
+TAX_RATE = 0.08
+customer_name = "John Doe"
+total_amount = 100.0
+tax_amount = total_amount * TAX_RATE
+
+# Less ideal
+name = "John Doe"
+amt = 100.0
+tax = amt * 0.08  # Magic number
+```
+
+## Common Mistakes to Avoid
+
+```python
+# 1. Using keywords as variable names
+# class = "Python"  # Error!
+
+# 2. Starting with numbers
+# 1st_place = "Gold"  # Error!
+
+# 3. Forgetting variable scope
+def function():
+    x = 10
+
+# print(x)  # Error: x is not defined
+
+# 4. Confusing assignment with comparison
+x = 5    # Assignment
+# if x = 5:  # Error! Use == for comparison
+if x == 5:   # Correct comparison
+    print("x is 5")
+```

@@ -1,0 +1,87 @@
+---
+id: 3
+chapter_id: 1
+chapter_title: 'Chapter 1 : Basics'
+title: 'Comments'
+category: 'Python Fundamental'
+language: 'Python'
+difficulty: 'Easy'
+source: null
+cover_url: 'https://res.cloudinary.com/dyfnerbzk/image/upload/v1751614675/python-fundamentals_pqlorx.webp'
+source_url: null
+created_at: '2025-06-15'
+updated_at: '2025-06-15'
+is_playground: true
+is_comment: true
+---
+
+## Comments
+
+Python supports clear code documentation using **comments** and **docstrings**, making your code more readable and maintainable.
+
+**Single-Line Comments:**
+
+We use `#` to add short, descriptive comments on the same or preceding line. It is ideal for brief explanations, clarifications, or temporary notes.
+
+```python
+# Calculate tax based on income brackets
+income = 50000
+tax_rate = 0.22  # Standard tax rate for middle income bracket
+```
+
+**Multi-Line Comments and Docstrings:**
+Triple-quoted strings serve as multi-line comments and, when placed at the beginning of functions, classes, or modules, become docstrings accessible via the `__doc__` attribute. `__doc__` attribute are also used by tools like `help()` or documentation generators.
+
+```python
+def calculate_mortgage_payment(principal, annual_rate, years):
+    """
+    Calculate monthly mortgage payment using the standard amortization formula.
+    
+    This function implements the mathematical formula for determining monthly
+    payments on a fixed-rate mortgage, accounting for principal, interest rate,
+    and loan term.
+    
+    Parameters:
+    -----------
+    principal : float
+        The loan amount in dollars (e.g., 300000 for $300,000)
+    annual_rate : float
+        Annual interest rate as a decimal (e.g., 0.045 for 4.5%)
+    years : int
+        Loan term in years (e.g., 30 for a 30-year mortgage)
+    
+    Returns:
+    --------
+    float
+        Monthly payment amount in dollars
+    
+    Examples:
+    ---------
+    >>> calculate_mortgage_payment(300000, 0.045, 30)
+    1520.06
+    
+    >>> calculate_mortgage_payment(150000, 0.035, 15)
+    1072.11
+    
+    Mathematical Formula:
+    ---------------------
+    M = P * [r(1+r)^n] / [(1+r)^n - 1]
+    Where:
+        M = Monthly payment
+        P = Principal loan amount
+        r = Monthly interest rate (annual rate / 12)
+        n = Total number of payments (years * 12)
+    """
+    monthly_rate = annual_rate / 12
+    total_payments = years * 12
+    
+    if monthly_rate == 0:  # Handle case of 0% interest
+        return principal / total_payments
+    
+    payment = principal * (monthly_rate * (1 + monthly_rate) ** total_payments) / \
+              ((1 + monthly_rate) ** total_payments - 1)
+    
+    return round(payment, 2)
+
+```
+>  Writing clear comments and docstrings helps others (and your future self) understand the *why* behind the *what*.

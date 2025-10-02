@@ -1,7 +1,8 @@
+import { STACKS } from '@/data/stacks';
+
 import Image from '@/common/components/elements/Image';
 import MDXComponent from '@/common/components/elements/MDXComponent';
 import Tooltip from '@/common/components/elements/Tooltip';
-import { STACKS } from '@/data/stacks';
 import { ProjectItemProps } from '@/common/types/projects';
 
 import ProjectLink from './ProjectLink';
@@ -14,7 +15,16 @@ const ProjectDetail = ({
   link_github,
   content,
 }: ProjectItemProps) => {
-  const stacksArray = JSON.parse(stacks);
+  // Safely parse the stacks with fallback
+  let stacksArray: string[] = [];
+  try {
+    if (stacks) {
+      stacksArray = JSON.parse(stacks);
+    }
+  } catch (error) {
+    console.warn('Failed to parse stacks:', stacks, error);
+    stacksArray = [];
+  }
 
   return (
     <div className='space-y-8'>

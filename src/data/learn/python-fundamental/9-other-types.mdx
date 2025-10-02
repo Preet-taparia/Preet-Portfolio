@@ -1,0 +1,50 @@
+---
+id: 25
+chapter_id: 2
+chapter_title: 'Chapter 2 : Data Types'
+title: 'Numbers'
+category: 'Python Fundamental'
+language: 'Python'
+difficulty: 'Easy'
+source: null
+cover_url: 'https://res.cloudinary.com/dyfnerbzk/image/upload/v1751614675/python-fundamentals_pqlorx.webp'
+source_url: null
+created_at: '2025-06-15'
+updated_at: '2025-06-15'
+is_playground: true
+is_comment: true
+---
+
+
+
+
+### 4.5 Advanced Collections
+
+#### 4.5.1 Collections Module Deep Dive
+```python
+from collections import defaultdict, Counter, deque, OrderedDict
+
+# defaultdict - Dictionary with default factory
+dd = defaultdict(list)
+dd['fruits'].append('apple')             # Automatically creates list
+dd['fruits'].append('banana')
+print(dict(dd))                          # {'fruits': ['apple', 'banana']}
+
+# Counter - Counting hashable objects
+text = "hello world"
+char_count = Counter(text)
+print(char_count.most_common(3))         # [('l', 3), ('o', 2), ('h', 1)]
+
+# Mathematical operations with counters
+c1 = Counter(['a', 'b', 'c', 'a'])
+c2 = Counter(['a', 'b', 'b'])
+print(c1 + c2)                          # Counter({'a': 3, 'b': 3, 'c': 1})
+print(c1 - c2)                          # Counter({'c': 1, 'a': 1})
+
+# deque - Double-ended queue
+dq = deque([1, 2, 3], maxlen=5)
+dq.appendleft(0)                        # Add to left
+dq.append(4)                            # Add to right
+dq.rotate(2)                            # Rotate right
+print(list(dq))
+```

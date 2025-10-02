@@ -30,7 +30,9 @@ const MDXComponent = ({ children }: MarkdownRendererProps) => {
             {...props}
           />
         ),
-        p: (props) => <p className="mb-4 leading-relaxed" {...props} />,
+        p: ({ children, ...props }) => {
+          return <div className="mb-4 leading-relaxed" {...props}>{children}</div>;
+        },
         img: ({ src = '', alt = '' }) => (
           <img
             src={src}

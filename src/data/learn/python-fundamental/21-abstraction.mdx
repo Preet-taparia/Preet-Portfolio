@@ -1,0 +1,134 @@
+---
+id: 63
+chapter_id: 6
+chapter_title: 'Chapter 6 : Object Oriented Programming'
+title: 'Introduction to Control Flow'
+category: 'Python Fundamental'
+language: 'Python'
+difficulty: 'Easy'
+source: null
+cover_url: 'https://res.cloudinary.com/dyfnerbzk/image/upload/v1751614675/python-fundamentals_pqlorx.webp'
+source_url: null
+created_at: '2025-06-17'
+updated_at: '2025-06-17'
+is_playground: true
+is_comment: true
+---
+
+
+
+
+#### 8.3.1 Abstract Base Classes and Protocols
+```python
+from abc import ABC, abstractmethod
+from typing import Protocol, runtime_checkable
+
+# Abstract Base Class
+class Shape(ABC):
+    @abstractmethod
+    def area(self) -> float:
+        pass
+    
+    @abstractmethod
+    def perimeter(self) -> float:
+        pass
+    
+    # Concrete method in abstract class
+    def description(self) -> str:
+        return f"This is a shape with area {self.area():.2f}"
+
+class Rectangle(Shape):
+    def __init__(self, width: float, height: float):
+        self.width = width
+        self.height = height
+    
+    def area(self) -> float:
+        return self.width * self.height
+    
+    def perimeter(self) -> float:
+        return 2 * (self.width + self.height)
+
+# Protocol (structural typing)
+@runtime_checkable
+class Drawable(Protocol):
+    def draw(self) -> None: ...
+    def get_bounds(self) -> tuple[float, float, float, float]: ...
+
+class Circle:
+    def __init__(self, x: float, y: float, radius: float):
+        self.x, self.y, self.radius = x, y, radius
+    
+    def draw(self) -> None:
+        print(f"Drawing circle at ({self.x}, {self.y}) with radius {self.radius}")
+    
+    def get_bounds(self) -> tuple[float, float, float, float]:
+        return (self.x - self.radius, self.y - self.radius, 
+                self.x + self.radius, self.y + self.radius)
+
+# Check if object implements protocol
+circle = Circle(0, 0, 5)
+print(isinstance(circle, Drawable))  # True
+```
+
+
+
+
+### 6.4 Abstract Base Classes & Protocols
+```python
+from abc import ABC, abstractmethod, abstractproperty
+from typing import Protocol
+
+# Abstract Base Class
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+    
+    @abstractmethod
+    def perimeter(self):
+        pass
+    
+    @property
+    @abstractmethod
+    def name(self):
+        pass
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+    
+    def area(self):
+        return self.width * self.height
+    
+    def perimeter(self):
+        return 2 * (self.width + self.height)
+    
+    @property
+    def name(self):
+        return "Rectangle"
+
+# Protocols (structural subtyping)
+class Drawable(Protocol):
+    def draw(self) -> None: ...
+
+class Resizable(Protocol):
+    def resize(self, factor: float) -> None: ...
+
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+    
+    def draw(self):
+        print(f"Drawing circle with radius {self.radius}")
+    
+    def resize(self, factor):
+        self.radius *= factor
+
+# Circle implements both protocols without explicit inheritance
+def render_shape(shape: Drawable) -> None:
+    shape.draw()
+
+circle = Circle(5)
+render_shape(circle)  # Works due to structural typing
+```

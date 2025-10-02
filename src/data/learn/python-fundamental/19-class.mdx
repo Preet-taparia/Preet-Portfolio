@@ -1,0 +1,215 @@
+---
+id: 61
+chapter_id: 6
+chapter_title: 'Chapter 6 : Object Oriented Programming'
+title: 'Introduction to Control Flow'
+category: 'Python Fundamental'
+language: 'Python'
+difficulty: 'Easy'
+source: null
+cover_url: 'https://res.cloudinary.com/dyfnerbzk/image/upload/v1751614675/python-fundamentals_pqlorx.webp'
+source_url: null
+created_at: '2025-06-17'
+updated_at: '2025-06-17'
+is_playground: true
+is_comment: true
+---
+
+
+
+
+
+### 8.1 Class Definition and Object Creation
+
+```python
+# Complete class example with all features
+class BankAccount:
+    # Class variables (shared by all instances)
+    bank_name = "Python Bank"
+    account_counter = 0
+    
+    def __init__(self, owner: str, initial_balance: float = 0.0):
+        # Instance variables (unique to each instance)
+        BankAccount.account_counter += 1
+        self.account_id = BankAccount.account_counter
+        self.owner = owner
+        self._balance = initial_balance  # Protected attribute
+        self.__pin = None                # Private attribute
+        self.transaction_history = []
+    
+    def __str__(self) -> str:
+        """String representation for users"""
+        return f"Account({self.owner}, Balance: ${self._balance:.2f})"
+    
+    def __repr__(self) -> str:
+        """String representation for developers"""
+        return f"BankAccount(owner='{self.owner}', initial_balance={self._balance})"
+    
+    def __len__(self) -> int:
+        """Enable len() function"""
+        return len(self.transaction_history)
+    
+    def __bool__(self) -> bool:
+        """Enable bool() function"""
+        return self._balance > 0
+    
+    # Instance methods
+    def deposit(self, amount: float) -> None:
+        if amount <= 0:
+            raise ValueError("Deposit amount must be positive")
+        self._balance += amount
+        self.transaction_history.append(f"Deposited ${amount:.2f}")
+    
+    def withdraw(self, amount: float) -> bool:
+        if amount <= 0:
+            raise ValueError("Withdrawal amount must be positive")
+        if amount > self._balance:
+            return False
+        self._balance -= amount
+        self.transaction_history.append(f"Withdrew ${amount:.2f}")
+        return True
+    
+    # Property decorator for controlled access
+    @property
+    def balance(self) -> float:
+        """Get current balance"""
+        return self._balance
+    
+    @property
+    def pin(self) -> None:
+        """PIN is write-only"""
+        raise AttributeError("PIN is not readable")
+    
+    @pin.setter
+    def pin(self, value: str) -> None:
+        """Set PIN with validation"""
+        if not isinstance(value, str) or len(value) != 4 or not value.isdigit():
+            raise ValueError("PIN must be a 4-digit string")
+        self.__pin = hash(value)  # Store hashed PIN
+    
+    # Class methods
+    @classmethod
+    def get_bank_info(cls) -> str:
+        return f"{cls.bank_name} - Total accounts: {cls.account_counter}"
+    
+    @classmethod
+    def from_string(cls, account_string: str):
+        """Alternative constructor"""
+        parts = account_string.split(',')
+        owner = parts[0].strip()
+        balance = float(parts[1].strip())
+        return cls(owner, balance)
+    
+    # Static methods
+    @staticmethod
+    def calculate_interest(principal: float, rate: float, time: float) -> float:
+        """Calculate simple interest"""
+        return principal * rate * time / 100
+
+# Usage examples
+account1 = BankAccount("Alice", 1000)
+account2 = BankAccount.from_string("Bob, 500")
+
+print(account1)                         # Account(Alice, Balance: $1000.00)
+print(len(account1))                    # 0 (no transactions yet)
+print(bool(account1))                   # True (positive balance)
+
+account1.deposit(200)
+print(account1.balance)                 # 1200.0
+account1.pin = "1234"                   # Set PIN
+
+print(BankAccount.get_bank_info())      # Python Bank - Total accounts: 2
+interest = BankAccount.calculate_interest(1000, 5, 2)  # 100.0
+
+
+
+
+
+
+
+---
+
+## 6. Object-Oriented Programming - Advanced
+
+### 6.1 Metaclasses & Class Creation
+```python
+# Metaclass example
+class SingletonMeta(type):
+    _instances = {}
+    
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            cls._instances[cls] = super().__call__(*args, **kwargs)
+        return cls._instances[cls]
+
+class Singleton(metaclass=SingletonMeta):
+    def __init__(self, value):
+        self.value = value
+
+# Both instances are the same object
+s1 = Singleton("first")
+s2 = Singleton("second")
+print(s1 is s2)  # True
+print(s1.value)  # "first" (unchanged)
+
+# Class decorators as alternative to metaclasses
+def singleton(cls):
+    instances = {}
+    def get_instance(*args, **kwargs):
+        if cls not in instances:
+            instances[cls] = cls(*args, **kwargs)
+        return instances[cls]
+    return get_instance
+
+@singleton
+class AnotherSingleton:
+    def __init__(self, value):
+        self.value = value
+```
+
+### 6.2 Descriptors & Properties
+```python
+class Descriptor:
+    def __init__(self, name=None):
+        self.name = name
+    
+    def __set_name__(self, owner, name):
+        self.name = name
+    
+    def __get__(self, obj, objtype=None):
+        if obj is None:
+            return self
+        return obj.__dict__.get(self.name)
+    
+    def __set__(self, obj, value):
+        if not isinstance(value, str):
+            raise TypeError(f"{self.name} must be a string")
+        obj.__dict__[self.name] = value
+    
+    def __delete__(self, obj):
+        del obj.__dict__[self.name]
+
+class ValidatedAttribute:
+    def __init__(self, validator):
+        self.validator = validator
+    
+    def __set_name__(self, owner, name):
+        self.name = name
+    
+    def __get__(self, obj, objtype=None):
+        if obj is None:
+            return self
+        return obj.__dict__.get(self.name)
+    
+    def __set__(self, obj, value):
+        if not self.validator(value):
+            raise ValueError(f"Invalid value for {self.name}: {value}")
+        obj.__dict__[self.name] = value
+
+class Product:
+    name = typed_property('name', str)
+    price = typed_property('price', (int, float))
+    
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import MonacoEditor, { EditorProps } from '@monaco-editor/react';
+
 import { SupportedLanguage } from './Playground';
 
 interface CodeEditorProps {

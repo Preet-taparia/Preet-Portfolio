@@ -1,10 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import jsonDb from '@/common/libs/jsonDb';
+import { ProjectItemProps } from '@/common/types/projects';
 
 type Data = {
   status: boolean;
-  data?: any;
+  data?: {
+    posts: ProjectItemProps[];
+    total?: number;
+  };
   error?: any;
 };
 
@@ -13,9 +17,42 @@ export default async function handler(
   res: NextApiResponse<Data>,
 ) {
   try {
-    const response = await jsonDb.projects.findMany();
-    res.status(200).json({ status: true, data: response });
+    const projects = await jsonDb.projects.findMany({
+      orderBy: [
+        { updated_at: 'desc' }
+      ]
+    });
+
+    const transformedProjects: ProjectItemProps[] = projects
+      .filter(project => project.is_show !== false)
+      .map(project => ({
+        title: project.title,
+        slug: project.slug,
+        description: project.description,
+        image: project.image,
+        link_demo: project.demo_url,
+        link_github: project.github_url,
+        stacks: Array.isArray(project.tech_stack) 
+          ? JSON.stringify(project.tech_stack)
+          : project.tech_stack || '[]',
+        content: project.content,
+        is_show: true, // We already filtered these
+        is_featured: project.is_featured,
+        updated_at: new Date(project.updated_at),
+      }));
+
+    res.status(200).json({ 
+      status: true, 
+      data: { 
+        posts: transformedProjects,
+        total: transformedProjects.length
+      } 
+    });
   } catch (error) {
-    res.status(200).json({ status: false, error: error });
+    console.error('Projects API Error:', error);
+    res.status(500).json({ 
+      status: false, 
+      error: 'Failed to fetch projects' 
+    });
   }
 }

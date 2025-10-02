@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import clsx from 'clsx';
 import { useEffect, useRef } from 'react';
-import { LuPlay as PlayIcon, LuTrash2 as ClearIcon, LuLoader2 } from 'react-icons/lu';
+import { LuLoader2,LuPlay as PlayIcon, LuTrash2 as ClearIcon } from 'react-icons/lu';
 import {
   ImperativePanelHandle,
   Panel,
@@ -13,9 +13,9 @@ import useIsMobile from '@/common/hooks/useIsMobile';
 
 import CodeEditor from './CodeEditor';
 import ConsoleOutput from './ConsoleOutput';
+import LanguageSelector from './LanguageSelector';
 import PanelFooter from './PanelFooter';
 import PanelHeader from './PanelHeader';
-import LanguageSelector from './LanguageSelector';
 import { SupportedLanguage } from './Playground';
 
 interface CodePlaygroundProps {

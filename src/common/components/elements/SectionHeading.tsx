@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+
 import Header from './Header';
 
 interface SectionHeadingProps {

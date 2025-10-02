@@ -4,7 +4,7 @@ import useIsMobile from '@/common/hooks/useIsMobile';
 
 import Breakline from '../../elements/Breakline';
 import SearchBox from '../../elements/SearchBox';
-import ThemeSwitcher from '../../elements/ThemeSwitcher';
+// import ThemeSwitcher from '../../elements/ThemeSwitcher';
 import Navigation from '../../sidebar/Navigation';
 import Profile from '../../sidebar/Profile';
 
@@ -40,12 +40,12 @@ const Sidebar = () => {
           </div>
           <Navigation />
           <Breakline className='mx-1' />
-          <div className='space-y-2.5 px-1'>
+          {/* <div className='space-y-2.5 px-1'>
             <div className='px-3'>
               <span className='text-sm text-neutral-600'>Theme</span>
             </div>
             <ThemeSwitcher />
-          </div>
+          </div> */}
         </div>
       )}
     </div>

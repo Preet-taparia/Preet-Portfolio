@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { BiFile as SubContentIcon } from 'react-icons/bi';
 
+import { STACKS } from '@/data/stacks';
+
 import Card from '@/common/components/elements/Card';
 import Tooltip from '@/common/components/elements/Tooltip';
-import { STACKS } from '@/data/stacks';
 import cn from '@/common/libs/cn';
 import { SubContentProps } from '@/common/types/learn';
 
