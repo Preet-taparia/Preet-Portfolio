@@ -17,7 +17,6 @@ const ProjectCard = ({
   stacks,
   is_featured,
 }: ProjectItemProps) => {
-  // Safely parse the stacks with fallback
   let stacksArray: string[] = [];
   try {
     if (stacks) {

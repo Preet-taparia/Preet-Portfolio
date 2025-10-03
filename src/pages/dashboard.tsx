@@ -41,6 +41,6 @@ export const getStaticProps: GetStaticProps = async () => {
         '/api/github?type=personal': githubUserPersonal?.data,
       },
     },
-    revalidate: 1,
+    revalidate: 86400,
   };
 };

@@ -3,13 +3,10 @@ import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
 import { ReactNode } from 'react';
 
-// import { useWindowSize } from 'usehooks-ts';
 import useHasMounted from '@/common/hooks/useHasMounted';
 
 import HeaderSidebar from './header/HeaderSidebar';
-import HeaderTop from './header/HeaderTop';
-// import NowPlayingBar from '../elements/NowPlayingBar';
-// import NowPlayingCard from '../elements/NowPlayingCard';
+// import HeaderTop from './header/HeaderTop';
 import TopBar from '../elements/TopBar';
 
 interface LayoutProps {
@@ -19,9 +16,6 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   const { resolvedTheme } = useTheme();
   const hasMounted = useHasMounted();
-  // const { width } = useWindowSize();
-  // const isMobile = width < 480;
-
   const isDarkTheme =
     hasMounted && (resolvedTheme === 'dark' || resolvedTheme === 'system');
 
@@ -57,7 +51,6 @@ const Layout = ({ children }: LayoutProps) => {
           </div>
         )}
       </div>
-      {/* {isMobile ? <NowPlayingCard /> : <NowPlayingBar />} */}
     </>
   );
 };

@@ -1,8 +1,7 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useContext, useState } from 'react';
-import { BiCommand as CommandIcon } from 'react-icons/bi';
+import { useState } from 'react';
 import { FiMenu as MenuIcon } from 'react-icons/fi';
 import {
   MdClose as CloseIcon,
@@ -11,15 +10,18 @@ import {
 
 import { MENU_ITEMS } from '@/data/menu';
 
-import { CommandPaletteContext } from '@/common/context/CommandPaletteContext';
-
-import Image from '../../elements/Image';
-// import ThemeToggleButton from '../../elements/ThemeToggleButton';
 import Tooltip from '../../elements/Tooltip';
 import Profile from '../../sidebar/Profile';
+import Image from '../../elements/Image';
+
+// import { useContext, useState } from 'react';
+// import { BiCommand as CommandIcon } from 'react-icons/bi';
+// import { CommandPaletteContext } from '@/common/context/CommandPaletteContext';
+
+// import ThemeToggleButton from '../../elements/ThemeToggleButton';
 
 const HeaderTop = () => {
-  const { setIsOpen } = useContext(CommandPaletteContext);
+  // const { setIsOpen } = useContext(CommandPaletteContext);
   const [showMenu, setShowMenu] = useState(false);
 
   const router = useRouter();

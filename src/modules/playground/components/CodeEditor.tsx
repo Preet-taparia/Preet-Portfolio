@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import MonacoEditor, { EditorProps } from '@monaco-editor/react';
-
+import { editor } from 'monaco-editor';
 import { SupportedLanguage } from './Playground';
 
 interface CodeEditorProps {
@@ -11,12 +10,12 @@ interface CodeEditorProps {
   isFullScreen?: boolean;
 }
 
-const editorConfig = {
+const editorConfig: editor.IStandaloneEditorConstructionOptions = {
   fontSize: 14,
   minimap: {
     enabled: false,
   },
-  wordWrap: 'on',
+  wordWrap: "on",
   scrollbar: {
     verticalScrollbarSize: 9,
   },
@@ -46,12 +45,11 @@ const CodeEditor = ({
   height = '300px',
   isFullScreen = false,
 }: CodeEditorProps) => {
-  const handleEditorMount = (editor: any) => {
-    setTimeout(function () {
+  const handleEditorMount = (editorInstance: editor.IStandaloneCodeEditor) => {
+    setTimeout(() => {
       try {
-        editor.getAction('editor.action.formatDocument')?.run();
+        editorInstance.getAction('editor.action.formatDocument')?.run();
       } catch (error) {
-        // Some languages might not support formatting
         console.warn('Formatting not available for this language');
       }
     }, 500);
@@ -61,7 +59,7 @@ const CodeEditor = ({
     <MonacoEditor
       height={isFullScreen ? '70vh' : height}
       language={getMonacoLanguage(language)}
-      theme='vs-dark'
+      theme="vs-dark"
       value={code}
       onChange={onChange}
       options={editorConfig}

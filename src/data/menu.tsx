@@ -7,12 +7,11 @@ import {
 } from 'react-icons/bs';
 import { FaDev as DevIcon } from 'react-icons/fa';
 import {
-  FiBookOpen as LearnIcon,
+  // FiBookOpen as LearnIcon,
   FiCode as CodeIcon,
   FiCoffee as ProjectIcon,
   FiCpu as DashboardIcon,
   FiPieChart as AnalyticsIcon,
-  FiRss as BlogIcon,
   FiUser as ProfileIcon,
 } from 'react-icons/fi';
 import { IoHome as HomeIcon } from 'react-icons/io5';
@@ -49,15 +48,6 @@ export const MENU_ITEMS: MenuItemProps[] = [
     eventName: 'Pages: Projects',
     type: 'Pages',
   },
-  // {
-  //   title: 'Blog',
-  //   href: '/blog',
-  //   icon: <BlogIcon size={iconSize} />,
-  //   isShow: true,
-  //   isExternal: false,
-  //   eventName: 'Pages: Blog',
-  //   type: 'Pages',
-  // },
   // {
   //   title: 'Learn',
   //   href: '/learn',
