@@ -2,15 +2,9 @@ import fs from 'fs';
 import path from 'path';
 
 const DB_DIR = path.join(process.cwd(), 'src', 'data');
-const CONTENT_META_PATH = path.join(DB_DIR, 'contentmeta.json');
 const PROJECTS_PATH = path.join(DB_DIR, 'projects.json');
 
-interface ContentMeta {
-  slug: string;
-  views: number;
-}
 
-// This matches your JSON file structure
 export interface Project {
   id: string;
   title: string;
@@ -18,16 +12,15 @@ export interface Project {
   description: string;
   image: string;
   is_featured: boolean;
-  link_demo?: string;    // Maps to demo_url in interface
-  link_github?: string;  // Maps to github_url in interface  
-  stacks: string;        // JSON string of tech stack array
+  link_demo?: string;
+  link_github?: string;
+  stacks: string;
   content?: string;
   is_show: boolean;
   created_at?: string;
   updated_at: string;
 }
 
-// Interface for the database operations
 export interface DbProject {
   id: string;
   title: string;
@@ -48,51 +41,12 @@ const ensureDbFilesExist = () => {
   if (!fs.existsSync(DB_DIR)) {
     fs.mkdirSync(DB_DIR, { recursive: true });
   }
-  if (!fs.existsSync(CONTENT_META_PATH)) {
-    fs.writeFileSync(CONTENT_META_PATH, JSON.stringify([], null, 2));
-  }
   if (!fs.existsSync(PROJECTS_PATH)) {
     fs.writeFileSync(PROJECTS_PATH, JSON.stringify([], null, 2));
   }
 };
 
 ensureDbFilesExist();
-
-export const contentMetaDb = {
-  findUnique: async (params: { where: { slug: string } }) => {
-    try {
-      const data = JSON.parse(fs.readFileSync(CONTENT_META_PATH, 'utf8')) as ContentMeta[];
-      return data.find(item => item.slug === params.where.slug) || null;
-    } catch {
-      return null;
-    }
-  },
-
-  update: async (params: {
-    where: { slug: string },
-    data: { views: { increment: number } },
-    select?: { views: boolean }
-  }) => {
-    const data = JSON.parse(fs.readFileSync(CONTENT_META_PATH, 'utf8')) as ContentMeta[];
-    let item = data.find(item => item.slug === params.where.slug);
-
-    if (!item) {
-      item = { slug: params.where.slug, views: 0 };
-      data.push(item);
-    }
-
-    if (params.data.views?.increment) {
-      item.views += params.data.views.increment;
-    }
-
-    fs.writeFileSync(CONTENT_META_PATH, JSON.stringify(data, null, 2));
-
-    if (params.select?.views) {
-      return { views: item.views };
-    }
-    return item;
-  }
-};
 
 export const projectsDb = {
   findMany: async (params?: {
@@ -101,7 +55,6 @@ export const projectsDb = {
     try {
       const rawData = JSON.parse(fs.readFileSync(PROJECTS_PATH, 'utf8')) as Project[];
       
-      // Transform the data to match DbProject interface
       let data: DbProject[] = rawData.map(project => ({
         id: project.id,
         title: project.title,
@@ -113,7 +66,7 @@ export const projectsDb = {
         github_url: project.link_github,
         tech_stack: project.stacks ? JSON.parse(project.stacks) : [],
         content: project.content,
-        is_show: project.is_show ?? true, // Default to true if undefined
+        is_show: project.is_show ?? true,
         created_at: project.created_at,
         updated_at: project.updated_at,
       }));
@@ -177,7 +130,6 @@ export const projectsDb = {
 };
 
 const jsonDb = {
-  contentmeta: contentMetaDb,
   projects: projectsDb,
 };
 
