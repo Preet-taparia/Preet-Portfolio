@@ -16,7 +16,6 @@ const Home = () => {
       <Breakline className='my-8' />
       <ProjectPreview />
       <Breakline className='my-8' />
-
       <Services />
     </>
   );

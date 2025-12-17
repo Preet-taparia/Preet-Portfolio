@@ -50,19 +50,30 @@ const iconSize = 20;
 
 export const STACKS: StacksProps = {
   // Core Web
-  Bootstrap: <BsFillBootstrapFill size={iconSize} className="text-purple-500" />,
+  Bootstrap: (
+    <LogoImage
+      src="/images/logos/bootstrap-logo.svg"
+      alt="Bootstrap"
+      size={iconSize}
+    />
+  ),
   CSS: <SiCss3 size={iconSize} className="text-blue-500" />,
   JavaScript: <SiJavascript size={iconSize} className="text-yellow-400" />,
   TypeScript: <SiTypescript size={iconSize} className="text-blue-600" />,
 
   // Frameworks
-  React: <SiReact size={iconSize} className="text-sky-500" />,
   'React.js': <SiReact size={iconSize} className="text-sky-500" />,
   'Next.js': <SiNextdotjs size={iconSize} />,
   Redux: <SiRedux size={iconSize} className="text-purple-500" />,
   TailwindCSS: <SiTailwindcss size={iconSize} className="text-cyan-400" />,
   'Three.js': <SiThreedotjs size={iconSize} />,
-  Vite: <SiVite size={iconSize} className="text-purple-500" />,
+  Vite: (
+    <LogoImage
+      src="/images/logos/Vite.js.png"
+      alt="Vite"
+      size={iconSize}
+    />
+  ),
 
   // Backend
   'Node.js': <SiNodedotjs size={iconSize} className="text-green-600" />,
@@ -75,10 +86,24 @@ export const STACKS: StacksProps = {
       size={iconSize}
     />
   ),
+  Python: (
+    <LogoImage
+      src="/images/logos/python.svg"
+      alt="Python"
+      size={iconSize}
+    />
+  ),
 
   // Databases
   MongoDB: <SiMongodb size={iconSize} className="text-green-500" />,
   PostgreSQL: <SiPostgresql size={iconSize} className="text-blue-600" />,
+  DynamoDB: (
+    <LogoImage
+      src="/images/logos/aws-dynamo-db.svg"
+      alt="AWS DynamoDB"
+      size={iconSize}
+    />
+  ),
   Sequelize: (
     <LogoImage
       src="/images/logos/sequelize.svg"
@@ -90,10 +115,44 @@ export const STACKS: StacksProps = {
   // DevOps / Infra
   Docker: <SiDocker size={iconSize} className="text-blue-400" />,
   Nginx: <SiNginx size={iconSize} className="text-green-600" />,
-  Linux: <SiLinux size={iconSize} />,
+  Linux: (
+    <LogoImage
+      src="/images/logos/linux.png"
+      alt="Linux"
+      size={iconSize}
+    />
+  ),
   Vercel: <SiVercel size={iconSize} />,
+  'AWS EC2': (
+    <LogoImage
+      src="/images/logos/aws-ec2.svg"
+      alt="AWS EC2"
+      size={iconSize}
+    />
+  ),
+  'AWS S3': (
+    <LogoImage
+      src="/images/logos/aws-s3.svg"
+      alt="AWS S3"
+      size={iconSize}
+    />
+  ),
+  'AWS ElastiCache': (
+    <LogoImage
+      src="/images/logos/aws-elasticache.svg"
+      alt="AWS ElastiCache"
+      size={iconSize}
+    />
+  ),
 
-  // AWS
+  // AWS / Cloud
+  AWS: (
+    <LogoImage
+      src="/images/logos/AWS-Cloud-logo_32_Dark.svg"
+      alt="AWS"
+      size={iconSize}
+    />
+  ),
   'AWS Lambda': (
     <LogoImage
       src="/images/logos/aws-lambda.svg"
@@ -105,6 +164,13 @@ export const STACKS: StacksProps = {
     <LogoImage
       src="/images/logos/aws-amplify.svg"
       alt="AWS Amplify"
+      size={iconSize}
+    />
+  ),
+  'AWS API Gateway': (
+    <LogoImage
+      src="/images/logos/aws-api-gateway-endpoint.svg"
+      alt="AWS API Gateway"
       size={iconSize}
     />
   ),
@@ -158,6 +224,15 @@ export const STACKS: StacksProps = {
     <LogoImage
       src="/images/logos/opencv.svg"
       alt="OpenCV"
+      size={iconSize}
+    />
+  ),
+
+  // Design
+  Framer: (
+    <LogoImage
+      src="/images/logos/Framer_Logo_Core 1.svg"
+      alt="Framer"
       size={iconSize}
     />
   ),
