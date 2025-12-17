@@ -49,7 +49,7 @@
     "image": "/images/projects/madhyam.png",
     "link_demo": "",
     "link_github": "https://github.com/Preet-taparia/Madhyam-2.0",
-    "stacks": "[\"Flask\", \"SocketIO\", \"OpenCV\", \"TensorFlow\", \"Speech Recognition API\"]",
+    "stacks": "[\"Flask\", \"SocketIO\", \"OpenCV\", \"TensorFlow\"]",
     "content": "# Madhyam - Breaking Communication Barriers\n\nMadhyam is an AI-powered platform designed to break communication barriers by providing comprehensive sign language translation and audio conversion tools.",
     "is_show": true,
     "is_featured": false,
