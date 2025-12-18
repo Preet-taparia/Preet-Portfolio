@@ -72,10 +72,10 @@ const ProjectCardNew = ({
               {title}
             </h3>
             
-            <div className='flex items-center text-sm text-neutral-500 dark:text-neutral-400'>
+            {/* <div className='flex items-center text-sm text-neutral-500 dark:text-neutral-400'>
               <DateIcon size={16} className='mr-1.5' />
               <span>{formatDate(updated_at?.toString() ?? '')}</span>
-            </div>
+            </div> */}
 
             <p className='text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2'>
               {description}

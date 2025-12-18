@@ -16,8 +16,6 @@ const ProjectDetail = ({
   content,
 }: ProjectItemProps) => {
   
-  const stacksArray = Array.isArray(stacks) ? stacks : [];
-
   return (
     <div className='space-y-8'>
       <div className='flex flex-col items-start justify-between gap-5 sm:flex-row lg:flex-row lg:items-center'>
@@ -26,7 +24,7 @@ const ProjectDetail = ({
             Tech Stack :
           </span>
           <div className='flex flex-wrap items-center gap-3'>
-            {stacksArray.map((stack: string, index: number) => (
+            {stacks.map((stack: string, index: number) => (
               <div key={index}>
                 <Tooltip title={stack}>
                   {STACKS[stack] || <span className="text-xs">{stack}</span>}

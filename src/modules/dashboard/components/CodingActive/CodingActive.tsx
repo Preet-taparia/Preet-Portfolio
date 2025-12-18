@@ -56,17 +56,19 @@ const CodingActive = ({ lastUpdate }: CodingActiveProps) => {
       <SectionSubHeading>
         <div className='dark:text-neutral-400 md:flex-row md:items-center'>
           <span>My </span>
+
+          WakaTime
+          <span> last 7 days stats.</span>
+          <div className=''>
+            Last update: {renderLastUpdate()}
+          </div>
+        </div>
           <Link
             href='https://wakatime.com/@42c78052-73a3-4787-a095-cad42984c312'
-            className='hover:text-neutral-900 hover:underline dark:hover:text-neutral-100'
+          className='font-code text-sm text-neutral-400 hover:text-neutral-700 dark:text-neutral-600 hover:dark:text-neutral-400'
           >
-            WakaTime
+            @preet-taparia
           </Link>
-          <span> last 7 days stats.</span>
-        </div>
-        <div className='text-sm text-neutral-600 dark:text-neutral-500'>
-          Last update: {renderLastUpdate()}
-        </div>
       </SectionSubHeading>
 
       <Overview data={data} />
