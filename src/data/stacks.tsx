@@ -1,4 +1,4 @@
-import { BsFillBootstrapFill, BsGithub } from 'react-icons/bs';
+import { BsGithub } from 'react-icons/bs';
 import {
   SiCss3,
   SiDjango,

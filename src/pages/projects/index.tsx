@@ -14,7 +14,7 @@ interface ProjectsPageProps {
 
 const PAGE_TITLE = 'Projects';
 const PAGE_DESCRIPTION =
-  'Several projects that I have worked on, both private and open source.';
+  'A showcase of my journey in software engineering, spanning freelance solutions, hackathon prototypes, academic experiments, alongside my own projects.';
 
 const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
   const [visibleProjects, setVisibleProjects] = useState(6);
@@ -42,18 +42,29 @@ export default ProjectsPage;
 export const getStaticProps: GetStaticProps = async () => {
   const response = await jsonDb.projects.findMany({
     orderBy: [
-      {
-        is_featured: 'desc',
-      },
-      {
-        updated_at: 'desc',
-      },
+      { is_featured: 'desc' },
+      { updated_at: 'desc' },
     ],
   });
 
+  // TRANSFORM the data here so it matches ProjectItemProps
+  const projects = response.map((project) => ({
+    title: project.title,
+    slug: project.slug,
+    description: project.description,
+    image: project.image,
+    link_demo: project.demo_url ?? "",
+    link_github: project.github_url ?? "",
+    stacks: project.tech_stack,
+    content: project.content ?? "",
+    is_show: project.is_show,
+    is_featured: project.is_featured,
+    updated_at: project.updated_at,
+  }));
+
   return {
     props: {
-      projects: JSON.parse(JSON.stringify(response)),
+      projects: JSON.parse(JSON.stringify(projects)),
     }
   };
 }

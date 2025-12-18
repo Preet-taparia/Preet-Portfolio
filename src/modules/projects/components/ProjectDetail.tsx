@@ -15,16 +15,8 @@ const ProjectDetail = ({
   link_github,
   content,
 }: ProjectItemProps) => {
-  // Safely parse the stacks with fallback
-  let stacksArray: string[] = [];
-  try {
-    if (stacks) {
-      stacksArray = JSON.parse(stacks);
-    }
-  } catch (error) {
-    console.warn('Failed to parse stacks:', stacks, error);
-    stacksArray = [];
-  }
+  
+  const stacksArray = Array.isArray(stacks) ? stacks : [];
 
   return (
     <div className='space-y-8'>
@@ -34,9 +26,11 @@ const ProjectDetail = ({
             Tech Stack :
           </span>
           <div className='flex flex-wrap items-center gap-3'>
-            {stacksArray?.map((stack: string, index: number) => (
+            {stacksArray.map((stack: string, index: number) => (
               <div key={index}>
-                <Tooltip title={stack}>{STACKS[stack]}</Tooltip>
+                <Tooltip title={stack}>
+                  {STACKS[stack] || <span className="text-xs">{stack}</span>}
+                </Tooltip>
               </div>
             ))}
           </div>
@@ -47,13 +41,17 @@ const ProjectDetail = ({
           link_github={link_github}
         />
       </div>
-      <Image
-        src={image}
-        width={800}
-        height={400}
-        alt={title}
-        className='w-full aspect-[2/1] rounded-xl object-cover object-center transition-transform duration-300 hover:scale-105'
-      />
+      
+      <div className='overflow-hidden rounded-xl'>
+        <Image
+          src={image}
+          width={800}
+          height={400}
+          alt={title}
+          className='w-full aspect-[2/1] object-cover object-center transition-transform duration-300 hover:scale-105'
+        />
+      </div>
+
       {content && (
         <div className='mt-5 space-y-6 leading-[1.8] dark:text-neutral-300'>
           <MDXComponent>{content}</MDXComponent>

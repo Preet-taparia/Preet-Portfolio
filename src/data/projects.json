@@ -7,7 +7,19 @@
     "image": "/images/projects/techtriview.png",
     "link_demo": "",
     "link_github": "https://github.com/Preet-taparia/TechTriview",
-    "stacks": "[\"Next.js\", \"TypeScript\", \"TailwindCSS\", \"React.js\", \"Node.js\", \"Vercel\", \"Convex\", \"Clerk\", \"Stream Video\", \"Liveblocks\", \"Yjs\"]",
+    "stacks": [
+      "Next.js",
+      "TypeScript",
+      "TailwindCSS",
+      "React.js",
+      "Node.js",
+      "Vercel",
+      "Convex",
+      "Clerk",
+      "Stream Video",
+      "Liveblocks",
+      "Yjs"
+    ],
     "content": "## Overview\n\n**TechTriview** is an advanced live coding interview platform designed for seamless scheduling, real-time collaboration, and remote technical interviews. It includes features like a collaborative whiteboard, syntax-highlighted code editor, and integrated video calling—all tailored to improve the remote hiring experience.\n\n> 💡 *Secured ₹40K in seed funding from Atal Incubation Centre and pitched at Aarohan Startup Summit 2025.*\n\n**GitHub**: [View Source Code](https://github.com/Preet-taparia/TechTriview)\n\n---\n\n## 🛠️ Tech Stack\n\n| Category | Tools |\n|---------|-------|\n| **Framework** | Next.js 14, React 18 |\n| **Language** | TypeScript |\n| **Styling** | Tailwind CSS, Radix UI |\n| **Real-time** | Liveblocks, Yjs, WebSockets |\n| **Database** | Convex |\n| **Authentication** | Clerk |\n| **Video SDK** | Stream Video |\n| **Code Editor** | Monaco Editor |\n\n---\n\n## 🎯 Problem & Objective\n\n> In remote hiring, technical interviews lack fluid collaboration, visibility, and structured management. **TechTriview** addresses these challenges by integrating coding, communication, and assessment into one platform.\n\n### Goals:\n- Conduct live, structured technical interviews\n- Provide a collaborative environment (whiteboard, code editor, video)\n- Automate interview scheduling and recording\n\n---\n\n## ✨ Core Features\n\n### 📅 Interview Scheduling\n- Schedule multi-participant interviews\n- Time zone support and reminders\n\n### 🎥 Video Conferencing\n- Secure and low-latency video powered by Stream\n- Integrated with the interview interface\n\n### 💻 Live Code Editor\n- Monaco-based editor with syntax highlighting\n- Real-time collaboration (via Yjs/Liveblocks)\n\n### 🎨 Interactive Whiteboard\n- Real-time collaborative canvas\n- Tools: pencil, shapes, selection, undo/redo\n\n### 🔐 Authentication & Roles\n- Clerk-powered auth with RBAC (Interviewers, Candidates)\n\n### 🧾 Recordings & Feedback\n- Auto-recording with playback\n- Comment system for post-interview feedback\n\n---\n\n## 🧬 Architecture & Project Structure\n\n```\nsrc/\n├── app/\n│   ├── (admin)/dashboard   # Interviewer dashboard\n│   ├── (root)/meeting/[id] # Interview sessions\n│   └── landing             # Public landing page\n├── components/\n│   ├── Whiteboard/         # Drawing tools & UI\n│   ├── CodeEditor.tsx      # Monaco Editor\n│   └── MeetingRoom.tsx     # Video integration\n├── convex/                 # Convex DB functions\n├── hooks/, lib/, actions/  # Logic, helpers, API handlers\n```\n\n---\n\n## 🚀 Development Process\n\n### 🔧 Setup\n- Used **Next.js App Router** for routing\n- Implemented **Stream SDK** for video\n- Integrated **Liveblocks + Yjs** for real-time sync\n\n### 🧪 Challenges Solved\n- **Synchronization**: Yjs helped ensure low-latency collaboration across whiteboard/code editor\n- **Security**: Clerk's JWTs ensured secure route-level access\n- **Recording**: Configured Stream's recording hooks for async playback\n\n---\n\n## 🧾 Results & Impact\n\n- ✅ Conducted 50+ mock technical interviews during user testing\n- 📈 Reduced average interview setup time by 70%\n- 🧠 Recognized by **Atal Incubation Centre**, receiving ₹40K in funding\n- 🏁 Successfully pitched at **Aarohan Startup Summit 2025**\n\n---\n\n## 📦 How to Use / Contribute\n\n```bash\n# Clone the project\ngit clone https://github.com/Preet-taparia/TechTriview\n\n# Install dependencies\nnpm install\n\n# Run development server\nnpm run dev\n```\n\nSet up your `.env.local` file with API keys from Clerk, Stream, Liveblocks, and Convex.\n\n---\n\n## 🌐 Deployment\n\nDeployed on **Vercel** with continuous deployment via GitHub. Production build uses:\n- `npm run build`\n- Convex deployed via `npx convex deploy`\n\n---\n\n## 📸 Demo\n\n> (Embed a Loom or YouTube walkthrough here, or link to a live demo once hosted)\n\n---\n\n## 📚 Learnings\n\n- Advanced use of **Monaco**, **Liveblocks**, and **Stream**\n- Managing **multi-role apps** with server/client boundary control\n- Structuring modular apps with **Next.js 14’s App Router**\n\n---\n\n## 🔗 Links\n\n- [GitHub Repository](https://github.com/Preet-taparia/TechTriview)\n- [Pitch Deck (optional)](link)\n- [Live Demo](link if available)",
     "is_show": true,
     "is_featured": true,
@@ -21,7 +33,14 @@
     "image": "/images/projects/security-rule-engine.png",
     "link_demo": "",
     "link_github": "https://github.com/Preet-taparia/Rule-Engine",
-    "stacks": "[\"Python\", \"Express.js\", \"React\", \"PostgreSQL\", \"Sequelize\", \"WebSockets\"]",
+    "stacks": [
+      "Python",
+      "Express",
+      "React.js",
+      "PostgreSQL",
+      "Sequelize",
+      "SocketIO"
+    ],
     "content": "# Security Rule Engine - Network Security System\n\nA comprehensive network security solution that provides real-time packet monitoring and analysis capabilities.",
     "is_show": true,
     "is_featured": true,
@@ -35,7 +54,12 @@
     "image": "/images/projects/frictionless.png",
     "link_demo": "",
     "link_github": "https://github.com/Preet-taparia/formidium",
-    "stacks": "[\"Express.js\", \"React\", \"PostgreSQL\", \"Nodemailer\"]",
+    "stacks": [
+      "Express",
+      "React.js",
+      "PostgreSQL",
+      "Nodemailer"
+    ],
     "content": "# Formidium Invoice System - Crypto Payment Platform\n\nA cutting-edge cryptocurrency invoice management system that simplifies crypto payments for businesses and individuals.",
     "is_show": true,
     "is_featured": true,
@@ -49,7 +73,11 @@
     "image": "/images/projects/madhyam.png",
     "link_demo": "",
     "link_github": "https://github.com/Preet-taparia/Madhyam-2.0",
-    "stacks": "[\"Flask\", \"SocketIO\", \"OpenCV\", \"TensorFlow\"]",
+    "stacks": [
+      "Flask",
+      "SocketIO",
+      "OpenCV"
+    ],
     "content": "# Madhyam - Breaking Communication Barriers\n\nMadhyam is an AI-powered platform designed to break communication barriers by providing comprehensive sign language translation and audio conversion tools.",
     "is_show": true,
     "is_featured": false,
@@ -63,7 +91,13 @@
     "image": "/images/projects/JustiFI_AI/justify-ai.png",
     "link_demo": "",
     "link_github": "https://github.com/Preet-taparia/aws-ai-excuse-generator",
-    "stacks": "[\"React.js\", \"AWS Lambda\", \"Python\", \"Gemini API\", \"AWS Amplify\"]",
+    "stacks": [
+      "React.js",
+      "AWS Lambda",
+      "Python",
+      "Gemini API",
+      "AWS Amplify"
+    ],
     "content": "# 🧠 Justify AI\n\n**Justify AI** is a web application powered by generative AI that creates smart, context-aware **excuses**. Whether you're late for a meeting, missed a deadline, or just need a tactful way out, Justify AI helps you respond gracefully — and creatively.\n\n---\n\n## 🚀 Tech Stack Overview\n\n- **Frontend**: React.js\n- **Backend**: AWS Lambda (Python-based serverless function)\n- **API Integration**:\n  - **AI**: Gemini API (for excuse generation)\n  - **Routing**: AWS API Gateway\n- **Hosting & Deployment**: AWS Amplify\n\n---\n\n## 🧩 Architecture Overview\n\n![Justify AI Architecture](/images/projects/JustiFI_AI/Screenshot_20250531_194844.png)\n\nThe application architecture consists of a **React frontend** hosted on **AWS Amplify**, communicating with a **Python-based AWS Lambda function** through **API Gateway**. This serverless approach ensures scalable, low-maintenance compute. Excuse generation is powered by **Gemini API**, Google's large language model.\n\n---\n\n## 🖼️ Application Screenshots\n\n### 🔹 App Interface\n\n![App Form Screenshot](/images/projects/JustiFI_AI/Screenshot_20250531_193259.png)\n\nUsers input a situation or context, and Justify AI generates a tailored excuse in real-time.\n\n---\n\n## 💡 Key Features\n\n- 🧠 **Contextual Excuse Generation** – Personalized responses using Gemini API.\n- 🔄 **Serverless Backend** – Scalable and cost-effective with AWS Lambda.\n- 🌐 **Fully Web-Based** – Accessible on any modern device, no installation needed.\n- ☁️ **Deployed on AWS** – Fast, reliable cloud infrastructure using Amplify.\n- ⚛️ **Modern Frontend** – Built with React for a smooth and responsive UI.\n\n---\n\n## 🔧 How It Works\n\n1. **User submits context** (e.g., “I missed class today.”)\n2. **React frontend** sends the input to the backend via API Gateway.\n3. **AWS Lambda function** receives the input and forwards it to **Gemini API**.\n4. **Gemini API** returns a contextually appropriate excuse.\n5. **Frontend displays** the generated excuse to the user.\n\n---",
     "is_show": true,
     "updated_at": "2025-05-31T00:00:00.000Z"

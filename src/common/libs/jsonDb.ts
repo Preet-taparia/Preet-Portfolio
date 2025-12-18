@@ -14,7 +14,7 @@ export interface Project {
   is_featured: boolean;
   link_demo?: string;
   link_github?: string;
-  stacks: string;
+  stacks: string[];
   content?: string;
   is_show: boolean;
   created_at?: string;
@@ -30,7 +30,7 @@ export interface DbProject {
   is_featured: boolean;
   demo_url?: string;
   github_url?: string;
-  tech_stack: string[] | string;
+  tech_stack: string[];
   content?: string;
   is_show: boolean;
   created_at?: string;
@@ -64,7 +64,7 @@ export const projectsDb = {
         is_featured: project.is_featured,
         demo_url: project.link_demo,
         github_url: project.link_github,
-        tech_stack: project.stacks ? JSON.parse(project.stacks) : [],
+        tech_stack: project.stacks,
         content: project.content,
         is_show: project.is_show ?? true,
         created_at: project.created_at,
@@ -117,7 +117,7 @@ export const projectsDb = {
         is_featured: project.is_featured,
         demo_url: project.link_demo,
         github_url: project.link_github,
-        tech_stack: project.stacks ? JSON.parse(project.stacks) : [],
+        tech_stack: project.stacks,
         content: project.content,
         is_show: project.is_show,
         created_at: project.created_at,

@@ -24,13 +24,7 @@ const ProjectCardNew = ({
   updated_at,
 }: ProjectItemProps) => {
   const [isHovered, setIsHovered] = useState(false);
-
   const defaultImage = '/images/project-placeholder.png';
-
-  const slideDownVariants = {
-    hidden: { opacity: 0, y: -10 },
-    visible: { opacity: 1, y: 0 },
-  };
 
   const handleExternalLink = (e: React.MouseEvent, url: string) => {
     e.preventDefault();
@@ -45,6 +39,7 @@ const ProjectCardNew = ({
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
+        {/* Top Section: Image + Hover Overlay */}
         <div className='relative h-[220px] w-full overflow-hidden'>
           <Image
             src={image || defaultImage}
@@ -53,65 +48,81 @@ const ProjectCardNew = ({
             sizes='100vw'
             className='object-cover object-center transition-transform duration-500 group-hover:scale-110'
           />
-          <div className='absolute inset-0 bg-gradient-to-b from-black/30 to-black/80 opacity-80'></div>
+          
+          {/* Constant Gradient Overlay */}
+          <div className='absolute inset-0 bg-gradient-to-b from-black/20 to-black/60'></div>
+
+          {/* Centered "View Project" Overlay on Hover */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isHovered ? 1 : 0 }}
+            className='absolute inset-0 z-10 flex items-center justify-center bg-black/40 backdrop-blur-[2px] transition-all duration-300'
+          >
+            <div className='flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-black shadow-xl'>
+              <span>View Project</span>
+              <MoreIcon size={16} />
+            </div>
+          </motion.div>
         </div>
 
+        {/* Bottom Section: Content */}
         <div className='flex flex-1 flex-col justify-between p-5'>
           <div className='space-y-3'>
-            <h3 className='text-xl font-semibold text-white group-hover:underline'>
+            <h3 className='text-xl font-semibold text-neutral-800 dark:text-neutral-100 group-hover:text-blue-500 transition-colors'>
               {title}
             </h3>
-            <div className='flex items-center text-sm text-neutral-300'>
+            
+            <div className='flex items-center text-sm text-neutral-500 dark:text-neutral-400'>
               <DateIcon size={16} className='mr-1.5' />
               <span>{formatDate(updated_at?.toString() ?? '')}</span>
             </div>
-            <p className='text-sm text-neutral-300 line-clamp-2'>
+
+            <p className='text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2'>
               {description}
             </p>
-            <div className='flex items-center text-xs text-neutral-400'>
-              <span className='truncate'>{stacks}</span>
+
+            {/* Stacks Badges */}
+            <div className='flex flex-wrap items-center gap-2 pt-1'>
+              {Array.isArray(stacks) ? (
+                stacks.slice(0, 4).map((stack, index) => (
+                  <span
+                    key={index}
+                    className='rounded-md bg-neutral-100 px-1.5 py-0.5 text-[10px] font-medium text-neutral-600 dark:bg-neutral-800 dark:text-neutral-400'
+                  >
+                    {stack}
+                  </span>
+                ))
+              ) : (
+                <span className='text-[10px] text-neutral-400'>{stacks}</span>
+              )}
+              {Array.isArray(stacks) && stacks.length > 4 && (
+                <span className='text-[10px] text-neutral-500'>+{stacks.length - 4}</span>
+              )}
             </div>
           </div>
 
-          <Breakline className='!border-neutral-700' />
+          <Breakline className='!border-neutral-200 dark:!border-neutral-800' />
 
-          <div className='flex justify-between items-center pt-2 text-neutral-300'>
-            <motion.div
-              variants={slideDownVariants}
-              initial='visible'
-              animate={isHovered ? 'hidden' : 'visible'}
-              className={clsx('flex gap-3', isHovered && 'hidden')}
-            >
-              {link_github && (
-                <button
-                  onClick={(e) => handleExternalLink(e, link_github)}
-                  className='flex items-center gap-1 hover:text-white transition-colors'
-                  title='View on GitHub'
-                >
-                  <GithubIcon size={14} />
-                  <span className='text-xs font-medium'>Code</span>
-                </button>
-              )}
-              {link_demo && (
-                <button
-                  onClick={(e) => handleExternalLink(e, link_demo)}
-                  className='flex items-center gap-1 hover:text-white transition-colors'
-                  title='View Live Demo'
-                >
-                  <DemoIcon size={14} />
-                  <span className='text-xs font-medium'>Demo</span>
-                </button>
-              )}
-            </motion.div>
-            <motion.div
-              variants={slideDownVariants}
-              initial='hidden'
-              animate={isHovered ? 'visible' : 'hidden'}
-              className={clsx('flex items-center gap-1', !isHovered && 'hidden')}
-            >
-              <span className='text-xs font-medium'>View Project</span>
-              <MoreIcon size={16} />
-            </motion.div>
+          {/* Action Bar: Always Visible */}
+          <div className='flex gap-4 pt-1 text-neutral-600 dark:text-neutral-400'>
+            {link_github && (
+              <button
+                onClick={(e) => handleExternalLink(e, link_github)}
+                className='flex items-center gap-1.5 hover:text-black dark:hover:text-white transition-colors'
+              >
+                <GithubIcon size={16} />
+                <span className='text-xs font-semibold'>Code</span>
+              </button>
+            )}
+            {link_demo && (
+              <button
+                onClick={(e) => handleExternalLink(e, link_demo)}
+                className='flex items-center gap-1.5 hover:text-black dark:hover:text-white transition-colors'
+              >
+                <DemoIcon size={16} />
+                <span className='text-xs font-semibold'>Live Demo</span>
+              </button>
+            )}
           </div>
         </div>
       </Card>

@@ -37,7 +37,7 @@ const ProjectsDetailPage: NextPage<ProjectsDetailPageProps> = ({ project }) => {
               url: project?.image,
             },
           ],
-          siteName: 'Blog Preet Taparia',
+          siteName: `${project?.title} - Project - Preet Taparia`,
         }}
       />
       <Container data-aos='fade-up'>

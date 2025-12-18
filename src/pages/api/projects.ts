@@ -18,9 +18,7 @@ export default async function handler(
 ) {
   try {
     const projects = await jsonDb.projects.findMany({
-      orderBy: [
-        { updated_at: 'desc' }
-      ]
+      orderBy: [{ updated_at: 'desc' }]
     });
 
     const transformedProjects: ProjectItemProps[] = projects
@@ -32,11 +30,9 @@ export default async function handler(
         image: project.image,
         link_demo: project.demo_url,
         link_github: project.github_url,
-        stacks: Array.isArray(project.tech_stack) 
-          ? JSON.stringify(project.tech_stack)
-          : project.tech_stack || '[]',
+        stacks: project.tech_stack,
         content: project.content,
-        is_show: true, // We already filtered these
+        is_show: true,
         is_featured: project.is_featured,
         updated_at: new Date(project.updated_at),
       }));
@@ -49,9 +45,6 @@ export default async function handler(
       } 
     });
   } catch (error) {
-    res.status(500).json({ 
-      status: false, 
-      error: 'Failed to fetch projects' 
-    });
+    res.status(500).json({ status: false, error: 'Failed to fetch projects' });
   }
 }
