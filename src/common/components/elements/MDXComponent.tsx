@@ -1,7 +1,8 @@
-/* eslint-disable unused-imports/no-unused-vars */
 import { ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
+import type { Pluggable } from 'unified';
 
 import CodeBlock from './CodeBlock';
 
@@ -13,6 +14,8 @@ interface TableProps {
   children: ReactNode;
 }
 
+const rehypePlugins: Pluggable[] = [rehypeRaw];
+
 const Table = ({ children }: TableProps) => (
   <div className='table-container'>
     <table className='table w-full'>{children}</table>
@@ -23,6 +26,7 @@ const MDXComponent = ({ children }: MarkdownRendererProps) => {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
+      rehypePlugins={rehypePlugins}
       components={{
         a: (props) => (
           <a
@@ -74,6 +78,18 @@ const MDXComponent = ({ children }: MarkdownRendererProps) => {
           <td className='border px-3  py-1 dark:border-neutral-600'>
             {props.children}
           </td>
+        ),
+        video: ({ ...props }) => (
+          <video
+            {...props}
+            className="w-full rounded-lg shadow-md my-6"
+          />
+        ),
+        iframe: ({ ...props }) => (
+          <iframe
+            {...props}
+            className="w-full rounded-lg my-6"
+          />
         ),
       }}
     >

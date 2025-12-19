@@ -58,7 +58,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     },
   });
 
-  if (response === null) {
+  if (!response) {
     return {
       redirect: {
         destination: '/404',
@@ -69,7 +69,21 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
   return {
     props: {
-      project: JSON.parse(JSON.stringify(response)),
+      project: {
+        id: response.id,
+        title: response.title,
+        slug: response.slug,
+        description: response.description,
+        image: response.image,
+        is_featured: response.is_featured ?? false,
+        link_demo: response.demo_url,
+        link_github: response.github_url,
+        stacks: response.tech_stack,
+        content: response.content,
+        is_show: response.is_show,
+        created_at: response.created_at ?? null,
+        updated_at: response.updated_at,
+      },
     },
   };
 };

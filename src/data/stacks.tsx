@@ -243,4 +243,13 @@ export const STACKS: StacksProps = {
   GraphQL: <SiGraphql size={iconSize} className="text-pink-600" />,
   SocketIO: <SiSocketdotio size={iconSize} />,
   VSCode: <SiVisualstudiocode size={iconSize} className="text-blue-500" />,
+  
+  Leaflet: (
+  <LogoImage
+    src="/images/logos/leaflet.svg"
+    alt="Leaflet"
+    size={iconSize}
+  />
+),
+
 };
