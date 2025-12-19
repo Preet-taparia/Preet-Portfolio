@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from 'next';
+import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 
 import BackButton from '@/common/components/elements/BackButton';
@@ -51,7 +51,20 @@ const ProjectsDetailPage: NextPage<ProjectsDetailPageProps> = ({ project }) => {
 
 export default ProjectsDetailPage;
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const projects = await jsonDb.projects.findMany({}); 
+  
+  const paths = projects.map((project: any) => ({
+    params: { slug: project.slug },
+  }));
+
+  return {
+    paths,
+    fallback: false, 
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const response = await jsonDb.projects.findUnique({
     where: {
       slug: String(params?.slug),
@@ -60,10 +73,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
   if (!response) {
     return {
-      redirect: {
-        destination: '/404',
-        permanent: false,
-      },
+      notFound: true,
     };
   }
 
